@@ -110,9 +110,14 @@ npm run preview
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](./LICENSE) 文件。
+本项目采用 GNU Affero General Public License v3.0 - 详见 [LICENSE](./LICENSE) 文件。
 
-⚠️ **重要提示**：MIT 许可证仅适用于本项目的原创代码。游戏相关素材（贴纸图像等）的版权归 SEGA、Colorful Palette、Crypton Future Media 等原版权方所有。
+⚠️ **重要提示**：
+- AGPL-3.0 许可证仅适用于本项目的原创代码
+- 游戏相关素材（贴纸图像等）的版权归 SEGA、Colorful Palette、Crypton Future Media 等原版权方所有
+- 本项目整合了来自 MIT 许可证项目的代码，详见 [NOTICE](./NOTICE) 文件
+
+**AGPL-3.0 要求**：如果你修改此程序并通过网络提供服务，你必须向用户提供修改后的源代码。
 
 ## 📧 联系方式
 
@@ -123,10 +128,10 @@ npm run preview
 
 本项目整合并改进了以下优秀项目：
 
-- **[atnightcord/sekai-stickers](https://github.com/atnightcord/sekai-stickers)** - 完整的功能实现、高级文字控制、多格式导出
-- **[BedrockDigger/sekai-stickers](https://github.com/BedrockDigger/sekai-stickers)** - 精美的 Material-UI 设计、动态主题提取
+- **[TheOriginalAyaka/sekai-stickers](https://github.com/TheOriginalAyaka/sekai-stickers)** (MIT License, Copyright (c) 2022 Ayaka) - 原始实现
+- **[BedrockDigger/sekai-stickers](https://github.com/BedrockDigger/sekai-stickers)** (MIT License, Copyright (c) 2022 Ayaka) - 精美的 Material-UI 设计、动态主题提取
+- **[atnightcord/sekai-stickers](https://github.com/atnightcord/sekai-stickers)** - 高级文字控制功能参考（注意：该仓库无许可证文件）
 - **[u/SherenPlaysGames](https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/)** - 原创贴纸生成器创意
-- **Ayaka & Modder4869** - 原始实现和代码贡献
 
 感谢所有原项目的贡献者！
 
