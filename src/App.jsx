@@ -423,14 +423,13 @@ function App() {
               <Typography
                 variant="h3"
                 component="h1"
-                fontFamily="YurukaStd"
                 sx={{
                   fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' },
                   fontWeight: 'bold',
                   color: dominantColor,
                 }}
               >
-                Project Sekai 贴纸生成器
+                <Box component="span" sx={{ fontFamily: 'YurukaStd' }}>Project Sekai</Box> 贴纸生成器
               </Typography>
               <Box>
                 <Tooltip title="关于">
@@ -441,7 +440,7 @@ function App() {
                 <Tooltip title="GitHub">
                   <IconButton
                     color="secondary"
-                    href="https://github.com/atnightcord/sekai-stickers"
+                    href="https://github.com/25-ji-code-de/stickers-maker"
                     target="_blank"
                   >
                     <GitHub />
@@ -518,7 +517,6 @@ function App() {
                 <Picker setCharacter={handleCharacterSelect} color={dominantColor} />
                 <Typography
                   variant="subtitle1"
-                  fontFamily="YurukaStd"
                   sx={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -558,14 +556,17 @@ function App() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  <Typography variant="body2" gutterBottom>
+                    文字颜色
+                  </Typography>
                   <Box display="flex" gap={1} alignItems="center">
                     <TextField
                       type="color"
-                      label="文字颜色"
                       value={textColor}
                       onChange={(e) => setTextColor(e.target.value)}
                       size="small"
                       color="secondary"
+                      sx={{ width: '80px' }}
                     />
                     <Button size="small" onClick={() => setTextColor(characters[character].color)}>
                       重置
@@ -640,18 +641,23 @@ function App() {
                 />
               </Box>
 
-              <Box mt={2} display="flex" gap={1}>
-                <TextField
-                  type="color"
-                  label="描边颜色"
-                  value={strokeColor}
-                  onChange={(e) => setStrokeColor(e.target.value)}
-                  size="small"
-                  color="secondary"
-                />
-                <Button size="small" onClick={() => setStrokeColor('#ffffff')}>
-                  重置
-                </Button>
+              <Box mt={2}>
+                <Typography variant="body2" gutterBottom>
+                  描边颜色
+                </Typography>
+                <Box display="flex" gap={1} alignItems="center">
+                  <TextField
+                    type="color"
+                    value={strokeColor}
+                    onChange={(e) => setStrokeColor(e.target.value)}
+                    size="small"
+                    color="secondary"
+                    sx={{ width: '80px' }}
+                  />
+                  <Button size="small" onClick={() => setStrokeColor('#ffffff')}>
+                    重置
+                  </Button>
+                </Box>
               </Box>
 
               <Box mt={2}>

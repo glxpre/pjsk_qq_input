@@ -1,9 +1,8 @@
-# Project Sekai Stickers - Merged Version
+# Project Sekai 贴纸生成器
 
-A comprehensive web application for creating custom Project Sekai character stickers with text overlays. This is a merged version that combines the best features from two excellent implementations:
+一个功能完整、界面精美的 Project Sekai 角色贴纸生成器。支持自定义文字、样式和多种导出格式。
 
-- **[atnightcord/sekai-stickers](https://github.com/atnightcord/sekai-stickers)**: Complete feature set with advanced text controls
-- **[BedrockDigger/sekai-stickers](https://github.com/BedrockDigger/sekai-stickers)**: Beautiful UI design and responsive layout
+> 本项目参考了社区多个优秀实现，整合了最佳功能和用户体验。
 
 ## ✨ Features
 

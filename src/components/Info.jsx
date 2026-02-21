@@ -24,32 +24,64 @@ export default function Info({ open, handleClose }) {
       <DialogTitle id="info-dialog-title">关于 Project Sekai 贴纸生成器</DialogTitle>
       <DialogContent>
         <Typography variant="h6" component="h3" gutterBottom>
-          合并版说明
-        </Typography>
-        <Typography variant="body2" paragraph>
-          本项目整合了两个优秀版本的全部功能和优点：
+          本项目
         </Typography>
         <List dense>
-          <ListItem>
+          <ListItem
+            button
+            component="a"
+            href="https://github.com/25-ji-code-de/stickers-maker"
+            target="_blank"
+          >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: '#cf93d9' }}>
                 <GitHub />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="atnightcord/sekai-stickers"
-              secondary="完整功能集（垂直文字、字间距、描边控制等）"
+              primary="25-ji-code-de/stickers-maker"
+              secondary="本仓库 - Project Sekai 贴纸生成器"
             />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: '#cf93d9' }}>
-                <GitHub />
-              </Avatar>
+              <Avatar
+                alt="bili_47177171806"
+                src="/avatar.jpg"
+                sx={{ bgcolor: '#cf93d9' }}
+              />
             </ListItemAvatar>
             <ListItemText
-              primary="BedrockDigger/sekai-stickers"
-              secondary="精美的 Material-UI 界面和响应式设计"
+              primary={
+                <>
+                  bili_47177171806
+                  <br />
+                  <Typography
+                    variant="caption"
+                    component="span"
+                    sx={{ display: 'block', mt: 0.5 }}
+                  >
+                    <a
+                      href="https://github.com/bili-47177171806"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: 'inherit', textDecoration: 'none', marginRight: 8 }}
+                    >
+                      GitHub
+                    </a>
+                    •
+                    <a
+                      href="https://space.bilibili.com/3546904856103196"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: 'inherit', textDecoration: 'none', marginLeft: 8 }}
+                    >
+                      Bilibili
+                    </a>
+                  </Typography>
+                </>
+              }
+              secondary="项目开发者"
             />
           </ListItem>
         </List>
@@ -57,7 +89,10 @@ export default function Info({ open, handleClose }) {
         <Divider sx={{ my: 2 }} />
 
         <Typography variant="h6" component="h3" gutterBottom>
-          原始贡献者
+          致谢与参考
+        </Typography>
+        <Typography variant="body2" paragraph color="text.secondary">
+          本项目参考了社区多个优秀实现
         </Typography>
         <List dense>
           <ListItem
@@ -102,6 +137,17 @@ export default function Info({ open, handleClose }) {
           <ListItem
             button
             component="a"
+            href="https://github.com/BedrockDigger"
+            target="_blank"
+          >
+            <ListItemAvatar>
+              <Avatar alt="BedrockDigger" src="https://avatars.githubusercontent.com/BedrockDigger" />
+            </ListItemAvatar>
+            <ListItemText primary="BedrockDigger" secondary="UI 设计贡献" />
+          </ListItem>
+          <ListItem
+            button
+            component="a"
             href="https://nightcord.de/@akiyamamizuki"
             target="_blank"
           >
@@ -113,7 +159,7 @@ export default function Info({ open, handleClose }) {
             </ListItemAvatar>
             <ListItemText
               primary="Mikan Harada"
-              secondary="@akiyamamizuki - atnightcord 版本维护者"
+              secondary="@akiyamamizuki - 代码贡献"
             />
           </ListItem>
         </List>
@@ -121,7 +167,7 @@ export default function Info({ open, handleClose }) {
         <Divider sx={{ my: 2 }} />
 
         <Typography variant="h6" component="h3" gutterBottom>
-          项目链接
+          参考项目
         </Typography>
         <List dense>
           <ListItem
@@ -137,7 +183,7 @@ export default function Info({ open, handleClose }) {
             </ListItemAvatar>
             <ListItemText
               primary="atnightcord/sekai-stickers"
-              secondary="功能完整版源码"
+              secondary="功能参考"
             />
           </ListItem>
           <ListItem
@@ -153,7 +199,7 @@ export default function Info({ open, handleClose }) {
             </ListItemAvatar>
             <ListItemText
               primary="BedrockDigger/sekai-stickers"
-              secondary="UI 优化版源码"
+              secondary="UI 参考"
             />
           </ListItem>
           <ListItem
@@ -167,7 +213,7 @@ export default function Info({ open, handleClose }) {
                 <GitHub />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="TheOriginalAyaka/sekai-stickers" secondary="最初版本源码" />
+            <ListItemText primary="TheOriginalAyaka/sekai-stickers" secondary="最初版本" />
           </ListItem>
         </List>
 

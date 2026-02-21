@@ -23,7 +23,7 @@ export default function ThemeWrapper({ dominantColor, backgroundColor, children 
           },
         },
         typography: {
-          fontFamily: 'YurukaStd, SSFangTangTi, sans-serif',
+          fontFamily: '"YurukaStd", "SSFangTangTi", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif',
         },
         components: {
           MuiSlider: {
