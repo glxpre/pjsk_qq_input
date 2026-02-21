@@ -1,290 +1,147 @@
 # Project Sekai 贴纸生成器
 
-一个功能完整、界面精美的 Project Sekai 角色贴纸生成器。支持自定义文字、样式和多种导出格式。
+<div align="center">
 
-> 本项目参考了社区多个优秀实现，整合了最佳功能和用户体验。
+![GitHub License](https://img.shields.io/github/license/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
+![GitHub stars](https://img.shields.io/github/stars/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
+![GitHub forks](https://img.shields.io/github/forks/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
+![GitHub issues](https://img.shields.io/github/issues/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
+![GitHub last commit](https://img.shields.io/github/last-commit/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
+![GitHub repo size](https://img.shields.io/github/repo-size/25-ji-code-de/stickers-maker?style=flat-square&color=884499)
 
-## ✨ Features
+</div>
 
-### 🎨 Rich Text Customization
-- **Multiple font options**: YurukaStd, SSFangTangTi, and System fonts
-- **Text positioning**: Drag or use precise sliders for X/Y coordinates
-- **Font size control**: 10-100px with smooth slider
-- **Rotation**: -10 to +10 degrees for perfect angles
-- **Line spacing**: 18-100px for multi-line text
-- **Letter spacing**: -10 to +30px for custom character spacing
-- **Stroke width**: 0-30px outline thickness
-- **Custom colors**: Full color pickers for text and stroke
-- **Text modes**:
-  - Horizontal (default)
-  - Vertical (top-to-bottom)
-  - Curved (circular arc)
-- **Layer control**: Place text behind or in front of character
+功能完整、界面精美的 Project Sekai 角色贴纸生成器。支持自定义文字、样式和多种导出格式。
 
-### 🖼️ Image Features
-- **370+ character stickers** from Project Sekai
-- **26 unique characters** with multiple poses each
-- **Custom image upload**: Use your own images (PNG, JPG, GIF, WebP)
-- **Dynamic color extraction**: UI adapts to character colors
-- **Search functionality**: Find characters by name or series
+> 本项目整合了社区多个优秀实现的最佳功能和用户体验。
 
-### 💾 Export Options
-- **Copy to clipboard**: PNG or JPG with white background
-- **Download files**: PNG, JPG, or WebP formats
-- **WebP optimization**: High-quality web format support
+## ✨ 特性
 
-### 🎯 User Experience
-- **Material-UI design**: Clean, modern interface
-- **Fully responsive**: Works on desktop, tablet, and mobile
-- **Dark theme**: Easy on the eyes
-- **Real-time preview**: See changes instantly
-- **Keyboard shortcuts**: Quick position adjustments (±5px buttons)
-- **Reset functionality**: Restore default settings anytime
+- 🎨 **丰富的文字自定义** - 多字体选择、位置调整、旋转、行距、字距、描边
+- 📝 **多种文字模式** - 支持横排、竖排、弧形排列
+- 🖼️ **370+ 角色贴纸** - 包含 31 个 Project Sekai 角色的多种姿势
+- 🎯 **精准控制** - 滑块微调或 ±5px 快捷按钮
+- 🎨 **动态主题** - 根据角色图片自动提取主题色
+- 💾 **多格式导出** - PNG、JPG、WebP 下载或剪贴板复制
+- 📱 **响应式设计** - 完美支持桌面、平板和移动设备
+- 🌙 **暗色主题** - Material-UI 精美界面
 
-## 🚀 Tech Stack
+## 🚀 快速开始
 
-- **React 18** - Modern UI library with concurrent rendering
-- **Vite 7** - Lightning-fast build tool and dev server
-- **Material-UI 5** - Comprehensive component library
-- **Fast Average Color** - Dynamic theme color extraction
-- **HTML5 Canvas** - High-quality image rendering
-- **Font Optimization** - Custom fonts with `font-display: swap`
+### 前置要求
 
-## 📦 Installation
+- Node.js 18+
+- npm 或 yarn
+
+### 安装
 
 ```bash
-# Install dependencies
-npm install
+# 克隆仓库
+git clone https://github.com/25-ji-code-de/stickers-maker.git
+cd stickers-maker
 
-# Start development server
+# 安装依赖
+npm install
+```
+
+### 运行
+
+```bash
+# 开发环境
 npm run dev
 
-# Build for production
+# 构建生产版本
 npm run build
 
-# Preview production build
+# 预览生产版本
 npm run preview
-
-# Lint code
-npm run lint
-
-# Format code
-npm run format
 ```
 
-## 🎮 Usage
+## 🎮 使用说明
 
-1. **Select a character**: Click the person icon to open the character picker
-2. **Enter your text**: Type in the text field (supports multi-line with Enter)
-3. **Customize appearance**:
-   - Adjust font size, rotation, and spacing with sliders
-   - Change text and stroke colors with color pickers
-   - Try different fonts from the dropdown
-4. **Position text**:
-   - Use sliders for precise positioning
-   - Click ±5px buttons for quick adjustments
-5. **Export your sticker**:
-   - Copy to clipboard (PNG or JPG)
-   - Download as file (PNG, JPG, or WebP)
+1. **选择角色** - 点击人物图标打开角色选择器
+2. **输入文字** - 在文本框输入内容（支持多行）
+3. **自定义样式** - 使用滑块调整字体大小、旋转、间距等
+4. **调整位置** - 使用滑块精确定位或使用 ±5px 按钮快速调整
+5. **导出贴纸** - 复制到剪贴板或下载为文件
 
-### Advanced Options
+**高级选项:**
+- 弧形文字、竖排文字
+- 文字前景/背景图层切换
+- 自定义图片上传
+- 描边宽度和颜色调整
 
-- **Curved Text**: Enable for circular text effect (great for sticker borders)
-- **Vertical Text**: Traditional top-to-bottom text layout
-- **Text Behind Image**: Place text as background layer
-- **Custom Image**: Upload your own image instead of using character stickers
-- **Letter Spacing**: Fine-tune spacing between individual characters
+## 🛠️ 技术栈
 
-## 📁 Project Structure
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white&color=884499)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat-square&logo=vite&logoColor=white&color=884499)
+![Material--UI](https://img.shields.io/badge/Material--UI-5-007FFF?style=flat-square&logo=mui&logoColor=white&color=884499)
 
-```
-sekai-stickers-merged/
-├── public/              # Static assets
-│   ├── img/            # Character sticker images (370+ PNGs)
-│   └── site.webmanifest # PWA configuration
-├── src/
-│   ├── components/     # React components
-│   │   ├── Canvas.jsx  # Canvas rendering wrapper
-│   │   ├── Picker.jsx  # Character selection dialog
-│   │   └── Info.jsx    # Credits/about dialog
-│   ├── fonts/          # Custom font files
-│   │   ├── YurukaStd.woff2
-│   │   └── ShangShouFangTangTi.woff2
-│   ├── App.jsx         # Main application component
-│   ├── main.jsx        # React entry point
-│   ├── index.css       # Global styles
-│   ├── characters.json # Character database (5000+ lines)
-│   └── config.json     # API configuration
-├── index.html          # HTML entry point
-├── vite.config.js      # Vite configuration
-└── package.json        # Dependencies and scripts
-```
+- **前端框架**: React 18 + Vite 7
+- **UI 组件库**: Material-UI 5
+- **图像处理**: HTML5 Canvas + Fast Average Color
+- **字体优化**: 自定义 Web 字体（YurukaStd、SSFangTangTi）
 
-## 🎨 Character Database
+## 🌐 SEKAI 生态
 
-The project includes a comprehensive character database with:
-- **31 unique characters** from Project Sekai
-- **370+ sticker variations** with different poses and expressions
-- Character metadata including:
-  - Name and series
-  - Image path
-  - Default text, position, size, and rotation
-  - Character-specific color theme
+本项目是 **SEKAI 生态**的一部分。
 
-Characters include: Airi, Akito, An, Emu, Ena, Haruka, Honami, Ichika, KAITO, Kanade, Kohane, Len, Luka, Mafuyu, Meiko, Miku, Minori, Mizuki, Nene, Rui, Saki, Shiho, Shizuku, Toya, Tsukasa, and more!
-
-## 🔧 Configuration
-
-### API Endpoint
-Edit `src/config.json` to change the API endpoint for analytics:
-```json
-{
-  "apiUrl": "https://your-api-endpoint.com"
-}
-```
-
-### Custom Fonts
-Add custom fonts in `src/index.css`:
-```css
-@font-face {
-  font-family: "YourFont";
-  src: url(./fonts/YourFont.woff2) format("woff2");
-  font-display: swap;
-}
-```
-
-Then update the font stack in `src/App.jsx`.
-
-## 🙏 Credits
-
-This merged version combines and improves upon:
-
-### Original Projects
-- **[atnightcord/sekai-stickers](https://github.com/atnightcord/sekai-stickers)**
-  - Complete feature implementation
-  - Advanced text controls (vertical, curved, stroke, letter spacing)
-  - Multiple export formats
-  - Vite build configuration
-
-- **[BedrockDigger/sekai-stickers](https://github.com/BedrockDigger/sekai-stickers)**
-  - Beautiful Material-UI design
-  - Responsive layout system
-  - Dynamic color extraction
-  - Polished user experience
-  - PWA support
-
-### Original Contributors
-- **[u/SherenPlaysGames](https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/)** - Original stamp creator
-- **Ayaka** - Original idea and implementation
-- **Modder4869** - Code contributions
-- All other contributors to both original projects
-
-## 📝 License
-
-MIT License - See individual project repositories for their licenses.
-
-## 🐛 Bug Reports & Feature Requests
-
-Since this is a merged/modified version, please:
-1. Check if the issue exists in the original projects
-2. For new bugs specific to this merge, open an issue in this repository
-3. For features from the original projects, check their repositories
-
-## 🌟 What Makes This Merged Version Better?
-
-### From atnightcord's version:
-✅ Vertical text mode
-✅ Letter spacing control
-✅ Stroke width control
-✅ Multiple font options
-✅ Text behind/in-front layer control
-✅ Custom image upload
-✅ 5 export formats (PNG, JPG, WebP + clipboard variants)
-✅ Vite build system (faster than CRA)
-
-### From BedrockDigger's version:
-✅ Material-UI components
-✅ Responsive grid layout
-✅ Dynamic theme colors from character images
-✅ Snackbar notifications
-✅ Polished button and slider controls
-✅ Better mobile experience
-✅ PWA manifest and icons
-
-### New Improvements:
-✅ Combined UI elegance with feature completeness
-✅ Better organized component structure
-✅ Improved error handling
-✅ More intuitive control layout
-✅ Enhanced accessibility
-✅ Optimized bundle size with proper code splitting
-
-## 🚢 Deployment
-
-### Vercel (Recommended)
-```bash
-npm run build
-# Deploy dist/ folder to Vercel
-```
-
-### Docker
-```dockerfile
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-RUN npm install -g serve
-EXPOSE 3000
-CMD ["serve", "-s", "dist", "-l", "3000"]
-```
-
-### Static Hosting
-Build the project and deploy the `dist/` folder to any static hosting service:
-- Netlify
-- GitHub Pages
-- Cloudflare Pages
-- AWS S3 + CloudFront
-
-## 🎓 Development Tips
-
-### Adding New Characters
-1. Place character images in `public/img/character-name/`
-2. Add entries to `src/characters.json`:
-```json
-{
-  "id": "character-01",
-  "name": "Character Name 01",
-  "character": "Character Series",
-  "img": "character-name/01.png",
-  "color": "#ff69b4",
-  "defaultText": {
-    "text": "Default text",
-    "x": 148,
-    "y": 200,
-    "r": 0,
-    "s": 30
-  }
-}
-```
-
-### Customizing Theme
-Edit the theme object in `src/App.jsx`:
-```javascript
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: { main: yourColor },
-    // ... customize more
-  },
-})
-```
-
-## 📸 Screenshots
-
-![Preview](public/screenshot_new_new.png)
+查看完整的项目列表和架构：**[SEKAI 门户](https://sekai.nightcord.de5.net)**
 
 ---
 
-**Built with ❤️ by combining the best of both worlds**
+**声明**：本项目受 *Project SEKAI COLORFUL STAGE! feat. Hatsune Miku* 启发。
+
+本项目是非官方、非商业性质的粉丝作品，与 SEGA、Colorful Palette、Crypton Future Media 或任何其他与《Project SEKAI》相关的版权持有方无任何官方关联。
+
+所有游戏相关素材（包括但不限于角色贴纸图像）的版权归其各自的版权持有方所有。
+
+## 🤝 贡献
+
+欢迎贡献！我们非常感谢任何形式的贡献。
+
+在贡献之前，请阅读：
+- [贡献指南](./CONTRIBUTING.md)
+- [行为准则](./CODE_OF_CONDUCT.md)
+
+## 🔒 安全
+
+如果发现安全漏洞，请查看我们的 [安全政策](./SECURITY.md)。
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](./LICENSE) 文件。
+
+⚠️ **重要提示**：MIT 许可证仅适用于本项目的原创代码。游戏相关素材（贴纸图像等）的版权归 SEGA、Colorful Palette、Crypton Future Media 等原版权方所有。
+
+## 📧 联系方式
+
+- **GitHub Issues**: [https://github.com/25-ji-code-de/stickers-maker/issues](https://github.com/25-ji-code-de/stickers-maker/issues)
+- **哔哩哔哩**: [@bili_47177171806](https://space.bilibili.com/3546904856103196)
+
+## 🙏 致谢
+
+本项目整合并改进了以下优秀项目：
+
+- **[atnightcord/sekai-stickers](https://github.com/atnightcord/sekai-stickers)** - 完整的功能实现、高级文字控制、多格式导出
+- **[BedrockDigger/sekai-stickers](https://github.com/BedrockDigger/sekai-stickers)** - 精美的 Material-UI 设计、动态主题提取
+- **[u/SherenPlaysGames](https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/)** - 原创贴纸生成器创意
+- **Ayaka & Modder4869** - 原始实现和代码贡献
+
+感谢所有原项目的贡献者！
+
+## ⭐ Star History
+
+如果这个项目对你有帮助，请给我们一个 Star！
+
+[![Star History Chart](https://api.star-history.com/svg?repos=25-ji-code-de/stickers-maker&type=Date)](https://star-history.com/#25-ji-code-de/stickers-maker&Date)
+
+---
+
+<div align="center">
+
+**[SEKAI 生态](https://sekai.nightcord.de5.net)** 的一部分
+
+Made with 💜 by the [25-ji-code-de](https://github.com/25-ji-code-de) team
+
+</div>
