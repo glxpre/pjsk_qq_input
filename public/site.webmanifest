@@ -1,35 +1,35 @@
 {
-  "name": "Project Sekai Stickers",
-  "short_name": "Pjsk Stickers",
+  "name": "Project Sekai 贴纸生成器",
+  "short_name": "世界计划贴纸",
+  "description": "为你喜欢的世界计划角色定制专属贴纸",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#cf93d9",
+  "background_color": "#121212",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/android-chrome-256x256.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#cf93d9",
-  "background_color": "#121212",
-  "display": "standalone",
-  "description": "Make your own Project sekai stickers!",
-  "start_url": "https://prsk.erica.moe/",
-  "dir": "ltr",
-  "lang": "en",
-  "orientation": "portrait",
   "categories": [
     "entertainment",
-    "photo",
-    "productivity",
-    "social"
+    "photo"
   ]
 }
