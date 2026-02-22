@@ -101,12 +101,17 @@ function UploadDialog({ open, onClose, canvas, altText = '' }) {
     // 使用用户输入的文字，如果是多行则只取第一行，限制长度
     const displayText = altText.split('\n')[0].substring(0, 50) || 'Sekai Sticker'
 
+    // 从 URL 中提取 UUID 路径（去除域名部分）
+    // 例如：https://storage.nightcord.de5.net/uuid/file.png -> uuid/file.png
+    const uuidPath = uploadedUrl.replace(/^https?:\/\/[^\/]+\//, '')
+
     return {
       '直链': uploadedUrl,
       'HTML': `<img src="${uploadedUrl}" alt="${displayText}" />`,
       'Markdown': `![${displayText}](${uploadedUrl})`,
       'BBCode': `[img]${uploadedUrl}[/img]`,
       'SEKAI': `[sticker:${uploadedUrl}]`,
+      'SEKAI v2': `<$SEKAI:Stamp:custom=true:${uuidPath}>`,
       'Forum': `[URL=${uploadedUrl}][IMG]${uploadedUrl}[/IMG][/URL]`,
     }
   }
