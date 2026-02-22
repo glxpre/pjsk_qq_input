@@ -6,7 +6,6 @@
         "img": "airi/airi_01.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "keep up",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -20,7 +19,6 @@
         "img": "airi/airi_02.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "nice to meet ya",
             "x": 148,
             "y": 58,
             "r": 0,
@@ -34,7 +32,6 @@
         "img": "airi/airi_03.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "keep at it!",
             "x": 140,
             "y": 79,
             "r": 2,
@@ -48,7 +45,6 @@
         "img": "airi/airi_04.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -62,7 +58,6 @@
         "img": "airi/airi_06.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -76,7 +71,6 @@
         "img": "airi/airi_07.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -90,7 +84,6 @@
         "img": "airi/airi_08.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -104,7 +97,6 @@
         "img": "airi/airi_09.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -118,7 +110,6 @@
         "img": "airi/airi_11.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -132,7 +123,6 @@
         "img": "airi/airi_12.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -146,7 +136,6 @@
         "img": "airi/airi_13.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -160,7 +149,6 @@
         "img": "airi/airi_14.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -174,7 +162,6 @@
         "img": "airi/airi_16.png",
         "color": "#FB8AAC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -184,11 +171,10 @@
     {
         "id": "19",
         "name": "东云彰人 01",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_01.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -198,11 +184,10 @@
     {
         "id": "20",
         "name": "东云彰人 02",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_02.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -212,11 +197,10 @@
     {
         "id": "21",
         "name": "东云彰人 03",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_03.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -226,11 +210,10 @@
     {
         "id": "22",
         "name": "东云彰人 04",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_04.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -240,11 +223,10 @@
     {
         "id": "24",
         "name": "东云彰人 06",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_06.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -254,11 +236,10 @@
     {
         "id": "25",
         "name": "东云彰人 07",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_07.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -268,11 +249,10 @@
     {
         "id": "26",
         "name": "东云彰人 08",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_08.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -282,11 +262,10 @@
     {
         "id": "27",
         "name": "东云彰人 09",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_09.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -296,11 +275,10 @@
     {
         "id": "29",
         "name": "东云彰人 11",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_11.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -310,11 +288,10 @@
     {
         "id": "30",
         "name": "东云彰人 12",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_12.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -324,11 +301,10 @@
     {
         "id": "31",
         "name": "东云彰人 13",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_13.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -338,11 +314,10 @@
     {
         "id": "32",
         "name": "东云彰人 14",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_14.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -352,11 +327,10 @@
     {
         "id": "33",
         "name": "东云彰人 16",
-        "character": "akito",
+        "character": "akt",
         "img": "akt/akt_16.png",
         "color": "#FF7722",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -370,7 +344,6 @@
         "img": "an/an_01.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -384,7 +357,6 @@
         "img": "an/an_02.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -398,7 +370,6 @@
         "img": "an/an_03.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -412,7 +383,6 @@
         "img": "an/an_04.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -426,7 +396,6 @@
         "img": "an/an_06.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -440,7 +409,6 @@
         "img": "an/an_07.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -454,7 +422,6 @@
         "img": "an/an_08.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -468,7 +435,6 @@
         "img": "an/an_09.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -482,7 +448,6 @@
         "img": "an/an_11.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -496,7 +461,6 @@
         "img": "an/an_12.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -510,7 +474,6 @@
         "img": "an/an_13.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -524,7 +487,6 @@
         "img": "an/an_14.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -538,7 +500,6 @@
         "img": "an/an_16.png",
         "color": "#00BADC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -552,7 +513,6 @@
         "img": "emu/emu_01.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -566,7 +526,6 @@
         "img": "emu/emu_02.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -580,7 +539,6 @@
         "img": "emu/emu_03.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -594,7 +552,6 @@
         "img": "emu/emu_04.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -608,7 +565,6 @@
         "img": "emu/emu_06.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -622,7 +578,6 @@
         "img": "emu/emu_07.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -636,7 +591,6 @@
         "img": "emu/emu_08.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -650,7 +604,6 @@
         "img": "emu/emu_09.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -664,7 +617,6 @@
         "img": "emu/emu_11.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -678,7 +630,6 @@
         "img": "emu/emu_12.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -692,7 +643,6 @@
         "img": "emu/emu_13.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "Wonderhoy!",
             "x": 148,
             "y": 70,
             "r": -2,
@@ -706,7 +656,6 @@
         "img": "emu/emu_14.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -720,7 +669,6 @@
         "img": "emu/emu_16.png",
         "color": "#FF66BB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -734,7 +682,6 @@
         "img": "ena/ena_01.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -748,7 +695,6 @@
         "img": "ena/ena_02.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -762,7 +708,6 @@
         "img": "ena/ena_03.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -776,7 +721,6 @@
         "img": "ena/ena_04.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -790,7 +734,6 @@
         "img": "ena/ena_06.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -804,7 +747,6 @@
         "img": "ena/ena_07.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -818,7 +760,6 @@
         "img": "ena/ena_08.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -832,7 +773,6 @@
         "img": "ena/ena_09.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -846,7 +786,6 @@
         "img": "ena/ena_11.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -860,7 +799,6 @@
         "img": "ena/ena_12.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -874,7 +812,6 @@
         "img": "ena/ena_13.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -888,7 +825,6 @@
         "img": "ena/ena_14.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -902,7 +838,6 @@
         "img": "ena/ena_16.png",
         "color": "#B18F6C",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -912,11 +847,10 @@
     {
         "id": "81",
         "name": "桐谷遥 01",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_01.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -926,11 +860,10 @@
     {
         "id": "82",
         "name": "桐谷遥 02",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_02.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -940,11 +873,10 @@
     {
         "id": "83",
         "name": "桐谷遥 03",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_03.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -954,11 +886,10 @@
     {
         "id": "84",
         "name": "桐谷遥 04",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_04.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -968,11 +899,10 @@
     {
         "id": "85",
         "name": "桐谷遥 06",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_06.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -982,11 +912,10 @@
     {
         "id": "86",
         "name": "桐谷遥 07",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_07.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -996,11 +925,10 @@
     {
         "id": "87",
         "name": "桐谷遥 08",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_08.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1010,11 +938,10 @@
     {
         "id": "88",
         "name": "桐谷遥 09",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_09.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1024,11 +951,10 @@
     {
         "id": "89",
         "name": "桐谷遥 11",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_11.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1038,11 +964,10 @@
     {
         "id": "90",
         "name": "桐谷遥 12",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_12.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1052,11 +977,10 @@
     {
         "id": "91",
         "name": "桐谷遥 13",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_13.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1066,11 +990,10 @@
     {
         "id": "92",
         "name": "桐谷遥 14",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_14.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1080,11 +1003,10 @@
     {
         "id": "93",
         "name": "桐谷遥 16",
-        "character": "Haruka",
+        "character": "hrk",
         "img": "hrk/hrk_16.png",
         "color": "#6495F0",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1094,11 +1016,10 @@
     {
         "id": "94",
         "name": "望月穗波 01",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_01.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1108,11 +1029,10 @@
     {
         "id": "95",
         "name": "望月穗波 02",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_02.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1122,11 +1042,10 @@
     {
         "id": "96",
         "name": "望月穗波 03",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_03.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1136,11 +1055,10 @@
     {
         "id": "97",
         "name": "望月穗波 04",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_04.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1150,11 +1068,10 @@
     {
         "id": "98",
         "name": "望月穗波 06",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_06.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1164,11 +1081,10 @@
     {
         "id": "99",
         "name": "望月穗波 07",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_07.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1178,11 +1094,10 @@
     {
         "id": "100",
         "name": "望月穗波 08",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_08.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1192,11 +1107,10 @@
     {
         "id": "101",
         "name": "望月穗波 09",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_09.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1206,11 +1120,10 @@
     {
         "id": "102",
         "name": "望月穗波 11",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_11.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1220,11 +1133,10 @@
     {
         "id": "103",
         "name": "望月穗波 12",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_12.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1234,11 +1146,10 @@
     {
         "id": "104",
         "name": "望月穗波 13",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_13.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1248,11 +1159,10 @@
     {
         "id": "105",
         "name": "望月穗波 14",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_14.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1262,11 +1172,10 @@
     {
         "id": "106",
         "name": "望月穗波 16",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_16.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1276,11 +1185,10 @@
     {
         "id": "107",
         "name": "望月穗波 17",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_17.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1290,11 +1198,10 @@
     {
         "id": "108",
         "name": "望月穗波 18",
-        "character": "Honami",
+        "character": "hnm",
         "img": "hnm/hnm_18.png",
         "color": "#F86666",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1304,11 +1211,10 @@
     {
         "id": "109",
         "name": "星乃一歌 01",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_01.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1318,11 +1224,10 @@
     {
         "id": "110",
         "name": "星乃一歌 02",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_02.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1332,11 +1237,10 @@
     {
         "id": "111",
         "name": "星乃一歌 03",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_03.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1346,11 +1250,10 @@
     {
         "id": "112",
         "name": "星乃一歌 04",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_04.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1360,11 +1263,10 @@
     {
         "id": "113",
         "name": "星乃一歌 06",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_06.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1374,11 +1276,10 @@
     {
         "id": "114",
         "name": "星乃一歌 07",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_07.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1388,11 +1289,10 @@
     {
         "id": "115",
         "name": "星乃一歌 08",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_08.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1402,11 +1302,10 @@
     {
         "id": "116",
         "name": "星乃一歌 09",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_09.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1416,11 +1315,10 @@
     {
         "id": "117",
         "name": "星乃一歌 11",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_11.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1430,11 +1328,10 @@
     {
         "id": "118",
         "name": "星乃一歌 12",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_12.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1444,11 +1341,10 @@
     {
         "id": "119",
         "name": "星乃一歌 13",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_13.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1458,11 +1354,10 @@
     {
         "id": "120",
         "name": "星乃一歌 14",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_14.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1472,11 +1367,10 @@
     {
         "id": "121",
         "name": "星乃一歌 16",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_16.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1486,11 +1380,10 @@
     {
         "id": "122",
         "name": "星乃一歌 17",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_17.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1500,11 +1393,10 @@
     {
         "id": "123",
         "name": "星乃一歌 18",
-        "character": "Ichika",
+        "character": "ick",
         "img": "ick/ick_18.png",
         "color": "#33AAEE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1514,11 +1406,10 @@
     {
         "id": "124",
         "name": "KAITO 01",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_01.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1528,11 +1419,10 @@
     {
         "id": "125",
         "name": "KAITO 02",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_02.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1542,11 +1432,10 @@
     {
         "id": "126",
         "name": "KAITO 03",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_03.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1556,11 +1445,10 @@
     {
         "id": "127",
         "name": "KAITO 04",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_04.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1570,11 +1458,10 @@
     {
         "id": "128",
         "name": "KAITO 06",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_06.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1584,11 +1471,10 @@
     {
         "id": "129",
         "name": "KAITO 07",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_07.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1598,11 +1484,10 @@
     {
         "id": "130",
         "name": "KAITO 08",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_08.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1612,11 +1497,10 @@
     {
         "id": "131",
         "name": "KAITO 09",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_09.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1626,11 +1510,10 @@
     {
         "id": "132",
         "name": "KAITO 11",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_11.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1640,11 +1523,10 @@
     {
         "id": "133",
         "name": "KAITO 12",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_12.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1654,11 +1536,10 @@
     {
         "id": "134",
         "name": "KAITO 13",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_13.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1668,11 +1549,10 @@
     {
         "id": "135",
         "name": "KAITO 14",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_14.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1682,11 +1562,10 @@
     {
         "id": "136",
         "name": "KAITO 16",
-        "character": "KAITO",
+        "character": "kaito",
         "img": "kaito/kaito_16.png",
         "color": "#3366CC",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1696,11 +1575,10 @@
     {
         "id": "137",
         "name": "宵崎奏 01",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_01.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1710,11 +1588,10 @@
     {
         "id": "138",
         "name": "宵崎奏 02",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_02.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1724,11 +1601,10 @@
     {
         "id": "139",
         "name": "宵崎奏 03",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_03.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1738,11 +1614,10 @@
     {
         "id": "140",
         "name": "宵崎奏 04",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_04.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1752,11 +1627,10 @@
     {
         "id": "141",
         "name": "宵崎奏 06",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_06.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1766,11 +1640,10 @@
     {
         "id": "142",
         "name": "宵崎奏 07",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_07.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1780,11 +1653,10 @@
     {
         "id": "143",
         "name": "宵崎奏 08",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_08.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1794,11 +1666,10 @@
     {
         "id": "144",
         "name": "宵崎奏 09",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_09.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1808,11 +1679,10 @@
     {
         "id": "145",
         "name": "宵崎奏 11",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_11.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1822,11 +1692,10 @@
     {
         "id": "146",
         "name": "宵崎奏 12",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_12.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1836,11 +1705,10 @@
     {
         "id": "147",
         "name": "宵崎奏 13",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_13.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1850,11 +1718,10 @@
     {
         "id": "148",
         "name": "宵崎奏 14",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_14.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1864,11 +1731,10 @@
     {
         "id": "149",
         "name": "宵崎奏 16",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_16.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1878,11 +1744,10 @@
     {
         "id": "150",
         "name": "宵崎奏 17",
-        "character": "Kanade",
+        "character": "knd",
         "img": "knd/knd_17.png",
         "color": "#BB6688",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1892,11 +1757,10 @@
     {
         "id": "151",
         "name": "小豆泽心羽 01",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_01.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1906,11 +1770,10 @@
     {
         "id": "152",
         "name": "小豆泽心羽 02",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_02.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1920,11 +1783,10 @@
     {
         "id": "153",
         "name": "小豆泽心羽 03",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_03.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1934,11 +1796,10 @@
     {
         "id": "154",
         "name": "小豆泽心羽 04",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_04.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1948,11 +1809,10 @@
     {
         "id": "155",
         "name": "小豆泽心羽 06",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_06.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1962,11 +1822,10 @@
     {
         "id": "156",
         "name": "小豆泽心羽 07",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_07.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1976,11 +1835,10 @@
     {
         "id": "157",
         "name": "小豆泽心羽 08",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_08.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -1990,11 +1848,10 @@
     {
         "id": "158",
         "name": "小豆泽心羽 09",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_09.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2004,11 +1861,10 @@
     {
         "id": "159",
         "name": "小豆泽心羽 11",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_11.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2018,11 +1874,10 @@
     {
         "id": "160",
         "name": "小豆泽心羽 12",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_12.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2032,11 +1887,10 @@
     {
         "id": "161",
         "name": "小豆泽心羽 13",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_13.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2046,11 +1900,10 @@
     {
         "id": "162",
         "name": "小豆泽心羽 14",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_14.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2060,11 +1913,10 @@
     {
         "id": "163",
         "name": "小豆泽心羽 16",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_16.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2074,11 +1926,10 @@
     {
         "id": "164",
         "name": "小豆泽心羽 17",
-        "character": "Kohane",
+        "character": "khn",
         "img": "khn/khn_17.png",
         "color": "#FF6699",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2088,11 +1939,10 @@
     {
         "id": "165",
         "name": "镜音连 01",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_01.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2102,11 +1952,10 @@
     {
         "id": "166",
         "name": "镜音连 02",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_02.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2116,11 +1965,10 @@
     {
         "id": "167",
         "name": "镜音连 03",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_03.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2130,11 +1978,10 @@
     {
         "id": "168",
         "name": "镜音连 04",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_04.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2144,11 +1991,10 @@
     {
         "id": "169",
         "name": "镜音连 06",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_06.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2158,11 +2004,10 @@
     {
         "id": "170",
         "name": "镜音连 07",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_07.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2172,11 +2017,10 @@
     {
         "id": "171",
         "name": "镜音连 08",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_08.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2186,11 +2030,10 @@
     {
         "id": "172",
         "name": "镜音连 09",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_09.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2200,11 +2043,10 @@
     {
         "id": "173",
         "name": "镜音连 11",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_11.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2214,11 +2056,10 @@
     {
         "id": "174",
         "name": "镜音连 12",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_12.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2228,11 +2069,10 @@
     {
         "id": "175",
         "name": "镜音连 13",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_13.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2242,11 +2082,10 @@
     {
         "id": "176",
         "name": "镜音连 14",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_14.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2256,11 +2095,10 @@
     {
         "id": "177",
         "name": "镜音连 16",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_16.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2270,11 +2108,10 @@
     {
         "id": "178",
         "name": "镜音连 17",
-        "character": "Len",
+        "character": "len",
         "img": "len/len_17.png",
         "color": "#D3BD00",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2284,11 +2121,10 @@
     {
         "id": "179",
         "name": "巡音流歌 01",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_01.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2298,11 +2134,10 @@
     {
         "id": "180",
         "name": "巡音流歌 02",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_02.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2312,11 +2147,10 @@
     {
         "id": "181",
         "name": "巡音流歌 03",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_03.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2326,11 +2160,10 @@
     {
         "id": "182",
         "name": "巡音流歌 04",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_04.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2340,11 +2173,10 @@
     {
         "id": "183",
         "name": "巡音流歌 06",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_06.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2354,11 +2186,10 @@
     {
         "id": "184",
         "name": "巡音流歌 07",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_07.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2368,11 +2199,10 @@
     {
         "id": "185",
         "name": "巡音流歌 08",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_08.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2382,11 +2212,10 @@
     {
         "id": "186",
         "name": "巡音流歌 09",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_09.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2396,11 +2225,10 @@
     {
         "id": "187",
         "name": "巡音流歌 11",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_11.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2410,11 +2238,10 @@
     {
         "id": "188",
         "name": "巡音流歌 12",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_12.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2424,11 +2251,10 @@
     {
         "id": "189",
         "name": "巡音流歌 13",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_13.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2438,11 +2264,10 @@
     {
         "id": "190",
         "name": "巡音流歌 14",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_14.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2452,11 +2277,10 @@
     {
         "id": "191",
         "name": "巡音流歌 16",
-        "character": "Luka",
+        "character": "luka",
         "img": "luka/luka_16.png",
         "color": "#F88CA7",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2466,11 +2290,10 @@
     {
         "id": "192",
         "name": "朝比奈真冬 01",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_01.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2480,11 +2303,10 @@
     {
         "id": "193",
         "name": "朝比奈真冬 02",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_02.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2494,11 +2316,10 @@
     {
         "id": "194",
         "name": "朝比奈真冬 03",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_03.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2508,11 +2329,10 @@
     {
         "id": "195",
         "name": "朝比奈真冬 04",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_04.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2522,11 +2342,10 @@
     {
         "id": "196",
         "name": "朝比奈真冬 06",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_06.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2536,11 +2355,10 @@
     {
         "id": "197",
         "name": "朝比奈真冬 07",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_07.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2550,11 +2368,10 @@
     {
         "id": "198",
         "name": "朝比奈真冬 08",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_08.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2564,11 +2381,10 @@
     {
         "id": "199",
         "name": "朝比奈真冬 09",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_09.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2578,11 +2394,10 @@
     {
         "id": "200",
         "name": "朝比奈真冬 11",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_11.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2592,11 +2407,10 @@
     {
         "id": "201",
         "name": "朝比奈真冬 12",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_12.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2606,11 +2420,10 @@
     {
         "id": "202",
         "name": "朝比奈真冬 13",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_13.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2620,11 +2433,10 @@
     {
         "id": "203",
         "name": "朝比奈真冬 14",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_14.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2634,11 +2446,10 @@
     {
         "id": "204",
         "name": "朝比奈真冬 16",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_16.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2648,11 +2459,10 @@
     {
         "id": "205",
         "name": "朝比奈真冬 17",
-        "character": "Mafuyu",
+        "character": "mfy",
         "img": "mfy/mfy_17.png",
         "color": "#7171AF",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2662,11 +2472,10 @@
     {
         "id": "206",
         "name": "MEIKO 01",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_01.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2676,11 +2485,10 @@
     {
         "id": "207",
         "name": "MEIKO 02",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_02.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2690,11 +2498,10 @@
     {
         "id": "208",
         "name": "MEIKO 03",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_03.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2704,11 +2511,10 @@
     {
         "id": "209",
         "name": "MEIKO 04",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_04.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2718,11 +2524,10 @@
     {
         "id": "210",
         "name": "MEIKO 06",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_06.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2732,11 +2537,10 @@
     {
         "id": "211",
         "name": "MEIKO 07",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_07.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2746,11 +2550,10 @@
     {
         "id": "212",
         "name": "MEIKO 08",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_08.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2760,11 +2563,10 @@
     {
         "id": "213",
         "name": "MEIKO 09",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_09.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2774,11 +2576,10 @@
     {
         "id": "214",
         "name": "MEIKO 11",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_11.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2788,11 +2589,10 @@
     {
         "id": "215",
         "name": "MEIKO 12",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_12.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2802,11 +2602,10 @@
     {
         "id": "216",
         "name": "MEIKO 13",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_13.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2816,11 +2615,10 @@
     {
         "id": "217",
         "name": "MEIKO 14",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_14.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2830,11 +2628,10 @@
     {
         "id": "218",
         "name": "MEIKO 16",
-        "character": "Meiko",
+        "character": "meiko",
         "img": "meiko/meiko_16.png",
         "color": "#E4485F",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2844,11 +2641,10 @@
     {
         "id": "219",
         "name": "初音未来 01",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_01.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2858,11 +2654,10 @@
     {
         "id": "220",
         "name": "初音未来 02",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_02.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2872,11 +2667,10 @@
     {
         "id": "221",
         "name": "初音未来 03",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_03.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2886,11 +2680,10 @@
     {
         "id": "222",
         "name": "初音未来 04",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_04.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2900,11 +2693,10 @@
     {
         "id": "223",
         "name": "初音未来 06",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_06.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2914,11 +2706,10 @@
     {
         "id": "224",
         "name": "初音未来 07",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_07.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2928,11 +2719,10 @@
     {
         "id": "225",
         "name": "初音未来 08",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_08.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2942,11 +2732,10 @@
     {
         "id": "226",
         "name": "初音未来 09",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_09.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2956,11 +2745,10 @@
     {
         "id": "227",
         "name": "初音未来 11",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_11.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2970,11 +2758,10 @@
     {
         "id": "228",
         "name": "初音未来 12",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_12.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2984,11 +2771,10 @@
     {
         "id": "229",
         "name": "初音未来 13",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_13.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -2998,11 +2784,10 @@
     {
         "id": "230",
         "name": "初音未来 14",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_14.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3012,11 +2797,10 @@
     {
         "id": "231",
         "name": "初音未来 16",
-        "character": "Miku",
+        "character": "miku",
         "img": "miku/miku_16.png",
         "color": "#33CCBB",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3026,11 +2810,10 @@
     {
         "id": "232",
         "name": "花里实乃理 01",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_01.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3040,11 +2823,10 @@
     {
         "id": "233",
         "name": "花里实乃理 02",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_02.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3054,11 +2836,10 @@
     {
         "id": "234",
         "name": "花里实乃理 03",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_03.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3068,11 +2849,10 @@
     {
         "id": "235",
         "name": "花里实乃理 04",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_04.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3082,11 +2862,10 @@
     {
         "id": "236",
         "name": "花里实乃理 06",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_06.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3096,11 +2875,10 @@
     {
         "id": "237",
         "name": "花里实乃理 07",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_07.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3110,11 +2888,10 @@
     {
         "id": "238",
         "name": "花里实乃理 08",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_08.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3124,11 +2901,10 @@
     {
         "id": "239",
         "name": "花里实乃理 09",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_09.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3138,11 +2914,10 @@
     {
         "id": "240",
         "name": "花里实乃理 11",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_11.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3152,11 +2927,10 @@
     {
         "id": "241",
         "name": "花里实乃理 12",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_12.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3166,11 +2940,10 @@
     {
         "id": "242",
         "name": "花里实乃理 13",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_13.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3180,11 +2953,10 @@
     {
         "id": "243",
         "name": "花里实乃理 14",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_14.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3194,11 +2966,10 @@
     {
         "id": "244",
         "name": "花里实乃理 16",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_16.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3208,11 +2979,10 @@
     {
         "id": "245",
         "name": "花里实乃理 17",
-        "character": "Minori",
+        "character": "mnr",
         "img": "mnr/mnr_17.png",
         "color": "#F39E7D",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3222,11 +2992,10 @@
     {
         "id": "246",
         "name": "晓山瑞希 01",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_01.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3236,11 +3005,10 @@
     {
         "id": "247",
         "name": "晓山瑞希 02",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_02.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3250,11 +3018,10 @@
     {
         "id": "248",
         "name": "晓山瑞希 03",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_03.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3264,11 +3031,10 @@
     {
         "id": "249",
         "name": "晓山瑞希 04",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_04.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3278,11 +3044,10 @@
     {
         "id": "250",
         "name": "晓山瑞希 06",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_06.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3292,11 +3057,10 @@
     {
         "id": "251",
         "name": "晓山瑞希 07",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_07.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3306,11 +3070,10 @@
     {
         "id": "252",
         "name": "晓山瑞希 08",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_08.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3320,11 +3083,10 @@
     {
         "id": "253",
         "name": "晓山瑞希 09",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_09.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3334,11 +3096,10 @@
     {
         "id": "254",
         "name": "晓山瑞希 11",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_11.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3348,11 +3109,10 @@
     {
         "id": "255",
         "name": "晓山瑞希 12",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_12.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3362,11 +3122,10 @@
     {
         "id": "256",
         "name": "晓山瑞希 13",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_13.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3376,11 +3135,10 @@
     {
         "id": "257",
         "name": "晓山瑞希 14",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_14.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3390,11 +3148,10 @@
     {
         "id": "258",
         "name": "晓山瑞希 16",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_16.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3404,11 +3161,10 @@
     {
         "id": "259",
         "name": "晓山瑞希 17",
-        "character": "Mizuki",
+        "character": "mzk",
         "img": "mzk/mzk_17.png",
         "color": "#CA8DB6",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3418,11 +3174,10 @@
     {
         "id": "260",
         "name": "草薙宁宁 01",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_01.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3432,11 +3187,10 @@
     {
         "id": "261",
         "name": "草薙宁宁 02",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_02.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3446,11 +3200,10 @@
     {
         "id": "262",
         "name": "草薙宁宁 03",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_03.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3460,11 +3213,10 @@
     {
         "id": "263",
         "name": "草薙宁宁 04",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_04.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3474,11 +3226,10 @@
     {
         "id": "264",
         "name": "草薙宁宁 06",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_06.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3488,11 +3239,10 @@
     {
         "id": "265",
         "name": "草薙宁宁 07",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_07.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3502,11 +3252,10 @@
     {
         "id": "266",
         "name": "草薙宁宁 08",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_08.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3516,11 +3265,10 @@
     {
         "id": "267",
         "name": "草薙宁宁 09",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_09.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3530,11 +3278,10 @@
     {
         "id": "268",
         "name": "草薙宁宁 11",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_11.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3544,11 +3291,10 @@
     {
         "id": "269",
         "name": "草薙宁宁 12",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_12.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3558,11 +3304,10 @@
     {
         "id": "270",
         "name": "草薙宁宁 13",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_13.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3572,11 +3317,10 @@
     {
         "id": "271",
         "name": "草薙宁宁 14",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_14.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3586,11 +3330,10 @@
     {
         "id": "272",
         "name": "草薙宁宁 16",
-        "character": "Nene",
+        "character": "nene",
         "img": "nene/nene_16.png",
         "color": "#19CD94",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3600,11 +3343,10 @@
     {
         "id": "273",
         "name": "镜音铃 01",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_01.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3614,11 +3356,10 @@
     {
         "id": "274",
         "name": "镜音铃 02",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_02.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3628,11 +3369,10 @@
     {
         "id": "275",
         "name": "镜音铃 03",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_03.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3642,11 +3382,10 @@
     {
         "id": "276",
         "name": "镜音铃 04",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_04.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3656,11 +3395,10 @@
     {
         "id": "277",
         "name": "镜音铃 06",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_06.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3670,11 +3408,10 @@
     {
         "id": "278",
         "name": "镜音铃 07",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_07.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3684,11 +3421,10 @@
     {
         "id": "279",
         "name": "镜音铃 08",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_08.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3698,11 +3434,10 @@
     {
         "id": "280",
         "name": "镜音铃 09",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_09.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3712,11 +3447,10 @@
     {
         "id": "281",
         "name": "镜音铃 11",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_11.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3726,11 +3460,10 @@
     {
         "id": "282",
         "name": "镜音铃 12",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_12.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3740,11 +3473,10 @@
     {
         "id": "283",
         "name": "镜音铃 13",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_13.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3754,11 +3486,10 @@
     {
         "id": "284",
         "name": "镜音铃 14",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_14.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3768,11 +3499,10 @@
     {
         "id": "285",
         "name": "镜音铃 16",
-        "character": "Rin",
+        "character": "rin",
         "img": "rin/rin_16.png",
         "color": "#E8A505",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3782,11 +3512,10 @@
     {
         "id": "286",
         "name": "神代类 01",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_01.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3796,11 +3525,10 @@
     {
         "id": "287",
         "name": "神代类 02",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_02.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3810,11 +3538,10 @@
     {
         "id": "288",
         "name": "神代类 03",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_03.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3824,11 +3551,10 @@
     {
         "id": "289",
         "name": "神代类 04",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_04.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3838,11 +3564,10 @@
     {
         "id": "290",
         "name": "神代类 06",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_06.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3852,11 +3577,10 @@
     {
         "id": "291",
         "name": "神代类 07",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_07.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3866,11 +3590,10 @@
     {
         "id": "292",
         "name": "神代类 08",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_08.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3880,11 +3603,10 @@
     {
         "id": "293",
         "name": "神代类 09",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_09.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3894,11 +3616,10 @@
     {
         "id": "294",
         "name": "神代类 11",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_11.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3908,11 +3629,10 @@
     {
         "id": "295",
         "name": "神代类 12",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_12.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3922,11 +3642,10 @@
     {
         "id": "296",
         "name": "神代类 13",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_13.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3936,11 +3655,10 @@
     {
         "id": "297",
         "name": "神代类 14",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_14.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3950,11 +3668,10 @@
     {
         "id": "298",
         "name": "神代类 16",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_16.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3964,11 +3681,10 @@
     {
         "id": "299",
         "name": "神代类 17",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_17.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3978,11 +3694,10 @@
     {
         "id": "300",
         "name": "神代类 18",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_18.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -3992,11 +3707,10 @@
     {
         "id": "301",
         "name": "神代类 19",
-        "character": "Rui",
+        "character": "rui",
         "img": "rui/rui_19.png",
         "color": "#BB88EE",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4006,11 +3720,10 @@
     {
         "id": "302",
         "name": "天马咲希 01",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_01.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4020,11 +3733,10 @@
     {
         "id": "303",
         "name": "天马咲希 02",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_02.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4034,11 +3746,10 @@
     {
         "id": "304",
         "name": "天马咲希 03",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_03.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4048,11 +3759,10 @@
     {
         "id": "305",
         "name": "天马咲希 04",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_04.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4062,11 +3772,10 @@
     {
         "id": "306",
         "name": "天马咲希 06",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_06.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4076,11 +3785,10 @@
     {
         "id": "307",
         "name": "天马咲希 07",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_07.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4090,11 +3798,10 @@
     {
         "id": "308",
         "name": "天马咲希 08",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_08.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4104,11 +3811,10 @@
     {
         "id": "309",
         "name": "天马咲希 09",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_09.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4118,11 +3824,10 @@
     {
         "id": "310",
         "name": "天马咲希 11",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_11.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4132,11 +3837,10 @@
     {
         "id": "311",
         "name": "天马咲希 12",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_12.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4146,11 +3850,10 @@
     {
         "id": "312",
         "name": "天马咲希 13",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_13.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4160,11 +3863,10 @@
     {
         "id": "313",
         "name": "天马咲希 14",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_14.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4174,11 +3876,10 @@
     {
         "id": "314",
         "name": "天马咲希 16",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_16.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4188,11 +3889,10 @@
     {
         "id": "315",
         "name": "天马咲希 17",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_17.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4202,11 +3902,10 @@
     {
         "id": "316",
         "name": "天马咲希 18",
-        "character": "Saki",
+        "character": "saki",
         "img": "saki/saki_18.png",
         "color": "#F5B303",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4216,11 +3915,10 @@
     {
         "id": "317",
         "name": "日野森志步 01",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_01.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4230,11 +3928,10 @@
     {
         "id": "318",
         "name": "日野森志步 02",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_02.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4244,11 +3941,10 @@
     {
         "id": "319",
         "name": "日野森志步 03",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_03.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4258,11 +3954,10 @@
     {
         "id": "320",
         "name": "日野森志步 04",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_04.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4272,11 +3967,10 @@
     {
         "id": "321",
         "name": "日野森志步 06",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_06.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4286,11 +3980,10 @@
     {
         "id": "322",
         "name": "日野森志步 07",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_07.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4300,11 +3993,10 @@
     {
         "id": "323",
         "name": "日野森志步 08",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_08.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4314,11 +4006,10 @@
     {
         "id": "324",
         "name": "日野森志步 09",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_09.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4328,11 +4019,10 @@
     {
         "id": "325",
         "name": "日野森志步 11",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_11.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4342,11 +4032,10 @@
     {
         "id": "326",
         "name": "日野森志步 12",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_12.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4356,11 +4045,10 @@
     {
         "id": "327",
         "name": "日野森志步 13",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_13.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4370,11 +4058,10 @@
     {
         "id": "328",
         "name": "日野森志步 14",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_14.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4384,11 +4071,10 @@
     {
         "id": "329",
         "name": "日野森志步 16",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_16.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4398,11 +4084,10 @@
     {
         "id": "330",
         "name": "日野森志步 17",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_17.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4412,11 +4097,10 @@
     {
         "id": "331",
         "name": "日野森志步 18",
-        "character": "Shiho",
+        "character": "shiho",
         "img": "shiho/shiho_18.png",
         "color": "#A0C10B",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4426,11 +4110,10 @@
     {
         "id": "332",
         "name": "日野森雫 01",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_01.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4440,11 +4123,10 @@
     {
         "id": "333",
         "name": "日野森雫 02",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_02.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4454,11 +4136,10 @@
     {
         "id": "334",
         "name": "日野森雫 03",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_03.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4468,11 +4149,10 @@
     {
         "id": "335",
         "name": "日野森雫 04",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_04.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4482,11 +4162,10 @@
     {
         "id": "336",
         "name": "日野森雫 06",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_06.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4496,11 +4175,10 @@
     {
         "id": "337",
         "name": "日野森雫 07",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_07.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4510,11 +4188,10 @@
     {
         "id": "338",
         "name": "日野森雫 08",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_08.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4524,11 +4201,10 @@
     {
         "id": "339",
         "name": "日野森雫 09",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_09.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4538,11 +4214,10 @@
     {
         "id": "340",
         "name": "日野森雫 11",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_11.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4552,11 +4227,10 @@
     {
         "id": "341",
         "name": "日野森雫 12",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_12.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4566,11 +4240,10 @@
     {
         "id": "342",
         "name": "日野森雫 13",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_13.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4580,11 +4253,10 @@
     {
         "id": "343",
         "name": "日野森雫 14",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_14.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4594,11 +4266,10 @@
     {
         "id": "344",
         "name": "日野森雫 16",
-        "character": "Shizuku",
+        "character": "szk",
         "img": "szk/szk_16.png",
         "color": "#5CD0B9",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4608,11 +4279,10 @@
     {
         "id": "345",
         "name": "青柳冬弥 01",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_01.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4622,11 +4292,10 @@
     {
         "id": "346",
         "name": "青柳冬弥 02",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_02.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4636,11 +4305,10 @@
     {
         "id": "347",
         "name": "青柳冬弥 03",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_03.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4650,11 +4318,10 @@
     {
         "id": "348",
         "name": "青柳冬弥 04",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_04.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4664,11 +4331,10 @@
     {
         "id": "349",
         "name": "青柳冬弥 06",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_06.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4678,11 +4344,10 @@
     {
         "id": "350",
         "name": "青柳冬弥 07",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_07.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4692,11 +4357,10 @@
     {
         "id": "351",
         "name": "青柳冬弥 08",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_08.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4706,11 +4370,10 @@
     {
         "id": "352",
         "name": "青柳冬弥 09",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_09.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4720,11 +4383,10 @@
     {
         "id": "353",
         "name": "青柳冬弥 11",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_11.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4734,11 +4396,10 @@
     {
         "id": "354",
         "name": "青柳冬弥 12",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_12.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4748,11 +4409,10 @@
     {
         "id": "355",
         "name": "青柳冬弥 13",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_13.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4762,11 +4422,10 @@
     {
         "id": "356",
         "name": "青柳冬弥 14",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_14.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4776,11 +4435,10 @@
     {
         "id": "357",
         "name": "青柳冬弥 16",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_16.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4790,11 +4448,10 @@
     {
         "id": "358",
         "name": "青柳冬弥 17",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_17.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4804,11 +4461,10 @@
     {
         "id": "359",
         "name": "青柳冬弥 18",
-        "character": "Touya",
+        "character": "toya",
         "img": "toya/toya_18.png",
         "color": "#0077DD",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4818,11 +4474,10 @@
     {
         "id": "360",
         "name": "天马司 01",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_01.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4832,11 +4487,10 @@
     {
         "id": "361",
         "name": "天马司 02",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_02.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4846,11 +4500,10 @@
     {
         "id": "362",
         "name": "天马司 03",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_03.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4860,11 +4513,10 @@
     {
         "id": "363",
         "name": "天马司 04",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_04.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4874,11 +4526,10 @@
     {
         "id": "364",
         "name": "天马司 06",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_06.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4888,11 +4539,10 @@
     {
         "id": "365",
         "name": "天马司 07",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_07.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4902,11 +4552,10 @@
     {
         "id": "366",
         "name": "天马司 08",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_08.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4916,11 +4565,10 @@
     {
         "id": "367",
         "name": "天马司 09",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_09.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4930,11 +4578,10 @@
     {
         "id": "368",
         "name": "天马司 11",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_11.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4944,11 +4591,10 @@
     {
         "id": "369",
         "name": "天马司 12",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_12.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4958,11 +4604,10 @@
     {
         "id": "370",
         "name": "天马司 13",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_13.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4972,11 +4617,10 @@
     {
         "id": "371",
         "name": "天马司 14",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_14.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -4986,11 +4630,10 @@
     {
         "id": "372",
         "name": "天马司 16",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_16.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -5000,11 +4643,10 @@
     {
         "id": "373",
         "name": "天马司 17",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_17.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,
@@ -5014,11 +4656,10 @@
     {
         "id": "374",
         "name": "天马司 18",
-        "character": "Tsukasa",
+        "character": "tks",
         "img": "tks/tks_18.png",
         "color": "#F09A04",
         "defaultText": {
-            "text": "something",
             "x": 148,
             "y": 58,
             "r": -2,

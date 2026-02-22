@@ -106,7 +106,7 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState('#212121')
 
   const [character, setCharacter] = useState(49)
-  const [text, setText] = useState(characters[character].defaultText.text)
+  const [text, setText] = useState(characters[character].defaultText.text || '请输入文本')
   const [position, setPosition] = useState({
     x: characters[character].defaultText.x,
     y: characters[character].defaultText.y,
@@ -130,7 +130,7 @@ function App() {
   const fileInputRef = useRef(null)
 
   useEffect(() => {
-    setText(characters[character].defaultText.text)
+    setText(characters[character].defaultText.text || '请输入文本')
     setPosition({
       x: characters[character].defaultText.x,
       y: characters[character].defaultText.y,
@@ -398,7 +398,7 @@ function App() {
   }
 
   const resetSettings = () => {
-    setText(characters[character].defaultText.text)
+    setText(characters[character].defaultText.text || '请输入文本')
     setPosition({
       x: characters[character].defaultText.x,
       y: characters[character].defaultText.y,
