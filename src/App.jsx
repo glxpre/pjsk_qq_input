@@ -289,25 +289,39 @@ function App() {
     [loaded, imgObj, textBehind, drawText]
   )
 
+  // 生成文件名：角色名_文本（如果不是默认文本）
+  const generateFileName = useCallback((ext) => {
+    // 去除空格和非法字符
+    const sanitize = (str) => str.replace(/[\s\/\\:*?"<>|]/g, '')
+    const characterName = sanitize(characters[character].name)
+
+    // 如果文本不是默认值，添加到文件名中（最多10个字符）
+    if (text && text !== '请输入文本') {
+      const sanitizedText = sanitize(text).slice(0, 10)
+      return `${characterName}_${sanitizedText}.${ext}`
+    }
+    return `${characterName}.${ext}`
+  }, [character, text])
+
   const download = useCallback(async () => {
     const canvas = canvasRef.current
     if (!canvas) return
     const link = document.createElement('a')
-    link.download = `${characters[character].name}_generated.png`
+    link.download = generateFileName('png')
     link.href = canvas.toDataURL('image/png')
     link.click()
     setDownloadPopupOpen(true)
-  }, [character])
+  }, [character, generateFileName])
 
   const downloadWebp = useCallback(async () => {
     const canvas = canvasRef.current
     if (!canvas) return
     const link = document.createElement('a')
-    link.download = `${characters[character].name}_generated.webp`
+    link.download = generateFileName('webp')
     link.href = canvas.toDataURL('image/webp')
     link.click()
     setDownloadPopupOpen(true)
-  }, [character])
+  }, [character, generateFileName])
 
   const downloadJpg = useCallback(async () => {
     const canvas = canvasRef.current
@@ -323,11 +337,11 @@ function App() {
     ctx.putImageData(data, 0, 0)
     ctx.globalCompositeOperation = compositeOperation
     const link = document.createElement('a')
-    link.download = `${characters[character].name}_generated.jpg`
+    link.download = generateFileName('jpg')
     link.href = imageData
     link.click()
     setDownloadPopupOpen(true)
-  }, [character])
+  }, [character, generateFileName])
 
   function b64toBlob(b64Data, contentType = 'image/png', sliceSize = 512) {
     const byteCharacters = atob(b64Data)
