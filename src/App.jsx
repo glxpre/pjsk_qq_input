@@ -430,14 +430,16 @@ function App() {
                 variant="h3"
                 component="h1"
                 sx={{
-                  fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' },
+                  display: { xs: 'none', sm: 'block' },
+                  fontSize: { sm: '2.5rem', md: '3rem' },
                   fontWeight: 'bold',
                   color: dominantColor,
                 }}
               >
                 <Box component="span" sx={{ fontFamily: 'YurukaStd' }}>Project Sekai</Box> 贴纸生成器
               </Typography>
-              <Box>
+              {/* 桌面端按钮 */}
+              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <Tooltip title="关于">
                   <IconButton color="secondary" onClick={() => setInfoOpen(true)}>
                     <InfoOutlined />
@@ -458,68 +460,160 @@ function App() {
 
           <Grid item xs={12} md={5}>
             <Paper elevation={3} sx={{ p: 2 }}>
-              <Box display="flex" justifyContent="center" mb={2}>
-                <Canvas ref={canvasRef} draw={draw} style={{ border: '1px solid #444' }} />
+              {/* Canvas - 移动端和桌面端共用 */}
+              <Box display="flex" gap={2} justifyContent="center">
+                {/* 左侧：Canvas 和水平滑条 */}
+                <Box display="flex" flexDirection="column">
+                  {/* Canvas 容器 - 响应式尺寸，保持 296:256 比例 */}
+                  <Box
+                    sx={{
+                      width: { xs: '237px', md: '296px' },
+                      height: { xs: '205px', md: '256px' },
+                    }}
+                  >
+                    <Canvas
+                      ref={canvasRef}
+                      draw={draw}
+                      style={{
+                        border: '1px solid #444',
+                        display: 'block',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    />
+                  </Box>
+
+                  {/* 移动端：水平滑条 */}
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={1}
+                    mt={1}
+                    sx={{ display: { xs: 'flex', md: 'none' }, height: '50px' }}
+                  >
+                    <IconButton
+                      size="small"
+                      onClick={() => setPosition((p) => ({ ...p, x: p.x - 5 }))}
+                    >
+                      <KeyboardArrowLeft />
+                    </IconButton>
+                    <Box flex={1} display="flex" alignItems="center">
+                      <Slider
+                        value={position.x}
+                        onChange={(_, v) => setPosition((p) => ({ ...p, x: v }))}
+                        min={0}
+                        max={296}
+                        color="secondary"
+                        sx={{ width: '100%' }}
+                      />
+                    </Box>
+                    <IconButton
+                      size="small"
+                      onClick={() => setPosition((p) => ({ ...p, x: p.x + 5 }))}
+                    >
+                      <KeyboardArrowRight />
+                    </IconButton>
+                  </Box>
+                </Box>
+
+                {/* 移动端：右侧垂直滑条和 Picker */}
+                <Box display="flex" flexDirection="column" sx={{ display: { xs: 'flex', md: 'none' } }}>
+                  {/* 垂直滑条 - 高度与 Canvas 匹配 */}
+                  <Box display="flex" flexDirection="column" alignItems="center" sx={{ height: '205px' }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setPosition((p) => ({ ...p, y: p.y - 5 }))}
+                    >
+                      <KeyboardArrowUp />
+                    </IconButton>
+                    <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                      <Slider
+                        orientation="vertical"
+                        value={256 - position.y}
+                        onChange={(_, v) => setPosition((p) => ({ ...p, y: 256 - v }))}
+                        min={0}
+                        max={256}
+                        color="secondary"
+                        sx={{ height: '100%' }}
+                      />
+                    </Box>
+                    <IconButton
+                      size="small"
+                      onClick={() => setPosition((p) => ({ ...p, y: p.y + 5 }))}
+                    >
+                      <KeyboardArrowDown />
+                    </IconButton>
+                  </Box>
+
+                  {/* Picker 按钮 - 与水平滑条对齐 */}
+                  <Box display="flex" alignItems="center" justifyContent="center" mt={1} sx={{ height: '50px' }}>
+                    <Picker setCharacter={handleCharacterSelect} color={dominantColor} />
+                  </Box>
+                </Box>
               </Box>
 
-              <Box display="flex" gap={1} mb={1}>
-                <ButtonGroup size="small" fullWidth>
-                  <Button
-                    onClick={() => setPosition((p) => ({ ...p, x: p.x - 5 }))}
-                    startIcon={<KeyboardArrowLeft />}
-                  >
-                    X-5
-                  </Button>
-                  <Button
-                    onClick={() => setPosition((p) => ({ ...p, x: p.x + 5 }))}
-                    endIcon={<KeyboardArrowRight />}
-                  >
-                    X+5
-                  </Button>
-                </ButtonGroup>
-                <ButtonGroup size="small" fullWidth>
-                  <Button
-                    onClick={() => setPosition((p) => ({ ...p, y: p.y - 5 }))}
-                    startIcon={<KeyboardArrowUp />}
-                  >
-                    Y-5
-                  </Button>
-                  <Button
-                    onClick={() => setPosition((p) => ({ ...p, y: p.y + 5 }))}
-                    endIcon={<KeyboardArrowDown />}
-                  >
-                    Y+5
-                  </Button>
-                </ButtonGroup>
+              {/* 桌面端：控制按钮和滑条 */}
+              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                <Box display="flex" gap={1} mb={1} mt={2}>
+                  <ButtonGroup size="small" fullWidth>
+                    <Button
+                      onClick={() => setPosition((p) => ({ ...p, x: p.x - 5 }))}
+                      startIcon={<KeyboardArrowLeft />}
+                    >
+                      X-5
+                    </Button>
+                    <Button
+                      onClick={() => setPosition((p) => ({ ...p, x: p.x + 5 }))}
+                      endIcon={<KeyboardArrowRight />}
+                    >
+                      X+5
+                    </Button>
+                  </ButtonGroup>
+                  <ButtonGroup size="small" fullWidth>
+                    <Button
+                      onClick={() => setPosition((p) => ({ ...p, y: p.y - 5 }))}
+                      startIcon={<KeyboardArrowUp />}
+                    >
+                      Y-5
+                    </Button>
+                    <Button
+                      onClick={() => setPosition((p) => ({ ...p, y: p.y + 5 }))}
+                      endIcon={<KeyboardArrowDown />}
+                    >
+                      Y+5
+                    </Button>
+                  </ButtonGroup>
+                </Box>
+
+                <Typography variant="body2" gutterBottom>
+                  水平位置: {position.x}
+                </Typography>
+                <Slider
+                  value={position.x}
+                  onChange={(_, v) => setPosition((p) => ({ ...p, x: v }))}
+                  min={0}
+                  max={296}
+                  color="secondary"
+                />
+
+                <Typography variant="body2" gutterBottom>
+                  垂直位置: {position.y}
+                </Typography>
+                <Slider
+                  value={position.y}
+                  onChange={(_, v) => setPosition((p) => ({ ...p, y: v }))}
+                  min={0}
+                  max={256}
+                  color="secondary"
+                />
               </Box>
-
-              <Typography variant="body2" gutterBottom>
-                水平位置: {position.x}
-              </Typography>
-              <Slider
-                value={position.x}
-                onChange={(_, v) => setPosition((p) => ({ ...p, x: v }))}
-                min={0}
-                max={296}
-                color="secondary"
-              />
-
-              <Typography variant="body2" gutterBottom>
-                垂直位置: {position.y}
-              </Typography>
-              <Slider
-                value={position.y}
-                onChange={(_, v) => setPosition((p) => ({ ...p, y: v }))}
-                min={0}
-                max={256}
-                color="secondary"
-              />
             </Paper>
           </Grid>
 
           <Grid item xs={12} md={7}>
             <Paper elevation={3} sx={{ p: 2 }}>
-              <Box display="flex" alignItems="center" gap={1} mb={2}>
+              {/* 桌面端显示 Picker 和角色名 */}
+              <Box display="flex" alignItems="center" gap={1} mb={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Picker setCharacter={handleCharacterSelect} color={dominantColor} />
                 <Typography
                   variant="subtitle1"
@@ -808,6 +902,39 @@ function App() {
             </Paper>
           </Grid>
         </Grid>
+
+        {/* 移动端底部按钮区域 */}
+        <Box
+          sx={{
+            display: { xs: 'flex', md: 'none' },
+            justifyContent: 'center',
+            gap: 2,
+            mt: 3,
+            pb: 2,
+          }}
+        >
+          <Tooltip title="关于">
+            <Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<InfoOutlined />}
+              onClick={() => setInfoOpen(true)}
+            >
+              关于
+            </Button>
+          </Tooltip>
+          <Tooltip title="GitHub">
+            <Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<GitHub />}
+              href="https://github.com/25-ji-code-de/stickers-maker"
+              target="_blank"
+            >
+              GitHub
+            </Button>
+          </Tooltip>
+        </Box>
       </Box>
 
       <Info open={infoOpen} handleClose={() => setInfoOpen(false)} />
