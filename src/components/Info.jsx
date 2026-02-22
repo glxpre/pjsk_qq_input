@@ -107,7 +107,7 @@ export default function Info({ open, handleClose }) {
             <ListItemAvatar>
               <Avatar
                 alt="u/SherenPlaysGames"
-                src="https://styles.redditmedia.com/t5_mygft/styles/profileIcon_n1kman41j5891.jpg"
+                src="/avatars/reddit-sheren.webp"
               />
             </ListItemAvatar>
             <ListItemText primary="u/SherenPlaysGames" secondary="原始贴纸创作者" />
@@ -121,7 +121,7 @@ export default function Info({ open, handleClose }) {
             <ListItemAvatar>
               <Avatar
                 alt="Ayaka"
-                src="https://avatars.githubusercontent.com/theoriginalayaka"
+                src="/avatars/theoriginalayaka.webp"
               />
             </ListItemAvatar>
             <ListItemText primary="Ayaka" secondary="最初的创意和实现" />
@@ -133,7 +133,7 @@ export default function Info({ open, handleClose }) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar alt="Modder4869" src="https://avatars.githubusercontent.com/modder4869" />
+              <Avatar alt="Modder4869" src="/avatars/modder4869.webp" />
             </ListItemAvatar>
             <ListItemText primary="Modder4869" secondary="代码贡献" />
           </ListItem>
@@ -144,7 +144,7 @@ export default function Info({ open, handleClose }) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar alt="BedrockDigger" src="https://avatars.githubusercontent.com/BedrockDigger" />
+              <Avatar alt="BedrockDigger" src="/avatars/bedrockdigger.webp" />
             </ListItemAvatar>
             <ListItemText primary="BedrockDigger" secondary="UI 设计贡献" />
           </ListItem>
@@ -157,7 +157,7 @@ export default function Info({ open, handleClose }) {
             <ListItemAvatar>
               <Avatar
                 alt="Mikan Harada"
-                src="https://avatars.githubusercontent.com/u/13678847?v=4"
+                src="/avatars/mikan-harada.webp"
               />
             </ListItemAvatar>
             <ListItemText
