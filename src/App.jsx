@@ -639,8 +639,180 @@ function App() {
                 sx={{ mb: 2 }}
               />
 
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+              {/* 字体大小 */}
+              <Box sx={{ mt: { xs: 1, md: 2 } }}>
+                {/* 桌面端：label在上，显示数值 */}
+                <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', md: 'block' } }}>
+                  字体大小: {fontSize}
+                </Typography>
+
+                {/* 移动端：label和slider在同一行 */}
+                <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" sx={{ fontSize: '0.8rem', minWidth: '64px' }}>
+                    字体大小
+                  </Typography>
+                  <Slider
+                    value={fontSize}
+                    onChange={(_, v) => setFontSize(v)}
+                    min={10}
+                    max={100}
+                    color="secondary"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+
+                {/* 桌面端：slider独立一行 */}
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Slider
+                    value={fontSize}
+                    onChange={(_, v) => setFontSize(v)}
+                    min={10}
+                    max={100}
+                    color="secondary"
+                  />
+                </Box>
+              </Box>
+
+              {/* 旋转角度 */}
+              <Box sx={{ mt: { xs: 1, md: 2 } }}>
+                {/* 桌面端：label在上，显示数值 */}
+                <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', md: 'block' } }}>
+                  旋转角度: {rotate}
+                </Typography>
+
+                {/* 移动端：label和slider在同一行 */}
+                <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" sx={{ fontSize: '0.8rem', minWidth: '64px' }}>
+                    旋转角度
+                  </Typography>
+                  <Slider
+                    value={rotate}
+                    onChange={(_, v) => setRotate(v)}
+                    min={-10}
+                    max={10}
+                    step={0.2}
+                    color="secondary"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+
+                {/* 桌面端：slider独立一行 */}
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Slider
+                    value={rotate}
+                    onChange={(_, v) => setRotate(v)}
+                    min={-10}
+                    max={10}
+                    step={0.2}
+                    color="secondary"
+                  />
+                </Box>
+              </Box>
+
+              {/* 行间距 */}
+              <Box sx={{ mt: { xs: 1, md: 2 } }}>
+                {/* 桌面端：label在上，显示数值 */}
+                <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', md: 'block' } }}>
+                  行间距: {spaceSize}
+                </Typography>
+
+                {/* 移动端：label和slider在同一行 */}
+                <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" sx={{ fontSize: '0.8rem', minWidth: '64px' }}>
+                    行间距
+                  </Typography>
+                  <Slider
+                    value={spaceSize}
+                    onChange={(_, v) => setSpaceSize(v)}
+                    min={18}
+                    max={100}
+                    color="secondary"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+
+                {/* 桌面端：slider独立一行 */}
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Slider
+                    value={spaceSize}
+                    onChange={(_, v) => setSpaceSize(v)}
+                    min={18}
+                    max={100}
+                    color="secondary"
+                  />
+                </Box>
+              </Box>
+
+              {/* 字间距 */}
+              <Box sx={{ mt: { xs: 1, md: 2 } }}>
+                {/* 桌面端：label在上，显示数值 */}
+                <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', md: 'block' } }}>
+                  字间距: {letterSpacing}
+                </Typography>
+
+                {/* 移动端：label和slider在同一行 */}
+                <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" sx={{ fontSize: '0.8rem', minWidth: '64px' }}>
+                    字间距
+                  </Typography>
+                  <Slider
+                    value={letterSpacing}
+                    onChange={(_, v) => setLetterSpacing(v)}
+                    min={-10}
+                    max={30}
+                    color="secondary"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+
+                {/* 桌面端：slider独立一行 */}
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Slider
+                    value={letterSpacing}
+                    onChange={(_, v) => setLetterSpacing(v)}
+                    min={-10}
+                    max={30}
+                    color="secondary"
+                  />
+                </Box>
+              </Box>
+
+              {/* 描边宽度 */}
+              <Box sx={{ mt: { xs: 1, md: 2 } }}>
+                {/* 桌面端：label在上，显示数值 */}
+                <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', md: 'block' } }}>
+                  描边宽度: {strokeWidth}
+                </Typography>
+
+                {/* 移动端：label和slider在同一行 */}
+                <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" sx={{ fontSize: '0.8rem', minWidth: '64px' }}>
+                    描边宽度
+                  </Typography>
+                  <Slider
+                    value={strokeWidth}
+                    onChange={(_, v) => setStrokeWidth(v)}
+                    min={0}
+                    max={30}
+                    color="secondary"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+
+                {/* 桌面端：slider独立一行 */}
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Slider
+                    value={strokeWidth}
+                    onChange={(_, v) => setStrokeWidth(v)}
+                    min={0}
+                    max={30}
+                    color="secondary"
+                  />
+                </Box>
+              </Box>
+
+              <Grid container spacing={2} mt={2}>
+                <Grid item xs={12}>
                   <FormControl fullWidth size="small">
                     <InputLabel color="secondary">字体</InputLabel>
                     <Select
@@ -655,7 +827,7 @@ function App() {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={6}>
                   <Typography variant="body2" gutterBottom>
                     文字颜色
                   </Typography>
@@ -673,92 +845,25 @@ function App() {
                     </Button>
                   </Box>
                 </Grid>
+                <Grid item xs={6}>
+                  <Typography variant="body2" gutterBottom>
+                    描边颜色
+                  </Typography>
+                  <Box display="flex" gap={1} alignItems="center">
+                    <TextField
+                      type="color"
+                      value={strokeColor}
+                      onChange={(e) => setStrokeColor(e.target.value)}
+                      size="small"
+                      color="secondary"
+                      sx={{ width: '80px' }}
+                    />
+                    <Button size="small" onClick={() => setStrokeColor('#ffffff')}>
+                      重置
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  字体大小: {fontSize}
-                </Typography>
-                <Slider
-                  value={fontSize}
-                  onChange={(_, v) => setFontSize(v)}
-                  min={10}
-                  max={100}
-                  color="secondary"
-                />
-              </Box>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  旋转角度: {rotate}
-                </Typography>
-                <Slider
-                  value={rotate}
-                  onChange={(_, v) => setRotate(v)}
-                  min={-10}
-                  max={10}
-                  step={0.2}
-                  color="secondary"
-                />
-              </Box>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  行间距: {spaceSize}
-                </Typography>
-                <Slider
-                  value={spaceSize}
-                  onChange={(_, v) => setSpaceSize(v)}
-                  min={18}
-                  max={100}
-                  color="secondary"
-                />
-              </Box>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  字间距: {letterSpacing}
-                </Typography>
-                <Slider
-                  value={letterSpacing}
-                  onChange={(_, v) => setLetterSpacing(v)}
-                  min={-10}
-                  max={30}
-                  color="secondary"
-                />
-              </Box>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  描边宽度: {strokeWidth}
-                </Typography>
-                <Slider
-                  value={strokeWidth}
-                  onChange={(_, v) => setStrokeWidth(v)}
-                  min={0}
-                  max={30}
-                  color="secondary"
-                />
-              </Box>
-
-              <Box mt={2}>
-                <Typography variant="body2" gutterBottom>
-                  描边颜色
-                </Typography>
-                <Box display="flex" gap={1} alignItems="center">
-                  <TextField
-                    type="color"
-                    value={strokeColor}
-                    onChange={(e) => setStrokeColor(e.target.value)}
-                    size="small"
-                    color="secondary"
-                    sx={{ width: '80px' }}
-                  />
-                  <Button size="small" onClick={() => setStrokeColor('#ffffff')}>
-                    重置
-                  </Button>
-                </Box>
-              </Box>
 
               <Box mt={2}>
                 <FormControlLabel
