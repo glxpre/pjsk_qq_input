@@ -624,7 +624,7 @@ function App() {
                     flex: 1
                   }}
                 >
-                  {characters[character].name} - {characters[character].character}
+                  {characters[character].name}
                 </Typography>
               </Box>
 
