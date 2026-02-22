@@ -13,7 +13,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
-import { GitHub, Link as LinkIcon } from '@mui/icons-material'
+import Box from '@mui/material/Box'
+import { GitHub, Link as LinkIcon, Favorite } from '@mui/icons-material'
 
 export default function Info({ open, handleClose }) {
   return (
@@ -88,6 +89,20 @@ export default function Info({ open, handleClose }) {
             />
           </ListItem>
         </List>
+
+        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<Favorite />}
+            href="https://afdian.com/a/1806P"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ borderRadius: 2 }}
+          >
+            支持项目开发
+          </Button>
+        </Box>
 
         <Divider sx={{ my: 2 }} />
 
