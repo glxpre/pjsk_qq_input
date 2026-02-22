@@ -24,7 +24,7 @@ export default function Info({ open, handleClose }) {
       maxWidth="sm"
       fullWidth
     >
-      <DialogTitle id="info-dialog-title">关于 Project Sekai 贴纸生成器</DialogTitle>
+      <DialogTitle id="info-dialog-title">关于 Project SEKAI 贴纸生成器</DialogTitle>
       <DialogContent>
         <Typography variant="h6" component="h3" gutterBottom>
           本项目
@@ -43,7 +43,7 @@ export default function Info({ open, handleClose }) {
             </ListItemAvatar>
             <ListItemText
               primary="25-ji-code-de/stickers-maker"
-              secondary="本仓库 - Project Sekai 贴纸生成器"
+              secondary="本仓库 - Project SEKAI 贴纸生成器"
             />
           </ListItem>
           <ListItem>
