@@ -180,8 +180,8 @@ export default function Info({ open, handleClose }) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: '#24292e' }}>
-                <GitHub />
+              <Avatar sx={{ bgcolor: '#e1e4e8' }}>
+                <GitHub sx={{ color: '#24292e' }} />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -196,8 +196,8 @@ export default function Info({ open, handleClose }) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: '#24292e' }}>
-                <GitHub />
+              <Avatar sx={{ bgcolor: '#e1e4e8' }}>
+                <GitHub sx={{ color: '#24292e' }} />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -212,8 +212,8 @@ export default function Info({ open, handleClose }) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: '#24292e' }}>
-                <GitHub />
+              <Avatar sx={{ bgcolor: '#e1e4e8' }}>
+                <GitHub sx={{ color: '#24292e' }} />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="TheOriginalAyaka/sekai-stickers" secondary="最初版本" />
