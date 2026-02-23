@@ -3,17 +3,23 @@
 
 import { forwardRef, useRef, useEffect, useImperativeHandle, memo } from 'react'
 
-const Canvas = memo(forwardRef(({ draw, ...rest }, ref) => {
-  const canvasRef = useRef(null)
+interface CanvasProps extends React.HTMLAttributes<HTMLCanvasElement> {
+  draw: (ctx: CanvasRenderingContext2D) => void
+}
 
-  useImperativeHandle(ref, () => canvasRef.current)
+const Canvas = memo(forwardRef<HTMLCanvasElement, CanvasProps>(({ draw, ...rest }, ref) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
     const context = canvas.getContext('2d')
-    draw(context)
+    if (context) {
+      draw(context)
+    }
   }, [draw])
 
   return <canvas ref={canvasRef} {...rest} />

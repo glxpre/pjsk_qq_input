@@ -3,18 +3,18 @@
 
 /**
  * Desaturate a color and reduce its lightness for background usage
- * @param {string} hex - Hex color code (e.g., "#cf93d9")
- * @returns {string} - Desaturated hex color code
+ * @param hex - Hex color code (e.g., "#cf93d9")
+ * @returns Desaturated hex color code
  */
-export function desaturateColor(hex) {
+export function desaturateColor(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
 
   const max = Math.max(r, g, b) / 255
   const min = Math.min(r, g, b) / 255
-  let h,
-    s,
+  let h: number,
+    s: number,
     l = (max + min) / 2
 
   if (max === min) {
@@ -32,7 +32,7 @@ export function desaturateColor(hex) {
   s *= 0.15
   l = Math.max(0.12, l * 0.3)
 
-  const hue2rgb = (p, q, t) => {
+  const hue2rgb = (p: number, q: number, t: number): number => {
     if (t < 0) t += 1
     if (t > 1) t -= 1
     if (t < 1 / 6) return p + (q - p) * 6 * t

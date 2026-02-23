@@ -3,17 +3,21 @@
 
 import { useState, useCallback } from 'react'
 import characters from '../characters.json'
+import { Character } from '../types'
 
 const DEFAULT_FONT_KEY = 'yuruka'
+
+// Type assertion for characters.json
+const typedCharacters = characters as Character[]
 
 /**
  * Hook for managing all text styling properties
  */
-export function useTextSettings(character) {
-  const [text, setText] = useState(characters[character].defaultText.text || '请输入文本')
-  const [fontSize, setFontSize] = useState(characters[character].defaultText.s)
+export function useTextSettings(character: number) {
+  const [text, setText] = useState(typedCharacters[character].defaultText.text || '请输入文本')
+  const [fontSize, setFontSize] = useState(typedCharacters[character].defaultText.s)
   const [fontKey, setFontKey] = useState(DEFAULT_FONT_KEY)
-  const [rotate, setRotate] = useState(characters[character].defaultText.r)
+  const [rotate, setRotate] = useState(typedCharacters[character].defaultText.r)
   const [spaceSize, setSpaceSize] = useState(25)
   const [letterSpacing, setLetterSpacing] = useState(0)
   const [curve, setCurve] = useState(false)
@@ -21,8 +25,8 @@ export function useTextSettings(character) {
   const [textBehind, setTextBehind] = useState(false)
 
   const resetTextSettings = useCallback(
-    (currentCharacter) => {
-      const char = characters[currentCharacter]
+    (currentCharacter: number) => {
+      const char = typedCharacters[currentCharacter]
       setText(char.defaultText.text || '请输入文本')
       setFontSize(char.defaultText.s)
       setRotate(char.defaultText.r)

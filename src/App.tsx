@@ -215,7 +215,7 @@ function App() {
                     <Box flex={1} display="flex" alignItems="center">
                       <Slider
                         value={position.position.x}
-                        onChange={(_, v) => position.setPosition({ ...position.position, x: v })}
+                        onChange={(_, v) => position.setPosition({ ...position.position, x: Array.isArray(v) ? v[0] : v })}
                         min={0}
                         max={296}
                         color="secondary"
@@ -239,7 +239,7 @@ function App() {
                       <Slider
                         orientation="vertical"
                         value={256 - position.position.y}
-                        onChange={(_, v) => position.setPosition({ ...position.position, y: 256 - v })}
+                        onChange={(_, v) => position.setPosition({ ...position.position, y: 256 - (Array.isArray(v) ? v[0] : v) })}
                         min={0}
                         max={256}
                         color="secondary"
@@ -295,7 +295,7 @@ function App() {
                 </Typography>
                 <Slider
                   value={position.position.y}
-                  onChange={(_, v) => position.setPosition({ ...position.position, y: v })}
+                  onChange={(_, v) => position.setPosition({ ...position.position, y: Array.isArray(v) ? v[0] : v })}
                   min={0}
                   max={256}
                   color="secondary"

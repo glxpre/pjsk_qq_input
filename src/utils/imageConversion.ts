@@ -3,14 +3,18 @@
 
 /**
  * Convert a base64 encoded image string to a Blob object
- * @param {string} b64Data - Base64 encoded data (without the data:image prefix)
- * @param {string} contentType - MIME type of the image
- * @param {number} sliceSize - Size of slices for processing
- * @returns {Blob} - Blob object containing the image data
+ * @param b64Data - Base64 encoded data (without the data:image prefix)
+ * @param contentType - MIME type of the image
+ * @param sliceSize - Size of slices for processing
+ * @returns Blob object containing the image data
  */
-export function b64toBlob(b64Data, contentType = 'image/png', sliceSize = 512) {
+export function b64toBlob(
+  b64Data: string,
+  contentType: string = 'image/png',
+  sliceSize: number = 512
+): Blob {
   const byteCharacters = atob(b64Data)
-  const byteArrays = []
+  const byteArrays: BlobPart[] = []
   for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
     const slice = byteCharacters.slice(offset, offset + sliceSize)
     const byteNumbers = new Array(slice.length)
