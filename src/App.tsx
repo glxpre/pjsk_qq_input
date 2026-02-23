@@ -349,7 +349,7 @@ function App() {
         <Grid container spacing={3}>
           {/* Header */}
           <Grid item xs={12}>
-            <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+            <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap" gap={1}>
               <Typography
                 variant="h3"
                 component="h1"
@@ -360,6 +360,35 @@ function App() {
                   color: colorScheme.dominantColor,
                 }}
               >Project Sekai 贴纸生成器</Typography>
+
+              {/* Mobile: Undo/Redo buttons */}
+              <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 0.5 }}>
+                <Tooltip title="撤销">
+                  <span>
+                    <IconButton
+                      color="secondary"
+                      onClick={handleUndo}
+                      disabled={!undoRedo.canUndo}
+                      size="small"
+                    >
+                      <Undo fontSize="small" />
+                    </IconButton>
+                  </span>
+                </Tooltip>
+                <Tooltip title="重做">
+                  <span>
+                    <IconButton
+                      color="secondary"
+                      onClick={handleRedo}
+                      disabled={!undoRedo.canRedo}
+                      size="small"
+                    >
+                      <Redo fontSize="small" />
+                    </IconButton>
+                  </span>
+                </Tooltip>
+              </Box>
+
               {/* Desktop buttons */}
               <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
                 <Tooltip title="撤销 (Ctrl+Z)">
@@ -640,36 +669,11 @@ function App() {
           sx={{
             display: { xs: 'flex', md: 'none' },
             justifyContent: 'center',
-            flexWrap: 'wrap',
             gap: 1.5,
             mt: 3,
             pb: 2,
           }}
         >
-          <Tooltip title="撤销">
-            <span>
-              <IconButton
-                color="secondary"
-                onClick={handleUndo}
-                disabled={!undoRedo.canUndo}
-                sx={{ border: '1px solid rgba(228, 194, 200, 0.5)' }}
-              >
-                <Undo />
-              </IconButton>
-            </span>
-          </Tooltip>
-          <Tooltip title="重做">
-            <span>
-              <IconButton
-                color="secondary"
-                onClick={handleRedo}
-                disabled={!undoRedo.canRedo}
-                sx={{ border: '1px solid rgba(228, 194, 200, 0.5)' }}
-              >
-                <Redo />
-              </IconButton>
-            </span>
-          </Tooltip>
           <Tooltip title="历史记录">
             <Button
               variant="outlined"
