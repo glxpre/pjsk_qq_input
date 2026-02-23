@@ -25,17 +25,20 @@ import {
   KeyboardArrowDown,
   History,
 } from '@mui/icons-material'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, lazy, Suspense } from 'react'
 import characters from './characters.json'
 import Canvas from './components/Canvas'
 import Picker from './components/Picker'
-import Info from './components/Info'
-import UploadDialog from './components/UploadDialog'
 import ThemeWrapper from './components/ThemeWrapper'
 import NotificationSnackbar from './components/controls/NotificationSnackbar'
 import TextStylePanel from './components/sections/TextStylePanel'
 import ExportPanel from './components/sections/ExportPanel'
-import HistoryPanel from './components/sections/HistoryPanel'
+
+// Lazy load heavy dialog components
+const Info = lazy(() => import('./components/Info'))
+const UploadDialog = lazy(() => import('./components/UploadDialog'))
+const HistoryPanel = lazy(() => import('./components/sections/HistoryPanel'))
+
 import { useCharacter } from './hooks/useCharacter'
 import { useColorScheme } from './hooks/useColorScheme'
 import { useTextSettings } from './hooks/useTextSettings'
@@ -546,39 +549,45 @@ function App() {
         </Box>
       </Box>
 
-      {/* Dialogs */}
-      <Info open={uiState.infoOpen} handleClose={() => uiState.setInfoOpen(false)} />
+      {/* Dialogs - Lazy loaded with Suspense */}
+      <Suspense fallback={null}>
+        <Info open={uiState.infoOpen} handleClose={() => uiState.setInfoOpen(false)} />
+      </Suspense>
 
-      <Dialog
-        open={uiState.historyOpen}
-        onClose={() => uiState.setHistoryOpen(false)}
-        maxWidth="md"
-        fullWidth
-      >
-        <DialogTitle>历史记录</DialogTitle>
-        <DialogContent>
-          <HistoryPanel
-            historyItems={history.historyItems}
-            onLoadHistory={(id) => {
-              loadFromHistory(id)
-              uiState.setHistoryOpen(false)
-            }}
-            onDeleteHistory={history.deleteHistory}
-            onClearHistory={history.clearHistory}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => uiState.setHistoryOpen(false)}>关闭</Button>
-        </DialogActions>
-      </Dialog>
+      <Suspense fallback={null}>
+        <Dialog
+          open={uiState.historyOpen}
+          onClose={() => uiState.setHistoryOpen(false)}
+          maxWidth="md"
+          fullWidth
+        >
+          <DialogTitle>历史记录</DialogTitle>
+          <DialogContent>
+            <HistoryPanel
+              historyItems={history.historyItems}
+              onLoadHistory={(id) => {
+                loadFromHistory(id)
+                uiState.setHistoryOpen(false)
+              }}
+              onDeleteHistory={history.deleteHistory}
+              onClearHistory={history.clearHistory}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => uiState.setHistoryOpen(false)}>关闭</Button>
+          </DialogActions>
+        </Dialog>
+      </Suspense>
 
-      <UploadDialog
-        open={uiState.uploadOpen}
-        onClose={() => uiState.setUploadOpen(false)}
-        canvas={canvasRef.current}
-        altText={textSettings.text}
-        onUploadSuccess={(url) => saveToHistory(url)}
-      />
+      <Suspense fallback={null}>
+        <UploadDialog
+          open={uiState.uploadOpen}
+          onClose={() => uiState.setUploadOpen(false)}
+          canvas={canvasRef.current}
+          altText={textSettings.text}
+          onUploadSuccess={(url) => saveToHistory(url)}
+        />
+      </Suspense>
 
       {/* Notifications */}
       <NotificationSnackbar
