@@ -10,7 +10,10 @@ import {
   TextField,
   IconButton,
   Tooltip,
+  Popover,
+  Box,
   useMediaQuery,
+  useTheme,
 } from '@mui/material'
 import { useState, useMemo, useCallback } from 'react'
 import characters from '../characters.json'
@@ -24,24 +27,28 @@ interface PickerProps {
 const pickerItemSx = {
   cursor: 'pointer',
   '&:hover': {
-    opacity: 0.7,
+    opacity: 0.5,
   },
   '&:active': {
-    opacity: 0.9,
+    opacity: 0.8,
   },
 }
 
 export default function Picker({ setCharacter, color }: PickerProps) {
-  const [open, setOpen] = useState(false)
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const [search, setSearch] = useState('')
-  const isSmallScreen = useMediaQuery('(max-width:600px)')
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
-  const handleOpen = useCallback(() => {
-    setOpen(true)
+  const open = Boolean(anchorEl)
+
+  const handleOpen = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
   }, [])
 
   const handleClose = useCallback(() => {
-    setOpen(false)
+    setAnchorEl(null)
+    setSearch('') // 关闭时清空搜索
   }, [])
 
   const handleCharacterSelect = useCallback((index: number) => {
@@ -73,7 +80,7 @@ export default function Picker({ setCharacter, color }: PickerProps) {
               srcSet={`/img/${c.img}`}
               alt={c.name}
               loading="lazy"
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: '4px' }}
             />
           </ImageListItem>
         )
@@ -82,27 +89,85 @@ export default function Picker({ setCharacter, color }: PickerProps) {
     }, [])
   }, [search, handleCharacterSelect])
 
+  // 统一使用 IconButton 触发器
+  const triggerButton = (
+    <Tooltip title="选择角色">
+      <IconButton
+        color="secondary"
+        onClick={handleOpen}
+        sx={{ color: color }}
+        size="small"
+      >
+        <PersonSearch />
+      </IconButton>
+    </Tooltip>
+  )
+
+  // 移动端：使用 Dialog（全屏模态框）
+  if (isMobile) {
+    return (
+      <>
+        {triggerButton}
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          maxWidth="md"
+          fullWidth
+        >
+          <DialogTitle>选择角色</DialogTitle>
+          <DialogContent>
+            <TextField
+              label="搜索角色"
+              size="small"
+              color="secondary"
+              value={search}
+              fullWidth
+              onChange={handleSearchChange}
+              sx={{ mb: 2 }}
+            />
+            <ImageList
+              sx={{
+                width: '100%',
+                maxHeight: 450,
+              }}
+              cols={3}
+              rowHeight={140}
+            >
+              {renderedItems}
+            </ImageList>
+          </DialogContent>
+        </Dialog>
+      </>
+    )
+  }
+
+  // 桌面端：使用 Popover（从按钮下方弹出）
   return (
     <>
-      <Tooltip title="选择角色">
-        <IconButton
-          color="secondary"
-          onClick={handleOpen}
-          sx={{ color: color }}
-          size="small"
-        >
-          <PersonSearch />
-        </IconButton>
-      </Tooltip>
-
-      <Dialog
+      {triggerButton}
+      <Popover
         open={open}
+        anchorEl={anchorEl}
         onClose={handleClose}
-        maxWidth="md"
-        fullWidth
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              mt: 1,
+              overflow: 'hidden',
+              maxWidth: 560,
+            }
+          }
+        }}
       >
-        <DialogTitle>选择角色</DialogTitle>
-        <DialogContent>
+        <Box sx={{ p: 1.5 }}>
           <TextField
             label="搜索角色"
             size="small"
@@ -110,20 +175,32 @@ export default function Picker({ setCharacter, color }: PickerProps) {
             value={search}
             fullWidth
             onChange={handleSearchChange}
-            sx={{ mb: 2 }}
+            sx={{ mb: 1.5 }}
+            autoFocus
           />
-          <ImageList
+          <Box
             sx={{
-              width: '100%',
               maxHeight: 450,
+              overflow: 'auto',
+              '&::-webkit-scrollbar': {
+                width: '8px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                bgcolor: 'rgba(207, 147, 217, 0.5)',
+                borderRadius: '4px',
+              },
             }}
-            cols={isSmallScreen ? 3 : 4}
-            rowHeight={140}
           >
-            {renderedItems}
-          </ImageList>
-        </DialogContent>
-      </Dialog>
+            <ImageList
+              cols={4}
+              rowHeight={120}
+              gap={8}
+            >
+              {renderedItems}
+            </ImageList>
+          </Box>
+        </Box>
+      </Popover>
     </>
   )
 }
