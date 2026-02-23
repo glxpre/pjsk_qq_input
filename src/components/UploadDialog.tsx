@@ -23,9 +23,10 @@ interface UploadDialogProps {
   onClose: () => void
   canvas: HTMLCanvasElement | null
   altText?: string
+  onUploadSuccess?: (url: string) => void
 }
 
-function UploadDialog({ open, onClose, canvas, altText = '' }: UploadDialogProps) {
+function UploadDialog({ open, onClose, canvas, altText = '', onUploadSuccess }: UploadDialogProps) {
   const [uploading, setUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
   const [uploadedUrl, setUploadedUrl] = useState('')
@@ -71,6 +72,10 @@ function UploadDialog({ open, onClose, canvas, altText = '' }: UploadDialogProps
             const url = `https://storage.nightcord.de5.net/${result.key}`
             setUploadedUrl(url)
             setUploading(false)
+            // Call the success callback
+            if (onUploadSuccess) {
+              onUploadSuccess(url)
+            }
           } catch (e) {
             setError('服务器响应格式错误')
             setUploading(false)

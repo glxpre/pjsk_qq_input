@@ -81,6 +81,8 @@ export interface UIState {
   downloadPopupOpen: boolean
   setDownloadPopupOpen: (open: boolean) => void
   showDownloadSuccess: () => void
+  historyOpen: boolean
+  setHistoryOpen: (open: boolean) => void
 }
 
 export interface CharacterHook {
@@ -99,4 +101,47 @@ export interface ExportHooks {
   downloadJpg: () => Promise<void>
   copy: () => Promise<void>
   copyWithBg: () => Promise<void>
+}
+
+/**
+ * Configuration snapshot for history
+ */
+export interface StickerConfig {
+  character: number
+  customImage: string | null
+  text: string
+  fontSize: number
+  fontKey: FontKey
+  position: Position
+  rotate: number
+  spaceSize: number
+  letterSpacing: number
+  strokeWidth: number
+  strokeColor: string
+  textColor: string
+  curve: boolean
+  vertical: boolean
+  textBehind: boolean
+}
+
+/**
+ * History item stored in localStorage
+ */
+export interface HistoryItem {
+  id: string
+  timestamp: number
+  thumbnail: string // base64 image data URL
+  config: StickerConfig
+  uploadedUrl?: string
+}
+
+/**
+ * Hook for managing history
+ */
+export interface HistoryHook {
+  historyItems: HistoryItem[]
+  addHistory: (config: StickerConfig, canvas: HTMLCanvasElement, uploadedUrl?: string) => void
+  loadHistory: (id: string) => StickerConfig | null
+  deleteHistory: (id: string) => void
+  clearHistory: () => void
 }

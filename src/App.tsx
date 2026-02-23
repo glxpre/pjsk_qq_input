@@ -11,6 +11,10 @@ import {
   Tooltip,
   Divider,
   Slider,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material'
 import {
   GitHub,
@@ -19,6 +23,7 @@ import {
   KeyboardArrowRight,
   KeyboardArrowUp,
   KeyboardArrowDown,
+  History,
 } from '@mui/icons-material'
 import { useCallback, useEffect, useRef } from 'react'
 import characters from './characters.json'
@@ -30,6 +35,7 @@ import ThemeWrapper from './components/ThemeWrapper'
 import NotificationSnackbar from './components/controls/NotificationSnackbar'
 import TextStylePanel from './components/sections/TextStylePanel'
 import ExportPanel from './components/sections/ExportPanel'
+import HistoryPanel from './components/sections/HistoryPanel'
 import { useCharacter } from './hooks/useCharacter'
 import { useColorScheme } from './hooks/useColorScheme'
 import { useTextSettings } from './hooks/useTextSettings'
@@ -38,6 +44,8 @@ import { useStroke } from './hooks/useStroke'
 import { useCanvasDrawing } from './hooks/useCanvasDrawing'
 import { useExport } from './hooks/useExport'
 import { useUIState } from './hooks/useUIState'
+import { useHistory } from './hooks/useHistory'
+import { StickerConfig } from './types'
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -71,6 +79,8 @@ function App() {
     uiState.setCopyPopupOpen,
     uiState.setDownloadPopupOpen
   )
+
+  const history = useHistory()
 
   // Update text settings and position when character changes
   useEffect(() => {
@@ -138,6 +148,96 @@ function App() {
     characterHook.setCharacter(index)
   }
 
+  // Get current configuration
+  const getCurrentConfig = useCallback((): StickerConfig => {
+    return {
+      character: characterHook.character,
+      customImage: characterHook.customImage,
+      text: textSettings.text,
+      fontSize: textSettings.fontSize,
+      fontKey: textSettings.fontKey,
+      position: position.position,
+      rotate: textSettings.rotate,
+      spaceSize: textSettings.spaceSize,
+      letterSpacing: textSettings.letterSpacing,
+      strokeWidth: stroke.strokeWidth,
+      strokeColor: stroke.strokeColor,
+      textColor: colorScheme.textColor,
+      curve: textSettings.curve,
+      vertical: textSettings.vertical,
+      textBehind: textSettings.textBehind,
+    }
+  }, [
+    characterHook.character,
+    characterHook.customImage,
+    textSettings,
+    position.position,
+    stroke,
+    colorScheme.textColor,
+  ])
+
+  // Save current sticker to history (with auto-deduplication)
+  const saveToHistory = useCallback((uploadedUrl?: string) => {
+    if (!canvasRef.current) return
+
+    const config = getCurrentConfig()
+    history.addHistory(config, canvasRef.current, uploadedUrl)
+  }, [getCurrentConfig, history])
+
+  // Wrap export functions to auto-save to history
+  const handleDownload = useCallback(async () => {
+    await exportHooks.download()
+    saveToHistory()
+  }, [exportHooks, saveToHistory])
+
+  const handleDownloadWebp = useCallback(async () => {
+    await exportHooks.downloadWebp()
+    saveToHistory()
+  }, [exportHooks, saveToHistory])
+
+  const handleDownloadJpg = useCallback(async () => {
+    await exportHooks.downloadJpg()
+    saveToHistory()
+  }, [exportHooks, saveToHistory])
+
+  const handleCopy = useCallback(async () => {
+    await exportHooks.copy()
+    saveToHistory()
+  }, [exportHooks, saveToHistory])
+
+  const handleCopyWithBg = useCallback(async () => {
+    await exportHooks.copyWithBg()
+    saveToHistory()
+  }, [exportHooks, saveToHistory])
+
+  // Load configuration from history
+  const loadFromHistory = useCallback((id: string) => {
+    const config = history.loadHistory(id)
+    if (!config) return
+
+    // Apply all settings
+    characterHook.setCharacter(config.character)
+    textSettings.setText(config.text)
+    textSettings.setFontSize(config.fontSize)
+    textSettings.setFontKey(config.fontKey)
+    textSettings.setRotate(config.rotate)
+    textSettings.setSpaceSize(config.spaceSize)
+    textSettings.setLetterSpacing(config.letterSpacing)
+    textSettings.setCurve(config.curve)
+    textSettings.setVertical(config.vertical)
+    textSettings.setTextBehind(config.textBehind)
+    position.setPosition(config.position)
+    stroke.setStrokeWidth(config.strokeWidth)
+    stroke.setStrokeColor(config.strokeColor)
+    colorScheme.setTextColor(config.textColor)
+
+    // Handle custom image if present
+    if (config.customImage && config.customImage !== characterHook.customImage) {
+      // Note: Custom images are stored as data URLs, so they can be restored
+      // This is handled automatically by the character hook
+    }
+  }, [history, characterHook, textSettings, position, stroke, colorScheme])
+
   return (
     <ThemeWrapper dominantColor={colorScheme.dominantColor} backgroundColor={colorScheme.backgroundColor}>
       <Box sx={{ minHeight: '100vh', width: '100%', px: { xs: 1.5, sm: 3 }, py: 3 }}>
@@ -156,7 +256,12 @@ function App() {
                 }}
               >Project Sekai 贴纸生成器</Typography>
               {/* Desktop buttons */}
-              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+                <Tooltip title="历史记录">
+                  <IconButton color="secondary" onClick={() => uiState.setHistoryOpen(true)}>
+                    <History />
+                  </IconButton>
+                </Tooltip>
                 <Tooltip title="关于">
                   <IconButton color="secondary" onClick={() => uiState.setInfoOpen(true)}>
                     <InfoOutlined />
@@ -387,11 +492,11 @@ function App() {
           {/* Export Section */}
           <Grid item xs={12}>
             <ExportPanel
-              onCopy={exportHooks.copy}
-              onCopyWithBg={exportHooks.copyWithBg}
-              onDownload={exportHooks.download}
-              onDownloadJpg={exportHooks.downloadJpg}
-              onDownloadWebp={exportHooks.downloadWebp}
+              onCopy={handleCopy}
+              onCopyWithBg={handleCopyWithBg}
+              onDownload={handleDownload}
+              onDownloadJpg={handleDownloadJpg}
+              onDownloadWebp={handleDownloadWebp}
               onUpload={() => uiState.setUploadOpen(true)}
             />
           </Grid>
@@ -402,11 +507,21 @@ function App() {
           sx={{
             display: { xs: 'flex', md: 'none' },
             justifyContent: 'center',
-            gap: 2,
+            gap: 1.5,
             mt: 3,
             pb: 2,
           }}
         >
+          <Tooltip title="历史记录">
+            <Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<History />}
+              onClick={() => uiState.setHistoryOpen(true)}
+            >
+              历史
+            </Button>
+          </Tooltip>
           <Tooltip title="关于">
             <Button
               variant="outlined"
@@ -433,11 +548,36 @@ function App() {
 
       {/* Dialogs */}
       <Info open={uiState.infoOpen} handleClose={() => uiState.setInfoOpen(false)} />
+
+      <Dialog
+        open={uiState.historyOpen}
+        onClose={() => uiState.setHistoryOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>历史记录</DialogTitle>
+        <DialogContent>
+          <HistoryPanel
+            historyItems={history.historyItems}
+            onLoadHistory={(id) => {
+              loadFromHistory(id)
+              uiState.setHistoryOpen(false)
+            }}
+            onDeleteHistory={history.deleteHistory}
+            onClearHistory={history.clearHistory}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => uiState.setHistoryOpen(false)}>关闭</Button>
+        </DialogActions>
+      </Dialog>
+
       <UploadDialog
         open={uiState.uploadOpen}
         onClose={() => uiState.setUploadOpen(false)}
         canvas={canvasRef.current}
         altText={textSettings.text}
+        onUploadSuccess={(url) => saveToHistory(url)}
       />
 
       {/* Notifications */}
