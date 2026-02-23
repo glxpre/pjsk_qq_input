@@ -83,6 +83,8 @@ export interface UIState {
   showDownloadSuccess: () => void
   historyOpen: boolean
   setHistoryOpen: (open: boolean) => void
+  resetConfirmOpen: boolean
+  setResetConfirmOpen: (open: boolean) => void
 }
 
 export interface CharacterHook {

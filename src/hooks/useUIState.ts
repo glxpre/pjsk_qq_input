@@ -13,6 +13,7 @@ export function useUIState(): UIState {
   const [copyPopupOpen, setCopyPopupOpen] = useState<boolean>(false)
   const [downloadPopupOpen, setDownloadPopupOpen] = useState<boolean>(false)
   const [historyOpen, setHistoryOpen] = useState<boolean>(false)
+  const [resetConfirmOpen, setResetConfirmOpen] = useState<boolean>(false)
 
   const showCopySuccess = useCallback((): void => {
     setCopyPopupOpen(true)
@@ -35,5 +36,7 @@ export function useUIState(): UIState {
     showDownloadSuccess,
     historyOpen,
     setHistoryOpen,
+    resetConfirmOpen,
+    setResetConfirmOpen,
   }
 }

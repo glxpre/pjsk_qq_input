@@ -644,7 +644,12 @@ function App() {
               </Box>
 
               <Box mt={2}>
-                <Button variant="contained" color="secondary" onClick={resetSettings} fullWidth>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => uiState.setResetConfirmOpen(true)}
+                  fullWidth
+                >
                   重置所有设置
                 </Button>
               </Box>
@@ -747,6 +752,34 @@ function App() {
           onUploadSuccess={(url) => saveToHistory(url)}
         />
       </Suspense>
+
+      {/* Reset Confirmation Dialog */}
+      <Dialog
+        open={uiState.resetConfirmOpen}
+        onClose={() => uiState.setResetConfirmOpen(false)}
+      >
+        <DialogTitle>确认重置</DialogTitle>
+        <DialogContent>
+          <Typography>
+            确定要重置所有设置吗？此操作将清除当前的文字、样式和位置设置，恢复到默认状态。
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => uiState.setResetConfirmOpen(false)}>
+            取消
+          </Button>
+          <Button
+            onClick={() => {
+              resetSettings()
+              uiState.setResetConfirmOpen(false)
+            }}
+            color="secondary"
+            variant="contained"
+          >
+            确定重置
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Notifications */}
       <NotificationSnackbar
