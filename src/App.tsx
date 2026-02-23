@@ -26,6 +26,7 @@ import {
   History,
   Undo,
   Redo,
+  HelpOutline,
 } from '@mui/icons-material'
 import { useCallback, useEffect, useRef, lazy, Suspense } from 'react'
 import characters from './characters.json'
@@ -53,8 +54,10 @@ import { useUIState } from './hooks/useUIState'
 import { useHistory } from './hooks/useHistory'
 import { useFontLoader } from './hooks/useFontLoader'
 import { useUndoRedo } from './hooks/useUndoRedo'
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { StickerConfig } from './types'
 import FontLoadingOverlay from './components/FontLoadingOverlay'
+import ShortcutsHelpDialog from './components/ShortcutsHelpDialog'
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -324,24 +327,44 @@ function App() {
     }
   }, [undoRedo, applyConfig])
 
-  // Keyboard shortcuts for undo/redo
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl+Z or Cmd+Z for undo
-      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault()
-        handleUndo()
-      }
-      // Ctrl+Y or Cmd+Y or Ctrl+Shift+Z for redo
-      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
-        e.preventDefault()
-        handleRedo()
-      }
-    }
+  // Integrate keyboard shortcuts system
+  useKeyboardShortcuts({
+    // Export operations
+    handleCopy,
+    handleCopyWithBg,
+    handleDownload,
+    handleDownloadJpg,
+    handleDownloadWebp,
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [handleUndo, handleRedo])
+    // Undo/redo
+    handleUndo,
+    handleRedo,
+
+    // Position
+    position,
+
+    // Style
+    fontSize: textSettings.fontSize,
+    setFontSize: textSettings.setFontSize,
+    letterSpacing: textSettings.letterSpacing,
+    setLetterSpacing: textSettings.setLetterSpacing,
+    spaceSize: textSettings.spaceSize,
+    setSpaceSize: textSettings.setSpaceSize,
+    rotate: textSettings.rotate,
+    setRotate: textSettings.setRotate,
+
+    // Toggles
+    curve: textSettings.curve,
+    setCurve: textSettings.setCurve,
+    vertical: textSettings.vertical,
+    setVertical: textSettings.setVertical,
+    textBehind: textSettings.textBehind,
+    setTextBehind: textSettings.setTextBehind,
+
+    // UI state
+    uiState,
+  })
+
 
   return (
     <ThemeWrapper dominantColor={colorScheme.dominantColor} backgroundColor={colorScheme.backgroundColor}>
@@ -416,6 +439,11 @@ function App() {
                 <Tooltip title="历史记录">
                   <IconButton color="secondary" onClick={() => uiState.setHistoryOpen(true)}>
                     <History />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="快捷键帮助">
+                  <IconButton color="secondary" onClick={() => uiState.setShortcutsHelpOpen(true)}>
+                    <HelpOutline />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="关于">
@@ -780,6 +808,12 @@ function App() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Shortcuts Help Dialog */}
+      <ShortcutsHelpDialog
+        open={uiState.shortcutsHelpOpen}
+        onClose={() => uiState.setShortcutsHelpOpen(false)}
+      />
 
       {/* Notifications */}
       <NotificationSnackbar

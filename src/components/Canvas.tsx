@@ -9,6 +9,8 @@ interface CanvasProps extends React.HTMLAttributes<HTMLCanvasElement> {
 
 const Canvas = memo(forwardRef<HTMLCanvasElement, CanvasProps>(({ draw, ...rest }, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rafIdRef = useRef<number | null>(null)
+  const pendingDrawRef = useRef<(() => void) | null>(null)
 
   useImperativeHandle(ref, () => canvasRef.current as HTMLCanvasElement)
 
@@ -17,8 +19,26 @@ const Canvas = memo(forwardRef<HTMLCanvasElement, CanvasProps>(({ draw, ...rest 
     if (!canvas) return
 
     const context = canvas.getContext('2d')
-    if (context) {
-      draw(context)
+    if (!context) return
+
+    // Schedule the draw operation with RAF
+    pendingDrawRef.current = () => draw(context)
+
+    if (rafIdRef.current === null) {
+      rafIdRef.current = requestAnimationFrame(() => {
+        if (pendingDrawRef.current) {
+          pendingDrawRef.current()
+          pendingDrawRef.current = null
+        }
+        rafIdRef.current = null
+      })
+    }
+
+    return () => {
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current)
+        rafIdRef.current = null
+      }
     }
   }, [draw])
 

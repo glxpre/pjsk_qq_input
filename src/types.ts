@@ -85,6 +85,8 @@ export interface UIState {
   setHistoryOpen: (open: boolean) => void
   resetConfirmOpen: boolean
   setResetConfirmOpen: (open: boolean) => void
+  shortcutsHelpOpen: boolean
+  setShortcutsHelpOpen: (open: boolean) => void
 }
 
 export interface CharacterHook {
@@ -146,4 +148,68 @@ export interface HistoryHook {
   loadHistory: (id: string) => StickerConfig | null
   deleteHistory: (id: string) => void
   clearHistory: () => void
+}
+
+/**
+ * Keyboard shortcut item
+ */
+export interface ShortcutItem {
+  keys: string[]
+  description: string
+}
+
+/**
+ * Keyboard shortcut category
+ */
+export interface ShortcutCategory {
+  name: string
+  shortcuts: ShortcutItem[]
+}
+
+/**
+ * Configuration for keyboard shortcuts hook
+ */
+export interface KeyboardShortcutsConfig {
+  // Export operations
+  handleCopy: () => void
+  handleCopyWithBg: () => void
+  handleDownload: () => void
+  handleDownloadJpg: () => void
+  handleDownloadWebp: () => void
+
+  // Undo/redo
+  handleUndo: () => void
+  handleRedo: () => void
+
+  // Position
+  position: PositionHook
+
+  // Style
+  fontSize: number
+  setFontSize: (size: number) => void
+  letterSpacing: number
+  setLetterSpacing: (spacing: number) => void
+  spaceSize: number
+  setSpaceSize: (size: number) => void
+  rotate: number
+  setRotate: (rotate: number) => void
+
+  // Toggles
+  curve: boolean
+  setCurve: (curve: boolean) => void
+  vertical: boolean
+  setVertical: (vertical: boolean) => void
+  textBehind: boolean
+  setTextBehind: (behind: boolean) => void
+
+  // UI state
+  uiState: UIState
+}
+
+/**
+ * Return type for keyboard shortcuts hook
+ */
+export interface UseKeyboardShortcutsReturn {
+  isInputFocused: boolean
+  shortcutsEnabled: boolean
 }
