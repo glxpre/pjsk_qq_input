@@ -99,7 +99,7 @@ export function useKeyboardShortcuts(config: KeyboardShortcutsConfig): UseKeyboa
       // Ctrl/Cmd combination shortcuts (always active, even in input fields)
       if (hasModifier) {
         // Check if text is selected (preserve browser default copy/cut/paste)
-        const hasSelection = window.getSelection()?.toString().length ?? 0 > 0
+        const hasSelection = !!window.getSelection()?.toString()
 
         // Undo/Redo
         if (key === 'z' && !hasShift) {
