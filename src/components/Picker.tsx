@@ -129,6 +129,7 @@ export default function Picker({ setCharacter, color }: PickerProps) {
               sx={{
                 width: '100%',
                 maxHeight: 450,
+                margin: 0,
               }}
               cols={3}
               rowHeight={140}
@@ -181,7 +182,8 @@ export default function Picker({ setCharacter, color }: PickerProps) {
           <Box
             sx={{
               maxHeight: 450,
-              overflow: 'auto',
+              overflowY: 'auto',
+              overflowX: 'hidden',
               '&::-webkit-scrollbar': {
                 width: '8px',
               },
@@ -195,6 +197,10 @@ export default function Picker({ setCharacter, color }: PickerProps) {
               cols={4}
               rowHeight={120}
               gap={8}
+              sx={{
+                margin: 0,
+                overflow: 'visible',
+              }}
             >
               {renderedItems}
             </ImageList>
