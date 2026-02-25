@@ -47,7 +47,7 @@ export default function UserMenu() {
 
   return (
     <>
-      <IconButton onClick={handleOpen} size="small" sx={{ ml: 1 }}>
+      <IconButton onClick={handleOpen} color="secondary">
         {user.avatar ? (
           <Avatar src={user.avatar} alt={user.username} sx={{ width: 32, height: 32 }} />
         ) : (

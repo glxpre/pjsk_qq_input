@@ -5,12 +5,12 @@
  * Login button component
  */
 
-import { Button, CircularProgress } from '@mui/material'
+import { Button, CircularProgress, IconButton } from '@mui/material'
 import { Login as LoginIcon } from '@mui/icons-material'
 import { useAuth } from '../../hooks/useAuth'
 
 interface LoginButtonProps {
-  variant?: 'text' | 'outlined' | 'contained'
+  variant?: 'text' | 'outlined' | 'contained' | 'icon'
   size?: 'small' | 'medium' | 'large'
   fullWidth?: boolean
 }
@@ -30,9 +30,24 @@ export default function LoginButton({
     }
   }
 
+  // Icon button variant (for toolbar)
+  if (variant === 'icon') {
+    return (
+      <IconButton
+        color="secondary"
+        size={size}
+        onClick={handleLogin}
+        disabled={isLoading}
+      >
+        {isLoading ? <CircularProgress size={20} /> : <LoginIcon />}
+      </IconButton>
+    )
+  }
+
+  // Regular button variant (for mobile/full width)
   return (
     <Button
-      variant={variant}
+      variant={variant === 'icon' ? 'outlined' : variant}
       size={size}
       fullWidth={fullWidth}
       color="secondary"

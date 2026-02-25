@@ -476,9 +476,11 @@ function App() {
                 {auth.isAuthenticated ? (
                   <UserMenu />
                 ) : (
-                  <Box sx={{ ml: 1 }}>
-                    <LoginButton variant="outlined" size="small" />
-                  </Box>
+                  <Tooltip title="登录 SEKAI Pass">
+                    <span>
+                      <LoginButton variant="icon" />
+                    </span>
+                  </Tooltip>
                 )}
               </Box>
             </Box>

@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from 'react'
 import { Box, CircularProgress, Alert, Typography } from '@mui/material'
-import { handleCallback } from '../services/auth.service'
+import { handleCallback } from '../../services/auth.service'
 
 export default function AuthCallback() {
   const [error, setError] = useState<string | null>(null)
