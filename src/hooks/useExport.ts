@@ -34,7 +34,7 @@ export function useExport(
       }
       return `${characterName}.${ext}`
     },
-    [character, text]
+    [character, text, customImage]
   )
 
   const download = useCallback(async (): Promise<void> => {
