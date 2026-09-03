@@ -48,12 +48,15 @@ export function useExport(
   setCopyPopupOpen: (open: boolean) => void,
   setDownloadPopupOpen: (open: boolean) => void,
   exportSettings: ExportSettings,
-  renderAtScale: RenderAtScale
+  renderAtScale: RenderAtScale,
+  /** Optional filename override (used by duo mode for combined names) */
+  fileNameBuilder?: (ext: string) => string
 ): ExportHooks {
   const { scale, quality, compress } = exportSettings
 
   const generateFileName = useCallback(
     (ext: string): string => {
+      if (fileNameBuilder) return fileNameBuilder(ext)
       // Remove spaces and illegal characters
       const sanitize = (str: string): string => str.replace(/[\s/\\:*?"<>|]/g, '')
 
@@ -66,7 +69,7 @@ export function useExport(
       }
       return `${characterName}.${ext}`
     },
-    [character, text, customImage]
+    [character, text, customImage, fileNameBuilder]
   )
 
   /**

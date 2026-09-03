@@ -31,6 +31,8 @@ interface ExportPanelProps {
   onQualityChange: (quality: number) => void
   compress: boolean
   onCompressChange: (compress: boolean) => void
+  /** 双人模式下隐藏「上传分享」（画廊上传仅支持单人配置） */
+  hideUpload?: boolean
   /** 粉丝福利：高分辨率导出（2×/3×）是否锁定 */
   scaleLocked?: boolean
   /** 粉丝福利：点击锁定项时的轻提示 */
@@ -54,6 +56,7 @@ export default function ExportPanel({
   onQualityChange,
   compress,
   onCompressChange,
+  hideUpload = false,
   scaleLocked = false,
   onScaleLockedHint,
 }: ExportPanelProps) {
@@ -118,17 +121,19 @@ export default function ExportPanel({
             保存 WEBP
           </Button>
         </Grid>
-        <Grid item xs={6} sm={4} md={6}>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<CloudUpload />}
-            onClick={onUpload}
-            fullWidth
-          >
-            上传分享
-          </Button>
-        </Grid>
+        {!hideUpload && (
+          <Grid item xs={6} sm={4} md={6}>
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<CloudUpload />}
+              onClick={onUpload}
+              fullWidth
+            >
+              上传分享
+            </Button>
+          </Grid>
+        )}
       </Grid>
 
       <Divider sx={{ my: 2 }} />

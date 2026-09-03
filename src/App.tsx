@@ -17,6 +17,8 @@ import {
   DialogActions,
   Alert,
   Snackbar,
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material'
 import {
   GitHub,
@@ -48,6 +50,7 @@ const Info = lazy(() => import('./components/Info'))
 const UploadDialog = lazy(() => import('./components/UploadDialog'))
 const HistoryPanel = lazy(() => import('./components/sections/HistoryPanel'))
 const GalleryPanel = lazy(() => import('./components/sections/GalleryPanel'))
+const DuoModePanel = lazy(() => import('./components/sections/DuoModePanel'))
 const FanBonusDialog = lazy(() => import('./components/FanBonusDialog'))
 const PWAUpdatePrompt =
   import.meta.env.MODE === 'toy'
@@ -59,7 +62,7 @@ import { useColorScheme } from './hooks/useColorScheme'
 import { useTextSettings } from './hooks/useTextSettings'
 import { usePosition } from './hooks/usePosition'
 import { useStroke } from './hooks/useStroke'
-import { useCanvasDrawing } from './hooks/useCanvasDrawing'
+import { useCanvasDrawing, useDuoDrawing } from './hooks/useCanvasDrawing'
 import { useExport } from './hooks/useExport'
 import { useUIState } from './hooks/useUIState'
 import { useHistory } from './hooks/useHistory'
@@ -68,7 +71,8 @@ import { useUndoRedo } from './hooks/useUndoRedo'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useAuth } from './hooks/useAuth'
 import { useFanBonus } from './hooks/useFanBonus'
-import { StickerConfig } from './types'
+import { useDuoMode } from './hooks/useDuoMode'
+import { StickerConfig, StickerMode } from './types'
 import FontLoadingOverlay from './components/FontLoadingOverlay'
 import ShortcutsHelpDialog from './components/ShortcutsHelpDialog'
 
@@ -95,6 +99,9 @@ function App() {
 
   const characterHook = useCharacter(fileInputRef, handleImageLoad)
 
+  // 单人 / 双人模式：两种模式状态完全独立
+  const [mode, setMode] = useState<StickerMode>('solo')
+
   const textSettings = useTextSettings(characterHook.character)
   const position = usePosition(
     characters[characterHook.character].defaultText.x,
@@ -102,14 +109,20 @@ function App() {
   )
   const stroke = useStroke()
   const canvasDrawing = useCanvasDrawing()
+  const duoDrawing = useDuoDrawing()
+  // 双人模式：图 A（主角色）加载后同步页面主题色
+  const duo = useDuoMode({ enabled: mode === 'duo', onImageLoadA: handleImageLoad })
 
   // 粉丝福利：锁定键盘快捷键中的位置/字号调节（fail-open，未锁定时原样透传）
+  // 双人模式下快捷键同样不改动单人状态
   const positionLocked = fanBonus.isFeatureLocked('position')
   const fontSizeLocked = fanBonus.isFeatureLocked('fontSize')
-  const positionForShortcuts = positionLocked
-    ? { ...position, moveX: () => {}, moveY: () => {} }
-    : position
-  const setFontSizeForShortcuts = fontSizeLocked ? () => {} : textSettings.setFontSize
+  const positionForShortcuts =
+    mode === 'duo' || positionLocked
+      ? { ...position, moveX: () => {}, moveY: () => {} }
+      : position
+  const setFontSizeForShortcuts =
+    mode === 'duo' || fontSizeLocked ? () => {} : textSettings.setFontSize
 
   // Export settings (scale / quality / compress) — default matches previous behaviour
   const [exportScale, setExportScale] = useState<ExportScale>(1)
@@ -126,6 +139,10 @@ function App() {
       const offscreen = document.createElement('canvas')
       const ctx = offscreen.getContext('2d')
       if (!ctx) return null
+      if (mode === 'duo') {
+        duoDrawing.drawDuo(ctx, duo.config, duo.imgObjs, scale)
+        return offscreen
+      }
       canvasDrawing.draw(
         ctx,
         characterHook.imgObj,
@@ -155,6 +172,10 @@ function App() {
     },
     [
       canvasDrawing,
+      duoDrawing,
+      duo.config,
+      duo.imgObjs,
+      mode,
       characterHook.imgObj,
       characterHook.loaded,
       textSettings,
@@ -162,6 +183,26 @@ function App() {
       colorScheme.textColor,
       stroke,
     ]
+  )
+
+  // 双人模式文件名：角色A×角色B_文字
+  const duoFileName = useCallback(
+    (ext: string): string => {
+      const sanitize = (str: string): string => str.replace(/[\s/\\:*?"<>|]/g, '')
+      const sideName = (i: 0 | 1): string => {
+        const side = duo.config.images[i]
+        return side.customImage ? '自定义图片' : sanitize(characters[side.character].name)
+      }
+      const base = `${sideName(0)}×${sideName(1)}`
+      const duoText =
+        duo.config.textMode === 'split' ? duo.config.textA + duo.config.textB : duo.config.text
+      if (duoText && duoText !== '请输入文本') {
+        const sanitizedText = sanitize(duoText).slice(0, 10)
+        return `${base}_${sanitizedText}.${ext}`
+      }
+      return `${base}.${ext}`
+    },
+    [duo.config]
   )
 
   const exportHooks = useExport(
@@ -176,7 +217,8 @@ function App() {
       quality: exportQuality / 100,
       compress: exportCompress,
     },
-    renderAtScale
+    renderAtScale,
+    mode === 'duo' ? duoFileName : undefined
   )
 
   const history = useHistory()
@@ -203,6 +245,10 @@ function App() {
   // Canvas drawing callback
   const draw = useCallback(
     (ctx: CanvasRenderingContext2D) => {
+      if (mode === 'duo') {
+        duoDrawing.drawDuo(ctx, duo.config, duo.imgObjs)
+        return
+      }
       canvasDrawing.draw(
         ctx,
         characterHook.imgObj,
@@ -230,6 +276,10 @@ function App() {
     },
     [
       canvasDrawing,
+      duoDrawing,
+      duo.config,
+      duo.imgObjs,
+      mode,
       characterHook.imgObj,
       characterHook.loaded,
       textSettings,
@@ -257,6 +307,7 @@ function App() {
   // Get current configuration
   const getCurrentConfig = useCallback((): StickerConfig => {
     return {
+      mode,
       character: characterHook.character,
       customImage: characterHook.customImage,
       text: textSettings.text,
@@ -272,8 +323,11 @@ function App() {
       curve: textSettings.curve,
       vertical: textSettings.vertical,
       textBehind: textSettings.textBehind,
+      duo: mode === 'duo' ? duo.config : undefined,
     }
   }, [
+    mode,
+    duo.config,
     characterHook.character,
     characterHook.customImage,
     textSettings,
@@ -324,41 +378,15 @@ function App() {
     void fanBonus.checkAfterFirstExport()
   }, [exportHooks, saveToHistory, fanBonus])
 
-  // Load configuration from history
-  const loadFromHistory = useCallback(
-    (id: string) => {
-      const config = history.loadHistory(id)
-      if (!config) return
-
-      // Apply all settings
-      characterHook.setCharacter(config.character)
-      textSettings.setText(config.text)
-      textSettings.setFontSize(config.fontSize)
-      textSettings.setFontKey(config.fontKey)
-      textSettings.setRotate(config.rotate)
-      textSettings.setSpaceSize(config.spaceSize)
-      textSettings.setLetterSpacing(config.letterSpacing)
-      textSettings.setCurve(config.curve)
-      textSettings.setVertical(config.vertical)
-      textSettings.setTextBehind(config.textBehind)
-      position.setPosition(config.position)
-      stroke.setStrokeWidth(config.strokeWidth)
-      stroke.setStrokeColor(config.strokeColor)
-      colorScheme.setTextColor(config.textColor)
-
-      // Handle custom image if present
-      if (config.customImage && config.customImage !== characterHook.customImage) {
-        // Note: Custom images are stored as data URLs, so they can be restored
-        // This is handled automatically by the character hook
-      }
-    },
-    [history, characterHook, textSettings, position, stroke, colorScheme]
-  )
-
   // Apply configuration (used by both history and undo/redo)
   const applyConfig = useCallback(
     (config: StickerConfig) => {
       isRestoringState.current = true
+
+      setMode(config.mode ?? 'solo')
+      if (config.duo) {
+        duo.applyDuoConfig(config.duo)
+      }
 
       characterHook.setCharacter(config.character)
       textSettings.setText(config.text)
@@ -379,7 +407,18 @@ function App() {
         isRestoringState.current = false
       }, 100)
     },
-    [characterHook, textSettings, position, stroke, colorScheme]
+    [characterHook, textSettings, position, stroke, colorScheme, duo]
+  )
+
+  // Load configuration from history
+  const loadFromHistory = useCallback(
+    (id: string) => {
+      const config = history.loadHistory(id)
+      if (!config) return
+
+      applyConfig(config)
+    },
+    [history, applyConfig]
   )
 
   // Push current state to undo/redo stack when any setting changes (with debounce)
@@ -394,7 +433,9 @@ function App() {
 
     return () => clearTimeout(timeoutId)
   }, [
+    mode,
     characterHook.character,
+    duo.config,
     textSettings.text,
     textSettings.fontSize,
     textSettings.fontKey,
@@ -591,13 +632,26 @@ function App() {
               <Box display="flex" gap={2} justifyContent="center">
                 {/* Left: Canvas and horizontal slider */}
                 <Box display="flex" flexDirection="column">
-                  {/* Canvas container - responsive size, maintains 296:256 ratio */}
+                  {/* Canvas container - solo: fixed 296:256, duo: follows layout aspect */}
                   <Box
-                    sx={{
-                      width: { xs: '237px', md: '296px' },
-                      height: { xs: '205px', md: '256px' },
-                      position: 'relative',
-                    }}
+                    sx={
+                      mode === 'duo'
+                        ? (duo.config.layout === 'horizontal'
+                            ? {
+                                width: '100%',
+                                maxWidth: '440px',
+                                aspectRatio: '592 / 256',
+                              }
+                            : {
+                                height: { xs: 'min(340px, 55vh)', md: '460px' },
+                                aspectRatio: '296 / 512',
+                              })
+                        : {
+                            width: { xs: '237px', md: '296px' },
+                            height: { xs: '205px', md: '256px' },
+                          }
+                    }
+                    style={{ position: 'relative', margin: '0 auto' }}
                   >
                     <Canvas
                       ref={canvasRef}
@@ -614,14 +668,14 @@ function App() {
                     {!fontsReady && <FontLoadingOverlay progress={fontProgress} />}
                   </Box>
 
-                  {/* Mobile: Horizontal slider */}
+                  {/* Mobile: Horizontal slider (solo only) */}
                   <Box
                     display="flex"
                     alignItems="center"
                     gap={1}
                     mt={1}
                     sx={{
-                      display: { xs: 'flex', md: 'none' },
+                      display: { xs: mode === 'solo' ? 'flex' : 'none', md: 'none' },
                       height: '50px',
                       ...(positionLocked
                         ? { cursor: 'default', '& .Mui-disabled': { cursor: 'not-allowed' } }
@@ -662,11 +716,11 @@ function App() {
                   </Box>
                 </Box>
 
-                {/* Mobile: Right side vertical slider and Picker */}
+                {/* Mobile: Right side vertical slider and Picker (solo only) */}
                 <Box
                   display="flex"
                   flexDirection="column"
-                  sx={{ display: { xs: 'flex', md: 'none' } }}
+                  sx={{ display: { xs: mode === 'solo' ? 'flex' : 'none', md: 'none' } }}
                 >
                   {/* Vertical slider - height matches Canvas */}
                   <Box
@@ -732,8 +786,8 @@ function App() {
                 </Box>
               </Box>
 
-              {/* Desktop: Control buttons and sliders */}
-              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+              {/* Desktop: Control buttons and sliders (solo only) */}
+              <Box sx={{ display: { xs: 'none', md: mode === 'solo' ? 'block' : 'none' } }}>
                 <Box
                   display="flex"
                   gap={1}
@@ -826,6 +880,7 @@ function App() {
                 onDownloadJpg={handleDownloadJpg}
                 onDownloadWebp={handleDownloadWebp}
                 onUpload={() => uiState.setUploadOpen(true)}
+              hideUpload={mode === 'duo'}
                 scale={exportScale}
                 onScaleChange={setExportScale}
                 quality={exportQuality}
@@ -841,100 +896,125 @@ function App() {
           {/* Controls Section */}
           <Grid item xs={12} md={7}>
             <Paper elevation={3} sx={{ p: 2 }}>
-              {/* Desktop: display Picker and character name */}
-              <Box
-                display="flex"
-                alignItems="center"
-                gap={1}
-                mb={2}
-                sx={{ display: { xs: 'none', md: 'flex' } }}
+              {/* Mode switch: 单人 / 双人 */}
+              <ToggleButtonGroup
+                size="small"
+                color="secondary"
+                value={mode}
+                exclusive
+                onChange={(_, v: StickerMode | null) => v && setMode(v)}
+                sx={{ mb: 2 }}
               >
-                <Picker
-                  setCharacter={handleCharacterSelect}
-                  color={colorScheme.dominantColor}
-                  disabled={!!characterHook.customImage}
-                  tooltip="请先清除自定义图片"
-                />
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    flex: 1,
-                  }}
-                >
-                  {characterHook.customImage
-                    ? '自定义图片'
-                    : characters[characterHook.character].name}
-                </Typography>
-              </Box>
+                <ToggleButton value="solo">单人模式</ToggleButton>
+                <ToggleButton value="duo">双人模式</ToggleButton>
+              </ToggleButtonGroup>
 
-              <TextStylePanel
-                character={characterHook.character}
-                text={textSettings.text}
-                setText={textSettings.setText}
-                fontSize={textSettings.fontSize}
-                setFontSize={textSettings.setFontSize}
-                rotate={textSettings.rotate}
-                setRotate={textSettings.setRotate}
-                spaceSize={textSettings.spaceSize}
-                setSpaceSize={textSettings.setSpaceSize}
-                letterSpacing={textSettings.letterSpacing}
-                setLetterSpacing={textSettings.setLetterSpacing}
-                strokeWidth={stroke.strokeWidth}
-                setStrokeWidth={stroke.setStrokeWidth}
-                fontKey={textSettings.fontKey}
-                setFontKey={textSettings.setFontKey}
-                textColor={colorScheme.textColor}
-                setTextColor={colorScheme.setTextColor}
-                strokeColor={stroke.strokeColor}
-                setStrokeColor={stroke.setStrokeColor}
-                curve={textSettings.curve}
-                setCurve={textSettings.setCurve}
-                vertical={textSettings.vertical}
-                setVertical={textSettings.setVertical}
-                textBehind={textSettings.textBehind}
-                setTextBehind={textSettings.setTextBehind}
-                isFeatureLocked={fanBonus.isFeatureLocked}
-                onLockedHint={fanBonus.hintLockedFeature}
-              />
+              {mode === 'solo' ? (
+                <>
+                  {/* Desktop: display Picker and character name */}
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={1}
+                    mb={2}
+                    sx={{ display: { xs: 'none', md: 'flex' } }}
+                  >
+                    <Picker
+                      setCharacter={handleCharacterSelect}
+                      color={colorScheme.dominantColor}
+                      disabled={!!characterHook.customImage}
+                      tooltip="请先清除自定义图片"
+                    />
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        flex: 1,
+                      }}
+                    >
+                      {characterHook.customImage
+                        ? '自定义图片'
+                        : characters[characterHook.character].name}
+                    </Typography>
+                  </Box>
 
-              <Divider sx={{ my: 2 }} />
+                  <TextStylePanel
+                    character={characterHook.character}
+                    text={textSettings.text}
+                    setText={textSettings.setText}
+                    fontSize={textSettings.fontSize}
+                    setFontSize={textSettings.setFontSize}
+                    rotate={textSettings.rotate}
+                    setRotate={textSettings.setRotate}
+                    spaceSize={textSettings.spaceSize}
+                    setSpaceSize={textSettings.setSpaceSize}
+                    letterSpacing={textSettings.letterSpacing}
+                    setLetterSpacing={textSettings.setLetterSpacing}
+                    strokeWidth={stroke.strokeWidth}
+                    setStrokeWidth={stroke.setStrokeWidth}
+                    fontKey={textSettings.fontKey}
+                    setFontKey={textSettings.setFontKey}
+                    textColor={colorScheme.textColor}
+                    setTextColor={colorScheme.setTextColor}
+                    strokeColor={stroke.strokeColor}
+                    setStrokeColor={stroke.setStrokeColor}
+                    curve={textSettings.curve}
+                    setCurve={textSettings.setCurve}
+                    vertical={textSettings.vertical}
+                    setVertical={textSettings.setVertical}
+                    textBehind={textSettings.textBehind}
+                    setTextBehind={textSettings.setTextBehind}
+                    isFeatureLocked={fanBonus.isFeatureLocked}
+                    onLockedHint={fanBonus.hintLockedFeature}
+                  />
 
-              <Box mt={2}>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
-                  onChange={characterHook.handleUpload}
-                  style={{ display: 'none' }}
-                />
-                <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => fileInputRef.current?.click()}
-                  sx={{ mr: 1 }}
-                >
-                  上传自定义图片
-                </Button>
-                {characterHook.customImage && (
-                  <Button variant="outlined" size="small" onClick={characterHook.clearUpload}>
-                    清除自定义图片
-                  </Button>
-                )}
-              </Box>
+                  <Divider sx={{ my: 2 }} />
 
-              <Box mt={2}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => uiState.setResetConfirmOpen(true)}
-                  fullWidth
-                >
-                  重置所有设置
-                </Button>
-              </Box>
+                  <Box mt={2}>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                      onChange={characterHook.handleUpload}
+                      style={{ display: 'none' }}
+                    />
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={() => fileInputRef.current?.click()}
+                      sx={{ mr: 1 }}
+                    >
+                      上传自定义图片
+                    </Button>
+                    {characterHook.customImage && (
+                      <Button variant="outlined" size="small" onClick={characterHook.clearUpload}>
+                        清除自定义图片
+                      </Button>
+                    )}
+                  </Box>
+
+                  <Box mt={2}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => uiState.setResetConfirmOpen(true)}
+                      fullWidth
+                    >
+                      重置所有设置
+                    </Button>
+                  </Box>
+                </>
+              ) : (
+                <Suspense fallback={null}>
+                  <DuoModePanel
+                    duo={duo}
+                    isFeatureLocked={fanBonus.isFeatureLocked}
+                    onLockedHint={fanBonus.hintLockedFeature}
+                  />
+                </Suspense>
+              )}
             </Paper>
           </Grid>
 
@@ -947,6 +1027,7 @@ function App() {
               onDownloadJpg={handleDownloadJpg}
               onDownloadWebp={handleDownloadWebp}
               onUpload={() => uiState.setUploadOpen(true)}
+              hideUpload={mode === 'duo'}
               scale={exportScale}
               onScaleChange={setExportScale}
               quality={exportQuality}
@@ -1120,7 +1201,11 @@ function App() {
           <Button onClick={() => uiState.setResetConfirmOpen(false)}>取消</Button>
           <Button
             onClick={() => {
-              resetSettings()
+              if (mode === 'duo') {
+                duo.resetDuo()
+              } else {
+                resetSettings()
+              }
               uiState.setResetConfirmOpen(false)
             }}
             color="secondary"

@@ -109,10 +109,68 @@ export interface ExportHooks {
   copyWithBg: () => Promise<void>
 }
 
+export type StickerMode = 'solo' | 'duo'
+
+/** 双人模式排列方向 */
+export type DuoLayout = 'horizontal' | 'vertical'
+
+/** 双人模式文字形式：合并（一条双色）/ 拆开（两段分别定位） */
+export type DuoTextMode = 'merged' | 'split'
+
+/** 双人模式单侧底图：角色来源 + 变换 */
+export interface DuoImageSide {
+  character: number
+  customImage: string | null
+  /** 0.5–1.5，默认 1 */
+  scale: number
+  /** -180–180 度，默认 0 */
+  rotate: number
+  /** 相对 slot 中心的偏移（逻辑像素），默认 0 */
+  offsetX: number
+  offsetY: number
+}
+
+/** 双人模式完整配置快照（用于撤销/重做与历史记录） */
+export interface DuoConfig {
+  layout: DuoLayout
+  images: [DuoImageSide, DuoImageSide]
+  textMode: DuoTextMode
+  text: string
+  /** split 模式专用的两段文字（merged 模式不用） */
+  textA: string
+  textB: string
+  /** -1 = 自动（floor(总字数/2)），0..N 手动；同时决定双色边界与拆分边界 */
+  splitIndex: number
+  colorA: string
+  colorB: string
+  /** merged 模式文字锚点 */
+  textPosition: Position
+  /** 与单人 rotate 同一约定（绘制时 /10） */
+  textRotate: number
+  /** split 模式：前半段 / 后半段各自的位置 */
+  textPositionA: Position
+  textPositionB: Position
+  // 共享样式
+  fontSize: number
+  fontKey: FontKey
+  letterSpacing: number
+  /** 多行行距 */
+  spaceSize: number
+  strokeWidth: number
+  strokeColor: string
+  textBehind: boolean
+  curve: boolean
+  vertical: boolean
+  /** 图层顺序：哪张底图在上层（默认 0 = A 在上；旧快照缺省视为 0） */
+  topSide?: 0 | 1
+}
+
 /**
  * Configuration snapshot for history
  */
 export interface StickerConfig {
+  /** 旧记录无此字段，视为 'solo' */
+  mode?: StickerMode
   character: number
   customImage: string | null
   text: string
@@ -128,6 +186,8 @@ export interface StickerConfig {
   curve: boolean
   vertical: boolean
   textBehind: boolean
+  /** mode === 'duo' 时的双人配置 */
+  duo?: DuoConfig
 }
 
 /**
