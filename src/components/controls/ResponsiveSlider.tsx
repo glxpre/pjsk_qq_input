@@ -11,6 +11,7 @@ interface ResponsiveSliderProps {
   max: number
   step?: number
   showValue?: boolean
+  disabled?: boolean
 }
 
 export default function ResponsiveSlider({
@@ -21,6 +22,7 @@ export default function ResponsiveSlider({
   max,
   step = 1,
   showValue = true,
+  disabled = false,
 }: ResponsiveSliderProps) {
   return (
     <Box sx={{ mt: { xs: 1, md: 2 } }}>
@@ -39,6 +41,7 @@ export default function ResponsiveSlider({
           step={step}
           color="secondary"
           valueLabelDisplay="auto"
+          disabled={disabled}
         />
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -49,6 +52,7 @@ export default function ResponsiveSlider({
           max={max}
           step={step}
           color="secondary"
+          disabled={disabled}
         />
       </Box>
     </Box>

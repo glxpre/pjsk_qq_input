@@ -15,6 +15,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Alert,
+  Snackbar,
 } from '@mui/material'
 import {
   GitHub,
@@ -39,13 +41,18 @@ import TextStylePanel from './components/sections/TextStylePanel'
 import ExportPanel, { ExportScale } from './components/sections/ExportPanel'
 import LoginButton from './components/auth/LoginButton'
 import UserMenu from './components/auth/UserMenu'
+import { isToyBuild, TOY_GALLERY_BLOCKED_REASON } from './utils/toy'
 
 // Lazy load heavy dialog components
 const Info = lazy(() => import('./components/Info'))
 const UploadDialog = lazy(() => import('./components/UploadDialog'))
 const HistoryPanel = lazy(() => import('./components/sections/HistoryPanel'))
 const GalleryPanel = lazy(() => import('./components/sections/GalleryPanel'))
-const PWAUpdatePrompt = lazy(() => import('./components/PWAUpdatePrompt'))
+const FanBonusDialog = lazy(() => import('./components/FanBonusDialog'))
+const PWAUpdatePrompt =
+  import.meta.env.MODE === 'toy'
+    ? () => null
+    : lazy(() => import('./components/PWAUpdatePrompt'))
 
 import { useCharacter } from './hooks/useCharacter'
 import { useColorScheme } from './hooks/useColorScheme'
@@ -60,6 +67,7 @@ import { useFontLoader } from './hooks/useFontLoader'
 import { useUndoRedo } from './hooks/useUndoRedo'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useAuth } from './hooks/useAuth'
+import { useFanBonus } from './hooks/useFanBonus'
 import { StickerConfig } from './types'
 import FontLoadingOverlay from './components/FontLoadingOverlay'
 import ShortcutsHelpDialog from './components/ShortcutsHelpDialog'
@@ -71,6 +79,7 @@ function App() {
   // Initialize hooks
   const uiState = useUIState()
   const auth = useAuth()
+  const fanBonus = useFanBonus()
 
   // Character hook needs a callback to update colors when image loads
   const colorScheme = useColorScheme(49) // Initial character
@@ -93,6 +102,14 @@ function App() {
   )
   const stroke = useStroke()
   const canvasDrawing = useCanvasDrawing()
+
+  // 粉丝福利：锁定键盘快捷键中的位置/字号调节（fail-open，未锁定时原样透传）
+  const positionLocked = fanBonus.isFeatureLocked('position')
+  const fontSizeLocked = fanBonus.isFeatureLocked('fontSize')
+  const positionForShortcuts = positionLocked
+    ? { ...position, moveX: () => {}, moveY: () => {} }
+    : position
+  const setFontSizeForShortcuts = fontSizeLocked ? () => {} : textSettings.setFontSize
 
   // Export settings (scale / quality / compress) — default matches previous behaviour
   const [exportScale, setExportScale] = useState<ExportScale>(1)
@@ -276,31 +293,36 @@ function App() {
     [getCurrentConfig, history]
   )
 
-  // Wrap export functions to auto-save to history
+  // Wrap export functions to auto-save to history (and trigger fan-bonus check on toy)
   const handleDownload = useCallback(async () => {
     await exportHooks.download()
     saveToHistory()
-  }, [exportHooks, saveToHistory])
+    void fanBonus.checkAfterFirstExport()
+  }, [exportHooks, saveToHistory, fanBonus])
 
   const handleDownloadWebp = useCallback(async () => {
     await exportHooks.downloadWebp()
     saveToHistory()
-  }, [exportHooks, saveToHistory])
+    void fanBonus.checkAfterFirstExport()
+  }, [exportHooks, saveToHistory, fanBonus])
 
   const handleDownloadJpg = useCallback(async () => {
     await exportHooks.downloadJpg()
     saveToHistory()
-  }, [exportHooks, saveToHistory])
+    void fanBonus.checkAfterFirstExport()
+  }, [exportHooks, saveToHistory, fanBonus])
 
   const handleCopy = useCallback(async () => {
     await exportHooks.copy()
     saveToHistory()
-  }, [exportHooks, saveToHistory])
+    void fanBonus.checkAfterFirstExport()
+  }, [exportHooks, saveToHistory, fanBonus])
 
   const handleCopyWithBg = useCallback(async () => {
     await exportHooks.copyWithBg()
     saveToHistory()
-  }, [exportHooks, saveToHistory])
+    void fanBonus.checkAfterFirstExport()
+  }, [exportHooks, saveToHistory, fanBonus])
 
   // Load configuration from history
   const loadFromHistory = useCallback(
@@ -419,12 +441,12 @@ function App() {
     handleUndo,
     handleRedo,
 
-    // Position
-    position,
+    // Position (gated by fan bonus)
+    position: positionForShortcuts,
 
     // Style
     fontSize: textSettings.fontSize,
-    setFontSize: textSettings.setFontSize,
+    setFontSize: setFontSizeForShortcuts,
     letterSpacing: textSettings.letterSpacing,
     setLetterSpacing: textSettings.setLetterSpacing,
     spaceSize: textSettings.spaceSize,
@@ -547,16 +569,17 @@ function App() {
                   </IconButton>
                 </Tooltip>
 
-                {/* Auth: Login button or User menu */}
-                {auth.isAuthenticated ? (
-                  <UserMenu />
-                ) : (
-                  <Tooltip title="登录 SEKAI Pass">
-                    <span>
-                      <LoginButton variant="icon" />
-                    </span>
-                  </Tooltip>
-                )}
+                {/* Auth: Login button or User menu. Toy build has no SEKAI Pass. */}
+                {!isToyBuild() &&
+                  (auth.isAuthenticated ? (
+                    <UserMenu />
+                  ) : (
+                    <Tooltip title="登录 SEKAI Pass">
+                      <span>
+                        <LoginButton variant="icon" />
+                      </span>
+                    </Tooltip>
+                  ))}
               </Box>
             </Box>
           </Grid>
@@ -597,9 +620,20 @@ function App() {
                     alignItems="center"
                     gap={1}
                     mt={1}
-                    sx={{ display: { xs: 'flex', md: 'none' }, height: '50px' }}
+                    sx={{
+                      display: { xs: 'flex', md: 'none' },
+                      height: '50px',
+                      ...(positionLocked
+                        ? { cursor: 'default', '& .Mui-disabled': { cursor: 'not-allowed' } }
+                        : {}),
+                    }}
+                    onClick={positionLocked ? () => fanBonus.hintLockedFeature('position') : undefined}
                   >
-                    <IconButton size="small" onClick={() => position.moveX(-5)}>
+                    <IconButton
+                      size="small"
+                      onClick={() => position.moveX(-5)}
+                      disabled={positionLocked}
+                    >
                       <KeyboardArrowLeft />
                     </IconButton>
                     <Box flex={1} display="flex" alignItems="center">
@@ -615,9 +649,14 @@ function App() {
                         max={296}
                         color="secondary"
                         sx={{ width: '100%' }}
+                        disabled={positionLocked}
                       />
                     </Box>
-                    <IconButton size="small" onClick={() => position.moveX(5)}>
+                    <IconButton
+                      size="small"
+                      onClick={() => position.moveX(5)}
+                      disabled={positionLocked}
+                    >
                       <KeyboardArrowRight />
                     </IconButton>
                   </Box>
@@ -634,9 +673,19 @@ function App() {
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
-                    sx={{ height: '205px' }}
+                    sx={{
+                      height: '205px',
+                      ...(positionLocked
+                        ? { cursor: 'default', '& .Mui-disabled': { cursor: 'not-allowed' } }
+                        : {}),
+                    }}
+                    onClick={positionLocked ? () => fanBonus.hintLockedFeature('position') : undefined}
                   >
-                    <IconButton size="small" onClick={() => position.moveY(-5)}>
+                    <IconButton
+                      size="small"
+                      onClick={() => position.moveY(-5)}
+                      disabled={positionLocked}
+                    >
                       <KeyboardArrowUp />
                     </IconButton>
                     <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
@@ -653,9 +702,14 @@ function App() {
                         max={256}
                         color="secondary"
                         sx={{ height: '100%' }}
+                        disabled={positionLocked}
                       />
                     </Box>
-                    <IconButton size="small" onClick={() => position.moveY(5)}>
+                    <IconButton
+                      size="small"
+                      onClick={() => position.moveY(5)}
+                      disabled={positionLocked}
+                    >
                       <KeyboardArrowDown />
                     </IconButton>
                   </Box>
@@ -680,12 +734,24 @@ function App() {
 
               {/* Desktop: Control buttons and sliders */}
               <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                <Box display="flex" gap={1} mb={1} mt={2}>
+                <Box
+                  display="flex"
+                  gap={1}
+                  mb={1}
+                  mt={2}
+                  sx={
+                    positionLocked
+                      ? { cursor: 'default', '& .Mui-disabled': { cursor: 'not-allowed' } }
+                      : undefined
+                  }
+                  onClick={positionLocked ? () => fanBonus.hintLockedFeature('position') : undefined}
+                >
                   <Box display="flex" gap={0.5} flex={1}>
                     <Button
                       size="small"
                       onClick={() => position.moveX(-5)}
                       fullWidth
+                      disabled={positionLocked}
                       startIcon={<KeyboardArrowLeft />}
                     >
                       X-5
@@ -694,6 +760,7 @@ function App() {
                       size="small"
                       onClick={() => position.moveX(5)}
                       fullWidth
+                      disabled={positionLocked}
                       endIcon={<KeyboardArrowRight />}
                     >
                       X+5
@@ -704,6 +771,7 @@ function App() {
                       size="small"
                       onClick={() => position.moveY(-5)}
                       fullWidth
+                      disabled={positionLocked}
                       startIcon={<KeyboardArrowUp />}
                     >
                       Y-5
@@ -712,6 +780,7 @@ function App() {
                       size="small"
                       onClick={() => position.moveY(5)}
                       fullWidth
+                      disabled={positionLocked}
                       endIcon={<KeyboardArrowDown />}
                     >
                       Y+5
@@ -730,6 +799,7 @@ function App() {
                   min={0}
                   max={296}
                   color="secondary"
+                  disabled={positionLocked}
                 />
 
                 <Typography variant="body2" gutterBottom>
@@ -743,6 +813,7 @@ function App() {
                   min={0}
                   max={256}
                   color="secondary"
+                  disabled={positionLocked}
                 />
               </Box>
             </Paper>
@@ -761,6 +832,8 @@ function App() {
                 onQualityChange={setExportQuality}
                 compress={exportCompress}
                 onCompressChange={setExportCompress}
+                scaleLocked={fanBonus.isFeatureLocked('exportScale')}
+                onScaleLockedHint={() => fanBonus.hintLockedFeature('exportScale')}
               />
             </Box>
           </Grid>
@@ -823,6 +896,8 @@ function App() {
                 setVertical={textSettings.setVertical}
                 textBehind={textSettings.textBehind}
                 setTextBehind={textSettings.setTextBehind}
+                isFeatureLocked={fanBonus.isFeatureLocked}
+                onLockedHint={fanBonus.hintLockedFeature}
               />
 
               <Divider sx={{ my: 2 }} />
@@ -878,6 +953,8 @@ function App() {
               onQualityChange={setExportQuality}
               compress={exportCompress}
               onCompressChange={setExportCompress}
+              scaleLocked={fanBonus.isFeatureLocked('exportScale')}
+              onScaleLockedHint={() => fanBonus.hintLockedFeature('exportScale')}
             />
           </Grid>
         </Grid>
@@ -945,19 +1022,21 @@ function App() {
             </Tooltip>
           </Box>
 
-          {/* Third row: Auth (Login or User info) */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mt: 1.5 }}>
-            {auth.isAuthenticated ? (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography variant="body2" color="text.secondary">
-                  {auth.user?.username}
-                </Typography>
-                <UserMenu />
-              </Box>
-            ) : (
-              <LoginButton variant="outlined" size="medium" fullWidth />
-            )}
-          </Box>
+          {/* Third row: Auth (Login or User info). Toy build has no SEKAI Pass. */}
+          {!isToyBuild() && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mt: 1.5 }}>
+              {auth.isAuthenticated ? (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {auth.user?.username}
+                  </Typography>
+                  <UserMenu />
+                </Box>
+              ) : (
+                <LoginButton variant="outlined" size="medium" fullWidth />
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
 
@@ -1000,7 +1079,14 @@ function App() {
         >
           <DialogTitle>探索画廊</DialogTitle>
           <DialogContent>
-            <GalleryPanel />
+            {/* Toy 平台禁止 UGC，画廊整体停用 */}
+            {isToyBuild() ? (
+              <Alert severity="warning" sx={{ my: 2 }}>
+                🚫 {TOY_GALLERY_BLOCKED_REASON}
+              </Alert>
+            ) : (
+              <GalleryPanel />
+            )}
           </DialogContent>
           <DialogActions>
             <Button onClick={() => uiState.setGalleryOpen(false)}>关闭</Button>
@@ -1062,6 +1148,35 @@ function App() {
         message="下载成功！"
         onClose={() => uiState.setDownloadPopupOpen(false)}
       />
+
+      {/* Fan bonus: locked-feature hint snackbar (toy build only) */}
+      <Snackbar
+        open={fanBonus.hintOpen && fanBonus.hintMessage !== ''}
+        autoHideDuration={4000}
+        onClose={fanBonus.dismissHint}
+        message={fanBonus.hintMessage}
+        action={
+          <Button color="secondary" size="small" onClick={() => {
+            fanBonus.dismissHint()
+            fanBonus.openDialog()
+          }}>
+            查看福利
+          </Button>
+        }
+      />
+
+      {/* Fan bonus dialog (toy build only; no-ops elsewhere) */}
+      <Suspense fallback={null}>
+        <FanBonusDialog
+          open={fanBonus.dialogOpen}
+          handleClose={fanBonus.closeDialog}
+          relationFollowed={fanBonus.relationFollowed}
+          videoLiked={fanBonus.videoLiked}
+          videoInfo={fanBonus.videoInfo}
+          onRefresh={() => void fanBonus.refresh()}
+          refreshing={fanBonus.queryStatus === 'checking'}
+        />
+      </Suspense>
 
       {/* PWA Update Prompt */}
       <Suspense fallback={null}>

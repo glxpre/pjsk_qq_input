@@ -7,15 +7,18 @@ interface ToggleOptionProps {
   label: string
   checked: boolean
   onChange: (checked: boolean) => void
+  disabled?: boolean
 }
 
 export default function ToggleOption({
   label,
   checked,
-  onChange
+  onChange,
+  disabled = false
 }: ToggleOptionProps) {
   return (
     <FormControlLabel
+      disabled={disabled}
       control={
         <Switch
           checked={checked}

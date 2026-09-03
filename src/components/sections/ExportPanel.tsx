@@ -31,6 +31,10 @@ interface ExportPanelProps {
   onQualityChange: (quality: number) => void
   compress: boolean
   onCompressChange: (compress: boolean) => void
+  /** 粉丝福利：高分辨率导出（2×/3×）是否锁定 */
+  scaleLocked?: boolean
+  /** 粉丝福利：点击锁定项时的轻提示 */
+  onScaleLockedHint?: () => void
 }
 
 /**
@@ -50,6 +54,8 @@ export default function ExportPanel({
   onQualityChange,
   compress,
   onCompressChange,
+  scaleLocked = false,
+  onScaleLockedHint,
 }: ExportPanelProps) {
   return (
     <Paper elevation={3} sx={{ p: 2 }}>
@@ -131,7 +137,10 @@ export default function ExportPanel({
         导出设置
       </Typography>
 
-      <Box sx={{ mb: 1.5 }}>
+      <Box
+        sx={{ mb: 1.5, ...(scaleLocked ? { cursor: 'default', '& .Mui-disabled': { cursor: 'not-allowed' } } : {}) }}
+        onClick={scaleLocked ? onScaleLockedHint : undefined}
+      >
         <Typography variant="body2" color="text.secondary" gutterBottom>
           导出尺寸
         </Typography>
@@ -146,8 +155,12 @@ export default function ExportPanel({
           fullWidth
         >
           <ToggleButton value={1}>1×</ToggleButton>
-          <ToggleButton value={2}>2×</ToggleButton>
-          <ToggleButton value={3}>3×</ToggleButton>
+          <ToggleButton value={2} disabled={scaleLocked}>
+            2×
+          </ToggleButton>
+          <ToggleButton value={3} disabled={scaleLocked}>
+            3×
+          </ToggleButton>
         </ToggleButtonGroup>
         <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
           按倍率重新绘制导出（文字/描边更清晰）；角色底图仍受素材分辨率限制

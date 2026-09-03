@@ -8,6 +8,7 @@ interface ColorPickerWithResetProps {
   value: string
   onChange: (color: string) => void
   defaultColor: string
+  disabled?: boolean
 }
 
 /**
@@ -17,7 +18,8 @@ export default function ColorPickerWithReset({
   label,
   value,
   onChange,
-  defaultColor
+  defaultColor,
+  disabled = false
 }: ColorPickerWithResetProps) {
   return (
     <>
@@ -31,9 +33,10 @@ export default function ColorPickerWithReset({
           onChange={(e) => onChange(e.target.value)}
           size="small"
           color="secondary"
+          disabled={disabled}
           sx={{ width: '80px' }}
         />
-        <Button size="small" onClick={() => onChange(defaultColor)}>
+        <Button size="small" onClick={() => onChange(defaultColor)} disabled={disabled}>
           重置
         </Button>
       </Box>
