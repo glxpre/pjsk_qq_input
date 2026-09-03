@@ -8,14 +8,16 @@
 import { useState, useEffect } from 'react'
 import { AuthUser, AuthHook } from '../types'
 import { initiateLogin, logout as authLogout, getCurrentAuth } from '../services/auth.service'
+import { isToyBuild } from '../utils/toy'
 
 export function useAuth(): AuthHook {
   const [user, setUser] = useState<AuthUser | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(!isToyBuild())
   const [error, setError] = useState<string | null>(null)
 
   // Check auth state on mount
   useEffect(() => {
+    if (isToyBuild()) return
     checkAuth()
   }, [])
 

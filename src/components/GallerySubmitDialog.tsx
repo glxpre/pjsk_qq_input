@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react'
 import { HistoryItem, GalleryItem, GalleryManifest } from '../types'
 import { useAuth } from '../hooks/useAuth'
 import { fetchGalleryManifest, uploadGalleryManifest } from '../utils/galleryUtils'
+import { isToyBuild, TOY_GALLERY_BLOCKED_REASON } from '../utils/toy'
 import GallerySubmitFields from './GallerySubmitFields'
 
 interface GallerySubmitDialogProps {
@@ -61,6 +62,12 @@ export default function GallerySubmitDialog({
   }, [user, author, open])
 
   const handleSubmit = async () => {
+    // Toy 平台禁止 UGC，提交逻辑在此直接拦截
+    if (isToyBuild()) {
+      setError(TOY_GALLERY_BLOCKED_REASON)
+      return
+    }
+
     if (!historyItem || !historyItem.uploadedUrl) {
       setError('只能提交已上传的作品')
       return

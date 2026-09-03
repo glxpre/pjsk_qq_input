@@ -9,6 +9,7 @@ import {
 } from '../utils/cropCanvas'
 import characters from '../characters.json'
 import { Character, ExportHooks } from '../types'
+import { downloadDataUrl, saveToyImageToAlbum } from '../utils/toy'
 
 const { ClipboardItem } = window
 const typedCharacters = characters as Character[]
@@ -85,36 +86,36 @@ export function useExport(
 
   const lossyQuality = compress ? Math.min(1, Math.max(0.1, quality)) : 1
 
+  const saveOrDownload = useCallback(
+    async (dataUrl: string, filename: string): Promise<void> => {
+      const saved = await saveToyImageToAlbum(dataUrl)
+      if (!saved) downloadDataUrl(dataUrl, filename)
+      setDownloadPopupOpen(true)
+    },
+    [setDownloadPopupOpen],
+  )
+
   const download = useCallback(async (): Promise<void> => {
     const exportCanvas = getExportCanvas()
     if (!exportCanvas) return
-    const link = document.createElement('a')
-    link.download = generateFileName('png')
-    link.href = exportCanvas.toDataURL('image/png')
-    link.click()
-    setDownloadPopupOpen(true)
-  }, [getExportCanvas, generateFileName, setDownloadPopupOpen])
+    await saveOrDownload(exportCanvas.toDataURL('image/png'), generateFileName('png'))
+  }, [getExportCanvas, generateFileName, saveOrDownload])
 
   const downloadWebp = useCallback(async (): Promise<void> => {
     const exportCanvas = getExportCanvas()
     if (!exportCanvas) return
-    const link = document.createElement('a')
-    link.download = generateFileName('webp')
-    link.href = exportCanvas.toDataURL('image/webp', lossyQuality)
-    link.click()
-    setDownloadPopupOpen(true)
-  }, [getExportCanvas, generateFileName, setDownloadPopupOpen, lossyQuality])
+    await saveOrDownload(
+      exportCanvas.toDataURL('image/webp', lossyQuality),
+      generateFileName('webp'),
+    )
+  }, [getExportCanvas, generateFileName, saveOrDownload, lossyQuality])
 
   const downloadJpg = useCallback(async (): Promise<void> => {
     const exportCanvas = getExportCanvas()
     if (!exportCanvas) return
     const withBg = canvasWithWhiteBackground(exportCanvas)
-    const link = document.createElement('a')
-    link.download = generateFileName('jpg')
-    link.href = withBg.toDataURL('image/jpeg', lossyQuality)
-    link.click()
-    setDownloadPopupOpen(true)
-  }, [getExportCanvas, generateFileName, setDownloadPopupOpen, lossyQuality])
+    await saveOrDownload(withBg.toDataURL('image/jpeg', lossyQuality), generateFileName('jpg'))
+  }, [getExportCanvas, generateFileName, saveOrDownload, lossyQuality])
 
   const copy = useCallback(async (): Promise<void> => {
     const exportCanvas = getExportCanvas()

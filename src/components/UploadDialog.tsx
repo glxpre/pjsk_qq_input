@@ -20,6 +20,7 @@ import { useState, useEffect } from 'react'
 import GallerySubmitForm from './GallerySubmitForm'
 import { cropCanvasToContent } from '../utils/cropCanvas'
 import { uploadStorageV2Direct } from '../utils/storageUpload'
+import { isToyBuild, TOY_GALLERY_BLOCKED_REASON } from '../utils/toy'
 
 interface UploadDialogProps {
   open: boolean
@@ -231,16 +232,22 @@ function UploadDialog({
               </Box>
             )}
 
-            {selectedTab === 1 && (
-              <GallerySubmitForm
-                uploadedUrl={uploadedUrl}
-                defaultTitle={altText}
-                defaultCharacterId={customImage ? undefined : characterId}
-                onSuccess={() => {
-                  // Keep dialog open to show success message
-                }}
-              />
-            )}
+            {selectedTab === 1 &&
+              (isToyBuild() ? (
+                // Toy 平台禁止 UGC，画廊提交入口停用
+                <Alert severity="warning" sx={{ my: 2 }}>
+                  🚫 {TOY_GALLERY_BLOCKED_REASON}
+                </Alert>
+              ) : (
+                <GallerySubmitForm
+                  uploadedUrl={uploadedUrl}
+                  defaultTitle={altText}
+                  defaultCharacterId={customImage ? undefined : characterId}
+                  onSuccess={() => {
+                    // Keep dialog open to show success message
+                  }}
+                />
+              ))}
 
             {selectedTab === 2 && (
               <Box textAlign="center" py={2}>

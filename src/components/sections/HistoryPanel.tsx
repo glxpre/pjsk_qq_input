@@ -35,6 +35,7 @@ import {
   TimeRangeFilter,
 } from '../../types'
 import { filterAndSortHistory } from '../../utils/historyUtils'
+import { isToyBuild } from '../../utils/toy'
 import GallerySubmitDialog from '../GallerySubmitDialog'
 
 interface HistoryPanelProps {
@@ -371,7 +372,8 @@ export default function HistoryPanel({
                 删除
               </Button>
               <Box sx={{ flexGrow: 1 }} />
-              {selectedItem.uploadedUrl && (
+              {/* Toy 平台禁止 UGC，画廊提交入口停用 */}
+              {!isToyBuild() && selectedItem.uploadedUrl && (
                 <Button
                   startIcon={<Explore />}
                   color="primary"

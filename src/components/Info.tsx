@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
 import { GitHub, Favorite } from '@mui/icons-material'
+import { publicAsset } from '../utils/publicAsset'
 
 interface InfoProps {
   open: boolean
@@ -56,7 +57,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemAvatar>
               <Avatar
                 alt="bili_47177171806"
-                src="/avatar.jpg"
+                src={publicAsset('avatar.jpg')}
                 sx={{ bgcolor: 'rgb(228, 194, 200)' }}
               />
             </ListItemAvatar>
@@ -127,7 +128,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemAvatar>
               <Avatar
                 alt="u/SherenPlaysGames"
-                src="/avatars/reddit-sheren.webp"
+                src={publicAsset('avatars/reddit-sheren.webp')}
               />
             </ListItemAvatar>
             <ListItemText primary="u/SherenPlaysGames" secondary="原始贴纸创作者" />
@@ -141,7 +142,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemAvatar>
               <Avatar
                 alt="Ayaka"
-                src="/avatars/theoriginalayaka.webp"
+                src={publicAsset('avatars/theoriginalayaka.webp')}
               />
             </ListItemAvatar>
             <ListItemText primary="Ayaka" secondary="最初的创意和实现" />
@@ -153,7 +154,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar alt="Modder4869" src="/avatars/modder4869.webp" />
+              <Avatar alt="Modder4869" src={publicAsset('avatars/modder4869.webp')} />
             </ListItemAvatar>
             <ListItemText primary="Modder4869" secondary="代码贡献" />
           </ListItem>
@@ -164,7 +165,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             target="_blank"
           >
             <ListItemAvatar>
-              <Avatar alt="BedrockDigger" src="/avatars/bedrockdigger.webp" />
+              <Avatar alt="BedrockDigger" src={publicAsset('avatars/bedrockdigger.webp')} />
             </ListItemAvatar>
             <ListItemText primary="BedrockDigger" secondary="UI 设计贡献" />
           </ListItem>
@@ -177,7 +178,7 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemAvatar>
               <Avatar
                 alt="Mikan Harada"
-                src="/avatars/mikan-harada.webp"
+                src={publicAsset('avatars/mikan-harada.webp')}
               />
             </ListItemAvatar>
             <ListItemText

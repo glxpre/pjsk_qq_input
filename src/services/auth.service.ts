@@ -13,6 +13,7 @@
 
 import { SekaiAuth, SekaiAuthError } from '@25-ji-code-de/sekai-auth'
 import { AuthUser, AuthState, OIDCUserInfo } from '../types'
+import { isToyBuild } from '../utils/toy'
 
 const CLIENT_ID = import.meta.env.VITE_OAUTH_CLIENT_ID || ''
 const REDIRECT_URI = import.meta.env.VITE_OAUTH_REDIRECT_URI || `${window.location.origin}/callback`
@@ -22,19 +23,30 @@ const ISSUER = import.meta.env.VITE_OAUTH_ISSUER || 'https://id.nightcord.de5.ne
 /** 迁移前把整包 AuthState 存成 JSON 的那个 key。 */
 const LEGACY_BLOB_KEY = 'ayaka_auth_state'
 
-const auth = new SekaiAuth({
-  clientId: CLIENT_ID,
-  redirectUri: REDIRECT_URI,
-  scope: SCOPE,
-  // 本仓是生态里唯一走 OIDC discovery 的（其余三个硬编码端点）
-  issuer: ISSUER,
-  storagePrefix: 'ayaka_',
-  keys: {
-    // 沿用迁移前的 PKCE key 名，避免部署瞬间正在跳转的登录流程失败
-    codeVerifier: 'ayaka_pkce_verifier',
-    state: 'ayaka_oauth_state',
-  },
-})
+let auth: SekaiAuth | null = null
+
+function getSdk(): SekaiAuth {
+  if (isToyBuild()) {
+    throw new Error('SEKAI Pass is disabled in the Toy build')
+  }
+  if (!auth) {
+    auth = new SekaiAuth({
+      clientId: CLIENT_ID,
+      redirectUri: REDIRECT_URI,
+      scope: SCOPE,
+      // 本仓是生态里唯一走 OIDC discovery 的（其余三个硬编码端点）
+      issuer: ISSUER,
+      storagePrefix: 'ayaka_',
+      keys: {
+        // 沿用迁移前的 PKCE key 名，避免部署瞬间正在跳转的登录流程失败
+        codeVerifier: 'ayaka_pkce_verifier',
+        state: 'ayaka_oauth_state',
+      },
+    })
+    migrateLegacyBlob(auth)
+  }
+  return auth
+}
 
 /**
  * 一次性迁移：把旧的单块 JSON blob 拆成 SDK 的离散 key。
@@ -42,7 +54,7 @@ const auth = new SekaiAuth({
  * 不做这一步的话，上线瞬间所有已登录用户都会被登出。
  * 迁移后删掉 blob，因此只会执行一次。
  */
-function migrateLegacyBlob(): void {
+function migrateLegacyBlob(sdk: SekaiAuth): void {
   let raw: string | null
   try {
     raw = localStorage.getItem(LEGACY_BLOB_KEY)
@@ -54,15 +66,15 @@ function migrateLegacyBlob(): void {
   try {
     const legacy = JSON.parse(raw) as Partial<AuthState>
     if (legacy.accessToken && legacy.expiresAt) {
-      localStorage.setItem(auth.keys.accessToken, legacy.accessToken)
-      localStorage.setItem(auth.keys.expiresAt, String(legacy.expiresAt))
+      localStorage.setItem(sdk.keys.accessToken, legacy.accessToken)
+      localStorage.setItem(sdk.keys.expiresAt, String(legacy.expiresAt))
       if (legacy.refreshToken) {
-        localStorage.setItem(auth.keys.refreshToken, legacy.refreshToken)
+        localStorage.setItem(sdk.keys.refreshToken, legacy.refreshToken)
       }
       if (legacy.user) {
         // 旧 blob 存的是映射后的 AuthUser；这里回填成 userinfo 形状供缓存读取
         localStorage.setItem(
-          auth.keys.user,
+          sdk.keys.user,
           JSON.stringify({
             sub: legacy.user.id,
             preferred_username: legacy.user.username,
@@ -83,8 +95,6 @@ function migrateLegacyBlob(): void {
   }
 }
 
-migrateLegacyBlob()
-
 /** 把 OIDC userinfo 映射成本仓的 AuthUser。 */
 function toAuthUser(userInfo: OIDCUserInfo): AuthUser {
   return {
@@ -97,18 +107,19 @@ function toAuthUser(userInfo: OIDCUserInfo): AuthUser {
 
 /** 从 SDK 的离散存储还原出本仓的 AuthState 形状。 */
 function readAuthState(user: AuthUser): AuthState {
+  const sdk = getSdk()
   return {
-    accessToken: localStorage.getItem(auth.keys.accessToken) ?? '',
-    refreshToken: localStorage.getItem(auth.keys.refreshToken) ?? undefined,
+    accessToken: localStorage.getItem(sdk.keys.accessToken) ?? '',
+    refreshToken: localStorage.getItem(sdk.keys.refreshToken) ?? undefined,
     idToken: undefined,
-    expiresAt: Number(localStorage.getItem(auth.keys.expiresAt) ?? 0),
+    expiresAt: Number(localStorage.getItem(sdk.keys.expiresAt) ?? 0),
     user,
   }
 }
 
 /** 取 userinfo 并映射；失败时抛出统一异常。 */
 async function requireUser(): Promise<AuthUser> {
-  const userInfo = await auth.getUserInfo({ cache: true })
+  const userInfo = await getSdk().getUserInfo({ cache: true })
   if (!userInfo) {
     throw new SekaiAuthError('Failed to fetch user info', { code: 'userinfo_failed' })
   }
@@ -119,8 +130,9 @@ async function requireUser(): Promise<AuthUser> {
  * 发起登录，跳转到授权端点（带 PKCE 参数）。
  */
 export async function initiateLogin(): Promise<void> {
+  if (isToyBuild()) return
   try {
-    await auth.login()
+    await getSdk().login()
   } catch (err) {
     throw new Error(
       `Failed to initiate login: ${err instanceof Error ? err.message : 'Unknown error'}`,
@@ -134,7 +146,7 @@ export async function initiateLogin(): Promise<void> {
  */
 export async function handleCallback(code: string, state: string): Promise<AuthState> {
   try {
-    await auth.handleCallback(code, state)
+    await getSdk().handleCallback(code, state)
     return readAuthState(await requireUser())
   } catch (err) {
     throw new Error(
@@ -150,7 +162,7 @@ export async function handleCallback(code: string, state: string): Promise<AuthS
  * @throws 刷新失败时抛出，并清空本地状态
  */
 export async function refreshAccessToken(_refreshToken?: string): Promise<AuthState> {
-  const token = await auth.refresh()
+  const token = await getSdk().refresh()
   if (!token) {
     throw new Error('Token refresh failed')
   }
@@ -161,6 +173,7 @@ export async function refreshAccessToken(_refreshToken?: string): Promise<AuthSt
  * 登出：best-effort 撤销服务端 token，再清空本地。
  */
 export function logout(): void {
+  if (isToyBuild() || !auth) return
   void auth.logout()
 }
 
@@ -169,11 +182,13 @@ export function logout(): void {
  * @returns 未登录、或刷新失败时返回 null
  */
 export async function getCurrentAuth(): Promise<AuthState | null> {
+  if (isToyBuild()) return null
+  const sdk = getSdk()
   // getAccessToken 内部已经处理了「快过期就提前刷新」和刷新失败清状态
-  const token = await auth.getAccessToken()
+  const token = await sdk.getAccessToken()
   if (!token) return null
 
-  const cached = auth.getCachedUser()
+  const cached = sdk.getCachedUser()
   const user = cached
     ? toAuthUser(cached as unknown as OIDCUserInfo)
     : await requireUser().catch(() => null)
@@ -183,4 +198,6 @@ export async function getCurrentAuth(): Promise<AuthState | null> {
 }
 
 /** 底层 SDK 实例，供需要新能力时直接使用。 */
-export { auth as sekaiAuth }
+export function getSekaiAuth(): SekaiAuth {
+  return getSdk()
+}

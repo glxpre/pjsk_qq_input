@@ -4,6 +4,7 @@
 import { useState, useEffect, useCallback, RefObject } from 'react'
 import characters from '../characters.json'
 import { Character, CharacterHook } from '../types'
+import { publicAsset } from '../utils/publicAsset'
 
 const typedCharacters = characters as Character[]
 
@@ -24,7 +25,7 @@ export function useCharacter(
     setImgObj(null)
 
     const img = new Image()
-    img.src = customImage ?? '/img/' + typedCharacters[character].img
+    img.src = customImage ?? publicAsset(`img/${typedCharacters[character].img}`)
     img.onload = () => {
       setImgObj(img)
       setLoaded(true)

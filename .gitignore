@@ -1,7 +1,9 @@
 node_modules
 dist
+dist-toy
 .env
 .DS_Store
 *.log
 .vscode
 .idea
+.playwright-mcp

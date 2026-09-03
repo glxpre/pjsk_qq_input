@@ -18,6 +18,7 @@ import {
 import { useState, useMemo, useCallback } from 'react'
 import characters from '../characters.json'
 import { PersonSearch } from '@mui/icons-material'
+import { publicAsset } from '../utils/publicAsset'
 
 interface PickerProps {
   setCharacter: (index: number) => void
@@ -85,8 +86,8 @@ export default function Picker({ setCharacter, color, disabled = false, tooltip 
             sx={pickerItemSx}
           >
             <img
-              src={`/img/${c.img}`}
-              srcSet={`/img/${c.img}`}
+              src={publicAsset(`img/${c.img}`)}
+              srcSet={publicAsset(`img/${c.img}`)}
               alt={c.name}
               loading="lazy"
               style={{ borderRadius: '4px' }}
