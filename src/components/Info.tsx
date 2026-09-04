@@ -186,6 +186,17 @@ export default function Info({ open, handleClose }: InfoProps) {
               secondary="@akiyamamizuki - 代码贡献"
             />
           </ListItem>
+          <ListItem
+            button
+            component="a"
+            href="https://pjsk.moe"
+            target="_blank"
+          >
+            <ListItemAvatar>
+              <Avatar alt="Moesekai" src={publicAsset('avatars/moesekai.webp')} />
+            </ListItemAvatar>
+            <ListItemText primary="Moesekai" secondary="贴纸底图来源" />
+          </ListItem>
         </List>
 
         <Divider sx={{ my: 2 }} />
@@ -238,6 +249,22 @@ export default function Info({ open, handleClose }: InfoProps) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="TheOriginalAyaka/sekai-stickers" secondary="最初版本" />
+          </ListItem>
+          <ListItem
+            button
+            component="a"
+            href="https://github.com/StarMoe-org/MoeSekai-Hub"
+            target="_blank"
+          >
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: '#e1e4e8' }}>
+                <GitHub sx={{ color: '#24292e' }} />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="StarMoe-org/MoeSekai-Hub"
+              secondary="贴纸底图来源"
+            />
           </ListItem>
         </List>
 
