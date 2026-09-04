@@ -86,7 +86,7 @@ function App() {
   const fanBonus = useFanBonus()
 
   // Character hook needs a callback to update colors when image loads
-  const colorScheme = useColorScheme(49) // Initial character
+  const colorScheme = useColorScheme(98) // Initial character
   const updateColorsFromImage = colorScheme.updateColorsFromImage
 
   // Use useCallback to stabilize the onImageLoad callback

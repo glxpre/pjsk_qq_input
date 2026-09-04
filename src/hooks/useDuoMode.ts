@@ -27,8 +27,8 @@ const DEFAULT_FONT_SIZE = 50
 /** 与单人 useTextSettings 的默认行距一致 */
 const DEFAULT_SPACE_SIZE = 25
 
-export const DUO_DEFAULT_CHARACTER_A = 143 // 小豆泽心羽 11
-export const DUO_DEFAULT_CHARACTER_B = 26 // 白石杏 01
+export const DUO_DEFAULT_CHARACTER_A = 309 // 小豆泽心羽 10
+export const DUO_DEFAULT_CHARACTER_B = 58 // 白石杏 01
 
 /** slot 中心：横向 A 左 B 右；纵向 A 上 B 下 */
 export function duoSlotCenters(layout: DuoLayout): [Position, Position] {

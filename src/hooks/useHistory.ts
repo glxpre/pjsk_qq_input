@@ -3,8 +3,11 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { HistoryItem, StickerConfig, HistoryHook } from '../types'
+import type { DuoImageSide } from '../types'
+import { CHARACTER_INDEX_MIGRATION } from '../utils/characterIndexMigration'
 
 const STORAGE_KEY = 'sekai-stickers-history'
+const MIGRATION_KEY = 'sekai-stickers-history-index-v2'
 const MAX_HISTORY_ITEMS = 50
 const THUMBNAIL_WIDTH = 148 // Half of canvas width for smaller storage
 const THUMBNAIL_HEIGHT = 128 // Half of canvas height
@@ -21,7 +24,33 @@ export function useHistory(): HistoryHook {
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) {
-        const items = JSON.parse(stored) as HistoryItem[]
+        let items = JSON.parse(stored) as HistoryItem[]
+        // One-time reindex: the characters list was regrouped by character,
+        // so saved configs referencing old indexes must be remapped.
+        if (!localStorage.getItem(MIGRATION_KEY)) {
+          items = items.map((item) => {
+            const remap = (index: number): number =>
+              CHARACTER_INDEX_MIGRATION[index] ?? index
+            const migrated: HistoryItem = {
+              ...item,
+              config: {
+                ...item.config,
+                character: remap(item.config.character),
+                duo: item.config.duo
+                  ? {
+                      ...item.config.duo,
+                      images: item.config.duo.images.map((side) => ({
+                        ...side,
+                        character: remap(side.character),
+                      })) as [DuoImageSide, DuoImageSide],
+                    }
+                  : undefined,
+              },
+            }
+            return migrated
+          })
+          localStorage.setItem(MIGRATION_KEY, String(Date.now()))
+        }
         setHistoryItems(items)
       }
     } catch (error) {

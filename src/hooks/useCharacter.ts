@@ -60,7 +60,7 @@ export function useCharacter(
   fileInputRef: RefObject<HTMLInputElement>,
   onImageLoad?: (img: HTMLImageElement) => void
 ): CharacterHook {
-  const [character, setCharacter] = useState<number>(49)
+  const [character, setCharacter] = useState<number>(98) // 凤笑梦 11
   const [customImage, setCustomImage] = useState<string | null>(null)
 
   const { imgObj, loaded } = useImageLoader(character, customImage, onImageLoad)
