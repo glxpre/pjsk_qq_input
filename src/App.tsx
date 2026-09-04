@@ -40,7 +40,7 @@ import Picker from './components/Picker'
 import ThemeWrapper from './components/ThemeWrapper'
 import NotificationSnackbar from './components/controls/NotificationSnackbar'
 import TextStylePanel from './components/sections/TextStylePanel'
-import ExportPanel, { ExportScale } from './components/sections/ExportPanel'
+import ExportPanel, { ExportBackground, ExportScale } from './components/sections/ExportPanel'
 import LoginButton from './components/auth/LoginButton'
 import UserMenu from './components/auth/UserMenu'
 import { isToyBuild, TOY_GALLERY_BLOCKED_REASON } from './utils/toy'
@@ -128,6 +128,10 @@ function App() {
   const [exportScale, setExportScale] = useState<ExportScale>(1)
   const [exportQuality, setExportQuality] = useState(92)
   const [exportCompress, setExportCompress] = useState(true)
+  // Export panel mode: simple (default) vs advanced
+  const [exportAdvanced, setExportAdvanced] = useState(false)
+  const [exportBackground, setExportBackground] = useState<ExportBackground>('transparent')
+  const [exportUseWebp, setExportUseWebp] = useState(false)
 
   /**
    * Re-draw the sticker onto an offscreen canvas at `scale`× pixel density.
@@ -887,6 +891,12 @@ function App() {
                 onQualityChange={setExportQuality}
                 compress={exportCompress}
                 onCompressChange={setExportCompress}
+                advanced={exportAdvanced}
+                onAdvancedChange={setExportAdvanced}
+                background={exportBackground}
+                onBackgroundChange={setExportBackground}
+                useWebp={exportUseWebp}
+                onUseWebpChange={setExportUseWebp}
                 scaleLocked={fanBonus.isFeatureLocked('exportScale')}
                 onScaleLockedHint={() => fanBonus.hintLockedFeature('exportScale')}
               />
@@ -1034,6 +1044,12 @@ function App() {
               onQualityChange={setExportQuality}
               compress={exportCompress}
               onCompressChange={setExportCompress}
+              advanced={exportAdvanced}
+              onAdvancedChange={setExportAdvanced}
+              background={exportBackground}
+              onBackgroundChange={setExportBackground}
+              useWebp={exportUseWebp}
+              onUseWebpChange={setExportUseWebp}
               scaleLocked={fanBonus.isFeatureLocked('exportScale')}
               onScaleLockedHint={() => fanBonus.hintLockedFeature('exportScale')}
             />
