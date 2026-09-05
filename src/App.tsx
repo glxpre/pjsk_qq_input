@@ -76,6 +76,9 @@ import { StickerConfig, StickerMode } from './types'
 import FontLoadingOverlay from './components/FontLoadingOverlay'
 import ShortcutsHelpDialog from './components/ShortcutsHelpDialog'
 
+// Vite 编译时常量：toy 构建会完全移除非 toy 分支的代码和 URL 字符串
+const GITHUB_REPO_URL = import.meta.env.MODE === 'toy' ? '' : 'https://github.com/25-ji-code-de/stickers-maker'
+
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -589,11 +592,13 @@ function App() {
                     <History />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="探索画廊">
-                  <IconButton color="secondary" onClick={() => uiState.setGalleryOpen(true)}>
-                    <Explore />
-                  </IconButton>
-                </Tooltip>
+                {!isToyBuild() && (
+                  <Tooltip title="探索画廊">
+                    <IconButton color="secondary" onClick={() => uiState.setGalleryOpen(true)}>
+                      <Explore />
+                    </IconButton>
+                  </Tooltip>
+                )}
                 <Tooltip title="快捷键帮助">
                   <IconButton color="secondary" onClick={() => uiState.setShortcutsHelpOpen(true)}>
                     <HelpOutline />
@@ -604,15 +609,17 @@ function App() {
                     <InfoOutlined />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="GitHub">
-                  <IconButton
-                    color="secondary"
-                    href="https://github.com/25-ji-code-de/stickers-maker"
-                    target="_blank"
-                  >
-                    <GitHub />
-                  </IconButton>
-                </Tooltip>
+                {!isToyBuild() && (
+                  <Tooltip title="GitHub">
+                    <IconButton
+                      color="secondary"
+                      href={GITHUB_REPO_URL}
+                      target="_blank"
+                    >
+                      <GitHub />
+                    </IconButton>
+                  </Tooltip>
+                )}
 
                 {/* Auth: Login button or User menu. Toy build has no SEKAI Pass. */}
                 {!isToyBuild() &&
@@ -1066,73 +1073,102 @@ function App() {
             pb: 2,
           }}
         >
-          {/* First row: History and Gallery */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
-            <Tooltip title="历史记录">
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<History />}
-                onClick={() => uiState.setHistoryOpen(true)}
-                sx={{ flex: 1, maxWidth: 160 }}
-              >
-                历史
-              </Button>
-            </Tooltip>
-            <Tooltip title="探索画廊">
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<Explore />}
-                onClick={() => uiState.setGalleryOpen(true)}
-                sx={{ flex: 1, maxWidth: 160 }}
-              >
-                画廊
-              </Button>
-            </Tooltip>
-          </Box>
-
-          {/* Second row: About and GitHub */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
-            <Tooltip title="关于">
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<InfoOutlined />}
-                onClick={() => uiState.setInfoOpen(true)}
-                sx={{ flex: 1, maxWidth: 160 }}
-              >
-                关于
-              </Button>
-            </Tooltip>
-            <Tooltip title="GitHub">
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<GitHub />}
-                href="https://github.com/25-ji-code-de/stickers-maker"
-                target="_blank"
-                sx={{ flex: 1, maxWidth: 160 }}
-              >
-                GitHub
-              </Button>
-            </Tooltip>
-          </Box>
-
-          {/* Third row: Auth (Login or User info). Toy build has no SEKAI Pass. */}
-          {!isToyBuild() && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mt: 1.5 }}>
-              {auth.isAuthenticated ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Typography variant="body2" color="text.secondary">
-                    {auth.user?.username}
-                  </Typography>
-                  <UserMenu />
-                </Box>
-              ) : (
-                <LoginButton variant="outlined" size="medium" fullWidth />
-              )}
+          {/* Toy 环境：只有历史和关于，左右排版 */}
+          {isToyBuild() ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
+              <Tooltip title="历史记录">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<History />}
+                  onClick={() => uiState.setHistoryOpen(true)}
+                  sx={{ flex: 1, maxWidth: 160 }}
+                >
+                  历史
+                </Button>
+              </Tooltip>
+              <Tooltip title="关于">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<InfoOutlined />}
+                  onClick={() => uiState.setInfoOpen(true)}
+                  sx={{ flex: 1, maxWidth: 160 }}
+                >
+                  关于
+                </Button>
+              </Tooltip>
             </Box>
+          ) : (
+            <>
+              {/* 非 Toy 环境：完整布局 */}
+              {/* First row: History and Gallery */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
+                <Tooltip title="历史记录">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<History />}
+                    onClick={() => uiState.setHistoryOpen(true)}
+                    sx={{ flex: 1, maxWidth: 160 }}
+                  >
+                    历史
+                  </Button>
+                </Tooltip>
+                <Tooltip title="探索画廊">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<Explore />}
+                    onClick={() => uiState.setGalleryOpen(true)}
+                    sx={{ flex: 1, maxWidth: 160 }}
+                  >
+                    画廊
+                  </Button>
+                </Tooltip>
+              </Box>
+
+              {/* Second row: About and GitHub */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
+                <Tooltip title="关于">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<InfoOutlined />}
+                    onClick={() => uiState.setInfoOpen(true)}
+                    sx={{ flex: 1, maxWidth: 160 }}
+                  >
+                    关于
+                  </Button>
+                </Tooltip>
+                <Tooltip title="GitHub">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<GitHub />}
+                    href={GITHUB_REPO_URL}
+                    target="_blank"
+                    sx={{ flex: 1, maxWidth: 160 }}
+                  >
+                    GitHub
+                  </Button>
+                </Tooltip>
+              </Box>
+
+              {/* Third row: Auth (Login or User info). Toy build has no SEKAI Pass. */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mt: 1.5 }}>
+                {auth.isAuthenticated ? (
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      {auth.user?.username}
+                    </Typography>
+                    <UserMenu />
+                  </Box>
+                ) : (
+                  <LoginButton variant="outlined" size="medium" fullWidth />
+                )}
+              </Box>
+            </>
           )}
         </Box>
       </Box>

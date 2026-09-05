@@ -48,6 +48,13 @@ function toyUploadPackage() {
     async writeBundle(options) {
       const dir = options.dir;
       if (!dir) return;
+      // Rename index.toy.html to index.html for Toy platform requirement
+      const toyHtml = path.join(dir, "index.toy.html");
+      const indexHtml = path.join(dir, "index.html");
+      if (await fs.stat(toyHtml).catch(() => false)) {
+        await fs.rename(toyHtml, indexHtml);
+      }
+      // Remove host-only files
       await Promise.all(
         TOY_HOST_ONLY_FILES.map((name) =>
           fs.rm(path.join(dir, name), { force: true }),
@@ -210,6 +217,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       sourcemap: !isToy,
       rollupOptions: {
+        input: isToy ? 'index.toy.html' : 'index.html',
         output: {
           manualChunks: {
             // 将 Material-UI 分离到单独的 chunk

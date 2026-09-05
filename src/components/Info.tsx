@@ -16,6 +16,25 @@ import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
 import { GitHub, Favorite } from '@mui/icons-material'
 import { publicAsset } from '../utils/publicAsset'
+import { isToyBuild } from '../utils/toy'
+
+// Vite 编译时常量：toy 构建会完全移除非 toy 分支的代码和 URL 字符串
+const URLS = {
+  githubRepo: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/25-ji-code-de/stickers-maker',
+  githubDev: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/bili-47177171806',
+  bilibiliDev: import.meta.env.MODE === 'toy' ? '' : 'https://space.bilibili.com/3546904856103196',
+  afdian: import.meta.env.MODE === 'toy' ? '' : 'https://afdian.com/a/1806P',
+  redditSheren: import.meta.env.MODE === 'toy' ? '' : 'https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/',
+  githubAyaka: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/theoriginalayaka',
+  githubModder: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/modder4869',
+  githubBedrock: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/BedrockDigger',
+  nightcordMikan: import.meta.env.MODE === 'toy' ? '' : 'https://nightcord.de/@akiyamamizuki',
+  pjskMoe: import.meta.env.MODE === 'toy' ? '' : 'https://pjsk.moe',
+  githubAtnightcord: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/atnightcord/sekai-stickers',
+  githubBedrockRepo: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/BedrockDigger/sekai-stickers',
+  githubAyakaRepo: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/TheOriginalAyaka/sekai-stickers',
+  githubMoesekai: import.meta.env.MODE === 'toy' ? '' : 'https://github.com/StarMoe-org/MoeSekai-Hub',
+}
 
 interface InfoProps {
   open: boolean
@@ -23,6 +42,8 @@ interface InfoProps {
 }
 
 export default function Info({ open, handleClose }: InfoProps) {
+  const isToy = isToyBuild()
+
   return (
     <Dialog
       open={open}
@@ -38,10 +59,11 @@ export default function Info({ open, handleClose }: InfoProps) {
         </Typography>
         <List dense>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/25-ji-code-de/stickers-maker"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubRepo || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: 'rgb(228, 194, 200)' }}>
@@ -62,53 +84,59 @@ export default function Info({ open, handleClose }: InfoProps) {
               />
             </ListItemAvatar>
             <ListItemText
-              primary={
-                <>
-                  bili_47177171806
-                  <br />
-                  <Typography
-                    variant="caption"
-                    component="span"
-                    sx={{ display: 'block', mt: 0.5 }}
-                  >
-                    <a
-                      href="https://github.com/bili-47177171806"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: 'inherit', textDecoration: 'none', marginRight: 8 }}
+              primary="bili_47177171806"
+              secondary={
+                isToy ? (
+                  "项目开发者"
+                ) : (
+                  <>
+                    项目开发者
+                    <br />
+                    <Typography
+                      variant="caption"
+                      component="span"
+                      sx={{ display: 'block', mt: 0.5 }}
                     >
-                      GitHub
-                    </a>
-                    •
-                    <a
-                      href="https://space.bilibili.com/3546904856103196"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: 'inherit', textDecoration: 'none', marginLeft: 8 }}
-                    >
-                      Bilibili
-                    </a>
-                  </Typography>
-                </>
+                      <a
+                        href={URLS.githubDev}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'inherit', textDecoration: 'none', marginRight: 8 }}
+                      >
+                        GitHub
+                      </a>
+                      •
+                      <a
+                        href={URLS.bilibiliDev}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'inherit', textDecoration: 'none', marginLeft: 8 }}
+                      >
+                        Bilibili
+                      </a>
+                    </Typography>
+                  </>
+                )
               }
-              secondary="项目开发者"
             />
           </ListItem>
         </List>
 
-        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<Favorite />}
-            href="https://afdian.com/a/1806P"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{ borderRadius: 2 }}
-          >
-            支持项目开发
-          </Button>
-        </Box>
+        {!isToy && URLS.afdian && (
+          <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<Favorite />}
+              href={URLS.afdian}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ borderRadius: 2 }}
+            >
+              支持项目开发
+            </Button>
+          </Box>
+        )}
 
         <Divider sx={{ my: 2 }} />
 
@@ -120,10 +148,11 @@ export default function Info({ open, handleClose }: InfoProps) {
         </Typography>
         <List dense>
           <ListItem
-            button
-            component="a"
-            href="https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.redditSheren || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar
@@ -134,10 +163,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemText primary="u/SherenPlaysGames" secondary="原始贴纸创作者" />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/theoriginalayaka"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubAyaka || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar
@@ -148,10 +178,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemText primary="Ayaka" secondary="最初的创意和实现" />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/modder4869"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubModder || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar alt="Modder4869" src={publicAsset('avatars/modder4869.webp')} />
@@ -159,10 +190,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemText primary="Modder4869" secondary="代码贡献" />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/BedrockDigger"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubBedrock || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar alt="BedrockDigger" src={publicAsset('avatars/bedrockdigger.webp')} />
@@ -170,10 +202,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemText primary="BedrockDigger" secondary="UI 设计贡献" />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://nightcord.de/@akiyamamizuki"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.nightcordMikan || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar
@@ -187,10 +220,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://pjsk.moe"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.pjskMoe || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar alt="Moesekai" src={publicAsset('avatars/moesekai.webp')} />
@@ -206,10 +240,11 @@ export default function Info({ open, handleClose }: InfoProps) {
         </Typography>
         <List dense>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/atnightcord/sekai-stickers"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubAtnightcord || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: '#e1e4e8' }}>
@@ -222,10 +257,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/BedrockDigger/sekai-stickers"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubBedrockRepo || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: '#e1e4e8' }}>
@@ -238,10 +274,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/TheOriginalAyaka/sekai-stickers"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubAyakaRepo || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: '#e1e4e8' }}>
@@ -251,10 +288,11 @@ export default function Info({ open, handleClose }: InfoProps) {
             <ListItemText primary="TheOriginalAyaka/sekai-stickers" secondary="最初版本" />
           </ListItem>
           <ListItem
-            button
-            component="a"
-            href="https://github.com/StarMoe-org/MoeSekai-Hub"
-            target="_blank"
+            button={!isToy as any}
+            component={isToy ? 'div' : 'a'}
+            href={URLS.githubMoesekai || undefined}
+            target={isToy ? undefined : "_blank"}
+            sx={isToy ? { cursor: 'default' } : undefined}
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: '#e1e4e8' }}>
