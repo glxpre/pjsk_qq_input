@@ -7475,6 +7475,19 @@
     }
   },
   {
+    "id": "611",
+    "name": "草薙宁宁 28",
+    "character": "nene",
+    "img": "nene/nene_28.webp",
+    "color": "#33DD99",
+    "defaultText": {
+      "x": 148,
+      "y": 70,
+      "r": -2,
+      "s": 40
+    }
+  },
+  {
     "id": "273",
     "name": "镜音铃 01",
     "character": "rin",
