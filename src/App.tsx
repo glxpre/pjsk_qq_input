@@ -19,6 +19,7 @@ import {
   Snackbar,
   ToggleButtonGroup,
   ToggleButton,
+  Backdrop,
 } from '@mui/material'
 import {
   GitHub,
@@ -33,7 +34,7 @@ import {
   HelpOutline,
   Explore,
 } from '@mui/icons-material'
-import { useCallback, useEffect, useRef, useState, lazy, Suspense } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react'
 import characters from './characters.json'
 import Canvas from './components/Canvas'
 import Picker from './components/Picker'
@@ -72,6 +73,8 @@ import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useAuth } from './hooks/useAuth'
 import { useFanBonus } from './hooks/useFanBonus'
 import { useDuoMode } from './hooks/useDuoMode'
+import { useContentRiskLock, useSafeText } from './hooks/useContentRiskLock'
+import { contentRiskBlockMessage } from './utils/contentRisk'
 import { StickerConfig, StickerMode } from './types'
 import FontLoadingOverlay from './components/FontLoadingOverlay'
 import ShortcutsHelpDialog from './components/ShortcutsHelpDialog'
@@ -116,6 +119,23 @@ function App() {
   // 双人模式：图 A（主角色）加载后同步页面主题色
   const duo = useDuoMode({ enabled: mode === 'duo', onImageLoadA: handleImageLoad })
 
+  // Toy 审核用内容风险锁定：打字（预览更新）时即检测，命中词表锁定全部调节项并冷却
+  const riskLock = useContentRiskLock(
+    mode === 'duo'
+      ? [textSettings.text, duo.config.text, duo.config.textA, duo.config.textB]
+      : [textSettings.text]
+  )
+
+  // Toy 审核：命中词表的文本不上屏 —— 绘制（预览/导出）用最近一次安全文本替代
+  const displaySoloText = useSafeText(textSettings.text)
+  const displayDuoText = useSafeText(duo.config.text)
+  const displayDuoTextA = useSafeText(duo.config.textA)
+  const displayDuoTextB = useSafeText(duo.config.textB)
+  const displayDuoConfig = useMemo(
+    () => ({ ...duo.config, text: displayDuoText, textA: displayDuoTextA, textB: displayDuoTextB }),
+    [duo.config, displayDuoText, displayDuoTextA, displayDuoTextB]
+  )
+
   // 粉丝福利：锁定键盘快捷键中的位置/字号调节（fail-open，未锁定时原样透传）
   // 双人模式下快捷键同样不改动单人状态
   const positionLocked = fanBonus.isFeatureLocked('position')
@@ -147,14 +167,14 @@ function App() {
       const ctx = offscreen.getContext('2d')
       if (!ctx) return null
       if (mode === 'duo') {
-        duoDrawing.drawDuo(ctx, duo.config, duo.imgObjs, scale)
+        duoDrawing.drawDuo(ctx, displayDuoConfig, duo.imgObjs, scale)
         return offscreen
       }
       canvasDrawing.draw(
         ctx,
         characterHook.imgObj,
         characterHook.loaded,
-        textSettings.text,
+        displaySoloText,
         position.position,
         textSettings.rotate,
         {
@@ -180,11 +200,12 @@ function App() {
     [
       canvasDrawing,
       duoDrawing,
-      duo.config,
+      displayDuoConfig,
       duo.imgObjs,
       mode,
       characterHook.imgObj,
       characterHook.loaded,
+      displaySoloText,
       textSettings,
       position.position,
       colorScheme.textColor,
@@ -253,14 +274,14 @@ function App() {
   const draw = useCallback(
     (ctx: CanvasRenderingContext2D) => {
       if (mode === 'duo') {
-        duoDrawing.drawDuo(ctx, duo.config, duo.imgObjs)
+        duoDrawing.drawDuo(ctx, displayDuoConfig, duo.imgObjs)
         return
       }
       canvasDrawing.draw(
         ctx,
         characterHook.imgObj,
         characterHook.loaded,
-        textSettings.text,
+        displaySoloText,
         position.position,
         textSettings.rotate,
         {
@@ -284,11 +305,12 @@ function App() {
     [
       canvasDrawing,
       duoDrawing,
-      duo.config,
+      displayDuoConfig,
       duo.imgObjs,
       mode,
       characterHook.imgObj,
       characterHook.loaded,
+      displaySoloText,
       textSettings,
       position.position,
       colorScheme.textColor,
@@ -354,36 +376,58 @@ function App() {
     [getCurrentConfig, history]
   )
 
+  // Toy 审核用内容风险拦截：导出/复制前检查文本，命中词表则提示并进入冷却（非 toy 构建恒放行）
+  const guardContentRisk = useCallback((): boolean => {
+    const texts =
+      mode === 'duo'
+        ? [textSettings.text, duo.config.text, duo.config.textA, duo.config.textB]
+        : [textSettings.text]
+    for (const text of texts) {
+      if (!text || text === '请输入文本') continue
+      const message = contentRiskBlockMessage(text)
+      if (message) {
+        uiState.setRiskBlockMessage(message)
+        return false
+      }
+    }
+    return true
+  }, [mode, textSettings.text, duo.config, uiState])
+
   // Wrap export functions to auto-save to history (and trigger fan-bonus check on toy)
   const handleDownload = useCallback(async () => {
+    if (!guardContentRisk()) return
     await exportHooks.download()
     saveToHistory()
     void fanBonus.checkAfterFirstExport()
-  }, [exportHooks, saveToHistory, fanBonus])
+  }, [guardContentRisk, exportHooks, saveToHistory, fanBonus])
 
   const handleDownloadWebp = useCallback(async () => {
+    if (!guardContentRisk()) return
     await exportHooks.downloadWebp()
     saveToHistory()
     void fanBonus.checkAfterFirstExport()
-  }, [exportHooks, saveToHistory, fanBonus])
+  }, [guardContentRisk, exportHooks, saveToHistory, fanBonus])
 
   const handleDownloadJpg = useCallback(async () => {
+    if (!guardContentRisk()) return
     await exportHooks.downloadJpg()
     saveToHistory()
     void fanBonus.checkAfterFirstExport()
-  }, [exportHooks, saveToHistory, fanBonus])
+  }, [guardContentRisk, exportHooks, saveToHistory, fanBonus])
 
   const handleCopy = useCallback(async () => {
+    if (!guardContentRisk()) return
     await exportHooks.copy()
     saveToHistory()
     void fanBonus.checkAfterFirstExport()
-  }, [exportHooks, saveToHistory, fanBonus])
+  }, [guardContentRisk, exportHooks, saveToHistory, fanBonus])
 
   const handleCopyWithBg = useCallback(async () => {
+    if (!guardContentRisk()) return
     await exportHooks.copyWithBg()
     saveToHistory()
     void fanBonus.checkAfterFirstExport()
-  }, [exportHooks, saveToHistory, fanBonus])
+  }, [guardContentRisk, exportHooks, saveToHistory, fanBonus])
 
   // Apply configuration (used by both history and undo/redo)
   const applyConfig = useCallback(
@@ -990,21 +1034,25 @@ function App() {
                   <Divider sx={{ my: 2 }} />
 
                   <Box mt={2}>
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
-                      onChange={characterHook.handleUpload}
-                      style={{ display: 'none' }}
-                    />
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      onClick={() => fileInputRef.current?.click()}
-                      sx={{ mr: 1 }}
-                    >
-                      上传自定义图片
-                    </Button>
+                    {!isToyBuild() && (
+                      <>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                          onChange={characterHook.handleUpload}
+                          style={{ display: 'none' }}
+                        />
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => fileInputRef.current?.click()}
+                          sx={{ mr: 1 }}
+                        >
+                          上传自定义图片
+                        </Button>
+                      </>
+                    )}
                     {characterHook.customImage && (
                       <Button variant="outlined" size="small" onClick={characterHook.clearUpload}>
                         清除自定义图片
@@ -1285,6 +1333,13 @@ function App() {
         message="下载成功！"
         onClose={() => uiState.setDownloadPopupOpen(false)}
       />
+      {/* 内容风险拦截提示（toy 构建才会触发） */}
+      <NotificationSnackbar
+        open={uiState.riskBlockMessage !== ''}
+        message={uiState.riskBlockMessage}
+        onClose={() => uiState.setRiskBlockMessage('')}
+        duration={4000}
+      />
 
       {/* Fan bonus: locked-feature hint snackbar (toy build only) */}
       <Snackbar
@@ -1301,6 +1356,14 @@ function App() {
           </Button>
         }
       />
+
+      {/* 内容风险冷却：全屏遮罩锁定全部调节项，倒计时结束自动解锁（toy 构建才会触发） */}
+      <Backdrop
+        open={riskLock.locked}
+        sx={{ zIndex: (theme) => theme.zIndex.tooltip + 1, flexDirection: 'column' }}
+      >
+        <Typography variant="h6">{riskLock.message}</Typography>
+      </Backdrop>
 
       {/* Fan bonus dialog (toy build only; no-ops elsewhere) */}
       <Suspense fallback={null}>

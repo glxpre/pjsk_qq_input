@@ -89,6 +89,9 @@ export interface UIState {
   setShortcutsHelpOpen: (open: boolean) => void
   galleryOpen: boolean
   setGalleryOpen: (open: boolean) => void
+  /** 内容风险拦截提示（toy 构建专用，非 toy 恒为空串） */
+  riskBlockMessage: string
+  setRiskBlockMessage: (message: string) => void
 }
 
 export interface CharacterHook {

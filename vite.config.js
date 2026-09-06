@@ -3,6 +3,21 @@ import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from 'vite-plugin-pwa';
 import fs from "node:fs/promises";
 import path from "node:path";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+/**
+ * Toy 审核用内容风险词表。
+ * 代码统一 `import ... from 'content-risk-lexicon'`，由下方 resolve.alias
+ * 按构建模式解析：toy → 真实词表（存在时），非 toy → 空 stub（恒放行）。
+ * 因此词表内容只会进入 toy 产物。
+ */
+const CONTENT_RISK_LEXICON_SRC = fileURLToPath(
+  new URL("./src/utils/contentRiskLexicon.ts", import.meta.url),
+);
+const CONTENT_RISK_LEXICON_STUB = fileURLToPath(
+  new URL("./src/utils/contentRiskLexiconStub.ts", import.meta.url),
+);
 
 /**
  * Toy pages live under `/toy/<slug>/`. Root-absolute `/favicon.ico` would
@@ -201,10 +216,23 @@ const pwaPlugin = VitePWA({
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isToy = mode === "toy";
+  // 词表文件存在才指向真实词表，缺失（如 fresh clone）时回退 stub
+  const contentRiskLexiconPath =
+    isToy && existsSync(CONTENT_RISK_LEXICON_SRC)
+      ? CONTENT_RISK_LEXICON_SRC
+      : CONTENT_RISK_LEXICON_STUB;
 
   return {
     // Toy pages live under `/toy/<slug>/`; root-absolute assets 404.
     base: isToy ? "./" : "/",
+    resolve: {
+      alias: [
+        {
+          find: "content-risk-lexicon",
+          replacement: contentRiskLexiconPath,
+        },
+      ],
+    },
     plugins: [
       react(),
       ...(isToy ? [stubPwaRegister(), toyUploadPackage()] : [pwaPlugin]),

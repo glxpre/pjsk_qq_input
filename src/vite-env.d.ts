@@ -15,3 +15,20 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+/**
+ * 内容风险词表的类型声明（实际由 vite resolve.alias 按构建模式解析：
+ * toy → src/utils/contentRiskLexicon.ts（不入库），非 toy → contentRiskLexiconStub.ts）。
+ * 在这里声明类型，使 TS 不依赖那个不入库的文件也能通过类型检查。
+ */
+declare module 'content-risk-lexicon' {
+  export interface ContentRiskMatchResult {
+    hit: boolean
+    type: 'exact' | 'combo' | 'soft' | 'none'
+    term: string
+  }
+  export const contentRiskLexicon:
+    | { version: string; cooldownSeconds: number }
+    | undefined
+  export function matchContentRisk(text: string): ContentRiskMatchResult
+}

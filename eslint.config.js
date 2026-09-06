@@ -6,7 +6,8 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'dev-dist', '*.d.ts'],
+    // .claude 里是工具状态与 worktrees（内含各分支自己的源码副本），不属于本项目源码
+    ignores: ['dist', 'dist-toy', 'dev-dist', '**/dist', '**/dist-toy', '*.d.ts'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

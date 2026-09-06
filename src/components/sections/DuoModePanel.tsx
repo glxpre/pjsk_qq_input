@@ -28,6 +28,7 @@ import { DuoLayout, DuoTextMode, FontKey } from '../../types'
 import { UseDuoModeReturn } from '../../hooks/useDuoMode'
 import { DUO_SLOT_WIDTH, DUO_SLOT_HEIGHT, DUO_SPLIT_AUTO } from '../../hooks/useCanvasDrawing'
 import { FanBonusFeature } from '../../config/fanBonus'
+import { isToyBuild } from '../../utils/toy'
 
 interface DuoModePanelProps {
   duo: UseDuoModeReturn
@@ -94,21 +95,25 @@ export default function DuoModePanel({ duo, isFeatureLocked, onLockedHint }: Duo
             setCharacter={(c) => duo.setSideCharacter(index, c)}
             color={characters[side.character].color}
           />
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
-            onChange={(e) => duo.handleSideUpload(index, e)}
-            style={{ display: 'none' }}
-          />
-          <Button
-            variant="outlined"
-            size="small"
-            startIcon={<Upload />}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            上传
-          </Button>
+          {!isToyBuild() && (
+            <>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                onChange={(e) => duo.handleSideUpload(index, e)}
+                style={{ display: 'none' }}
+              />
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<Upload />}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                上传
+              </Button>
+            </>
+          )}
           {side.customImage && (
             <Button variant="outlined" size="small" onClick={() => duo.clearSideUpload(index)}>
               清除

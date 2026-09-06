@@ -7,3 +7,6 @@ dist-toy
 .vscode
 .idea
 .playwright-mcp
+
+# 内容风险词表
+src/utils/contentRiskLexicon.ts
