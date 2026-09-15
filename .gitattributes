@@ -1,0 +1,28 @@
+# 文本一律按 LF 存库（本地 core.autocrlf 仍然可以把工作区变成 CRLF）
+* text=auto
+
+# 明确的二进制类型，避免 diff / eol 转换把它们弄坏
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.exe binary
+*.dll binary
+*.zip binary
+*.7z binary
+
+# Windows 脚本保持 CRLF，方便记事本 / PowerShell ISE 直接打开
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# GitHub 语言统计：把生成物与文档排除在外
+desktop-dist/** linguist-generated=true
+release/** linguist-generated=true
+docs/** linguist-documentation=true

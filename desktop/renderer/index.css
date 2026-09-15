@@ -2,10 +2,9 @@
 /* Copyright (C) 2026 The 25-ji-code-de Team */
 
 /*
- * Local fonts, copied from `src/index.css` so the desktop build ships the same
- * typefaces as the web editor and needs no network to render text. The woff2
- * files are bundled as Vite assets, which is what makes an installed copy work
- * offline.
+ * Local fonts, shared with the web editor (`src/fonts`) so a 3.5 MB typeface is
+ * not duplicated in the repository. The woff2 files are bundled as Vite assets,
+ * which is what makes an installed copy work offline.
  */
 
 body {
@@ -17,21 +16,29 @@ body {
 
 @font-face {
   font-family: "YurukaStd";
-  src: url("./fonts/YurukaStd.woff2") format("woff2");
+  src: url("../../src/fonts/YurukaStd.woff2") format("woff2");
   font-display: block;
 }
 
 @font-face {
   font-family: "SSFangTangTi";
-  src: url("./fonts/ShangShouFangTangTi.woff2") format("woff2");
+  src: url("../../src/fonts/ShangShouFangTangTi.woff2") format("woff2");
   font-display: block;
 }
 
-/* Sticker previews keep their true pixel aspect and never blur on upscale. */
+/*
+ * Sticker previews keep their true pixel aspect, never blur on upscale, and are
+ * always fully visible: `max-height` matters because a grown canvas (band mode)
+ * is taller than the window, and a preview that silently clips the text would be
+ * worse than useless.
+ */
 .sticker-canvas {
   image-rendering: auto;
   max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }

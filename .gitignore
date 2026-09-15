@@ -11,6 +11,8 @@ dist-toy
 # 桌面版构建产物与打包结果（体积很大，可随时重新生成）
 desktop-dist
 release
+# 辅助程序由 desktop/helper/build-helper.ps1 用系统 csc.exe 现场编译，不入库
+desktop/helper/bin
 # 本机 npm 缓存（打包环境把它放在工作区内）
 .npm-cache
 # 诊断脚本的输出
