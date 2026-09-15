@@ -16,12 +16,54 @@ jobs:
           node-version: '24'
           cache: npm
       - name: Install
+        # CI 只做类型检查与测试，不需要下载 Electron 的二进制（约 115 MB）
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
         run: npm ci || npm install
       - name: Build
         run: npm run build
+      - name: Build (toy)
+        run: npm run build:toy
       - name: Typecheck
         run: npm run type-check
+      - name: Typecheck (desktop)
+        run: npm run desktop:type-check
       - name: Lint
         run: npm run lint
+      - name: Test
+        run: npm test
+
+  # 辅助程序用 .NET Framework 的 csc.exe 编译，只能在 Windows 上构建
+  desktop-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+        run: npm ci || npm install
+      - name: Build desktop bundles and helper
+        run: npm run desktop:build
+      - name: Verify build output
+        shell: pwsh
+        run: |
+          $required = @(
+            'desktop-dist/main/main.cjs',
+            'desktop-dist/main/preload.cjs',
+            'desktop-dist/renderer/index.html',
+            'desktop-dist/renderer/preview.html',
+            'desktop-dist/assets/characters.json',
+            'desktop-dist/helper/QqHelper.exe'
+          )
+          foreach ($file in $required) {
+            if (-not (Test-Path $file)) { throw "缺少构建产物：$file" }
+          }
+          $images = (Get-ChildItem desktop-dist/assets/img -Recurse -File).Count
+          if ($images -lt 700) { throw "贴纸素材数量异常：$images" }
+          Write-Host "构建产物完整，贴纸素材 $images 个"
       - name: Test
         run: npm test
