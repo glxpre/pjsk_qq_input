@@ -538,9 +538,19 @@ export default function App() {
   useEffect(() => {
     if (!hasDesktop) return
     const off = window.sekaiDesktop!.on('desktop:command', (payload) => {
-      const command = payload as { type: string }
+      const command = payload as { type: string; text?: string }
       if (command.type === 'capture') void handleCapture()
       if (command.type === 'insert') void handleInsert()
+      /*
+       * `setDraft` exists for the documentation screenshots
+       * (`npm run desktop:screenshot`): it fills the box with a sample so the
+       * README shows the real UI rather than a mock-up.
+       */
+      if (command.type === 'setDraft' && typeof command.text === 'string') {
+        setText(command.text)
+        setPageIndex(0)
+        setStatus(null)
+      }
     })
     return off
   }, [hasDesktop, handleCapture, handleInsert])
@@ -558,6 +568,8 @@ export default function App() {
 
   const notes = layout?.diagnostics.notes ?? []
   const liveMode = !!helper?.liveReadSupported
+  /** The helper has not answered yet, so no verdict about QQ is shown. */
+  const helperChecking = !helper || helper.reason.startsWith('正在检测')
 
   return (
     <Box sx={{ display: 'flex', height: '100vh', bgcolor: 'background.default' }}>
@@ -587,12 +599,20 @@ export default function App() {
             <Chip
               size="small"
               color={helper?.running ? 'primary' : 'default'}
-              label={helper?.running ? `QQ ${helper.version || '已运行'}` : 'QQ 未运行'}
+              label={
+                helper?.running
+                  ? `QQ ${helper.version || '已运行'}`
+                  : helperChecking
+                    ? '正在检测 QQ…'
+                    : 'QQ 未运行'
+              }
             />
             <Chip
               size="small"
-              color={liveMode ? 'success' : 'warning'}
-              label={liveMode ? '实时读取可用' : '实时读取不可用'}
+              color={liveMode ? 'success' : helperChecking ? 'default' : 'warning'}
+              label={
+                liveMode ? '实时读取可用' : helperChecking ? '实时读取：检测中' : '实时读取不可用'
+              }
             />
             <Chip
               size="small"
@@ -868,17 +888,20 @@ export default function App() {
       {/* ---------------- right: preview + actions ---------------- */}
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <Box sx={{ p: 2, pb: 1 }}>
-          {!liveMode && !config?.dismissLiveWarning && (
+          {!liveMode && !helperChecking && !config?.dismissLiveWarning && (
             <Alert
               severity="warning"
               sx={{ mb: 1 }}
               onClose={() => void patchConfig({ dismissLiveWarning: true })}
             >
               <AlertTitle>实时读取不可用，已启用快捷键兼容模式</AlertTitle>
-              {helper?.reason ||
-                '当前 QQ 版本没有通过 UI Automation 暴露聊天输入框。'}请在 QQ
-              中选中要转换的文字，然后按 {config?.captureShortcut || 'Control+Alt+D'} 读取选区；程序不会持续模拟
-              Ctrl+A/Ctrl+C，也不会读取整个剪贴板历史。
+              <Typography variant="body2" sx={{ mb: 0.5 }}>
+                原因：{helper?.reason || '当前 QQ 版本没有通过 UI Automation 暴露聊天输入框。'}
+              </Typography>
+              <Typography variant="body2">
+                请在 QQ 中选中要转换的文字，然后按 {config?.captureShortcut || 'Control+Shift+D'}{' '}
+                读取选区。程序不会持续模拟 Ctrl+A / Ctrl+C，也不会读取整个剪贴板历史。
+              </Typography>
             </Alert>
           )}
           {status && (

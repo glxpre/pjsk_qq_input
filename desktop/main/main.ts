@@ -19,7 +19,7 @@
 
 import { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, clipboard, dialog, shell, protocol } from 'electron'
 import path from 'node:path'
-import { existsSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { execFileSync } from 'node:child_process'
 
@@ -48,6 +48,27 @@ const SMOKE_OUT = (() => {
   if (flag) return flag.slice('--smoke-out='.length)
   return path.join(app.getPath('temp'), 'pjsk-sticker-smoke.json')
 })()
+
+/**
+ * Documentation-screenshot mode.
+ *
+ * `--screenshot-dir=<dir>` fills the draft box with a sample, waits for the
+ * preview to be painted, then writes `desktop-app.png` (the window) and
+ * `example-sticker.png` (the sticker the app actually produced) into that
+ * directory. Used by `scripts/screenshot-desktop.mjs` so the README shows real
+ * output instead of a mock-up — the sticker it saves is the exact PNG the app
+ * would put on the clipboard.
+ */
+const SCREENSHOT_DIR = (() => {
+  const flag = process.argv.find((value) => value.startsWith('--screenshot-dir='))
+  return flag ? flag.slice('--screenshot-dir='.length) : null
+})()
+
+/** The draft the screenshot shows, chosen to look like a real chat sticker. */
+const SCREENSHOT_DRAFT = '今天也要加油！'
+
+/** Last sticker the renderer pushed for the floating preview, as a PNG data URL. */
+let lastPreviewDataUrl: string | null = null
 
 /** Resolves when the renderer answers the `smoke` command. */
 let smokeResolve: ((report: unknown) => void) | null = null
@@ -202,7 +223,9 @@ let helperStatus: HelperStatus = {
   windowCount: 0,
   elementCount: 0,
   liveReadSupported: false,
-  reason: 'helper not started',
+  // Deliberately not a verdict: the helper has not answered yet, and saying
+  // "unavailable" before asking would be a claim the app cannot support.
+  reason: '正在检测 QQ…',
   draft: null,
 }
 
@@ -243,10 +266,19 @@ function createMainWindow(): void {
   else mainWindow.loadFile(target.file!)
 
   // In self-check mode the window stays hidden: the renderer still loads and
-  // runs, but nothing flashes on screen.
+  // runs, but nothing flashes on screen. Screenshot mode needs it visible.
   mainWindow.once('ready-to-show', () => {
-    if (!SMOKE_MODE) mainWindow?.show()
+    if (!SMOKE_MODE || SCREENSHOT_DIR) mainWindow?.show()
   })
+  /*
+   * Push the state once the renderer is actually listening.
+   *
+   * The helper is started in parallel with the window, so its first status can
+   * land either before or after the renderer subscribes. Re-pushing on load closes
+   * that race: without it the UI could keep showing "QQ 未运行" for the whole
+   * session, because the periodic poll only pushes on a *change*.
+   */
+  mainWindow.webContents.on('did-finish-load', () => pushState())
   // Closing the window quits the app; minimise-to-tray is a separate action so
   // the behaviour is never surprising.
   mainWindow.on('close', () => {
@@ -297,6 +329,8 @@ function createPreviewWindow(): BrowserWindow {
 
 /** Show or update the preview without activating it. */
 function pushPreview(dataUrl: string | null, label: string): void {
+  // Remembered so screenshot mode can save the exact PNG the app produced.
+  if (dataUrl) lastPreviewDataUrl = dataUrl
   const target = createPreviewWindow()
   const send = (): void => {
     if (!target || target.isDestroyed()) return
@@ -743,10 +777,42 @@ function registerIpc(): void {
   })
 }
 
+/**
+ * Produce the screenshots the README uses, then exit.
+ *
+ * Both files are real: the window capture is what a user sees, and the sticker is
+ * the PNG the app generated (it is taken from the preview payload the renderer
+ * already pushed, so it is byte-identical to what "复制图片" would put on the
+ * clipboard).
+ */
+async function runScreenshot(): Promise<void> {
+  const dir = SCREENSHOT_DIR!
+  mkdirSync(dir, { recursive: true })
+  // Let the fonts finish loading and the first paint happen.
+  await new Promise((resolve) => setTimeout(resolve, 1500))
+  mainWindow?.webContents.send('desktop:command', { type: 'setDraft', text: SCREENSHOT_DRAFT })
+  // Layout is debounced by ~180 ms and the preview render follows it.
+  await new Promise((resolve) => setTimeout(resolve, 2500))
+
+  const appShot = path.join(dir, 'desktop-app.png')
+  const image = await mainWindow!.webContents.capturePage()
+  writeFileSync(appShot, image.toPNG())
+  console.log(`窗口截图：${appShot} (${image.getSize().width}x${image.getSize().height})`)
+
+  const stickerShot = path.join(dir, 'example-sticker.png')
+  if (lastPreviewDataUrl?.startsWith('data:image/png;base64,')) {
+    writeFileSync(stickerShot, Buffer.from(lastPreviewDataUrl.split(',')[1]!, 'base64'))
+    console.log(`贴纸样例：${stickerShot}`)
+  } else {
+    console.error('渲染进程没有推送预览图，无法保存贴纸样例')
+  }
+
+  app.exit(0)
+}
+
 // ---------------------------------------------------------------------------
 // Self-check
 // ---------------------------------------------------------------------------
-
 /**
  * Run the `--smoke-test` sequence and exit with a status code.
  *
@@ -953,11 +1019,17 @@ if (!gotLock) {
       },
     })
     await helper.start()
+    /*
+     * Ask once up front. `start()` only spawns the process, so without this the
+     * UI would keep saying "detecting QQ" until the first poll four seconds later
+     * — which reads as "QQ is not running" to anyone watching the window appear.
+     */
+    helperStatus = await helper.status()
     syncShortcuts()
 
-    if (SMOKE_MODE) {
-      // Wait for the renderer to finish loading before asking it questions; a
-      // load failure is itself reported rather than swallowed.
+    if (SMOKE_MODE || SCREENSHOT_DIR) {
+      // Wait for the renderer to finish loading before asking it anything; a load
+      // failure is itself reported rather than swallowed.
       const window = mainWindow
       const loaded = new Promise<void>((resolve) => {
         if (!window || window.isDestroyed()) return resolve()
@@ -966,6 +1038,10 @@ if (!gotLock) {
         window.webContents.once('did-fail-load', () => resolve())
       })
       await loaded
+      if (SCREENSHOT_DIR) {
+        await runScreenshot()
+        return
+      }
       await runSmokeTest()
       return
     }

@@ -421,10 +421,10 @@ internal static class Program
             sb.Append(",\"draft\":null");
         }
         sb.Append(",\"reason\":").Append(Str(liveRead
-            ? "QQ chat input box is reachable through UI Automation"
+            ? "可以通过 UI Automation 读取 QQ 聊天输入框"
             : running
-                ? "QQ exposes no editable element through UI Automation; live reading is unavailable for this build"
-                : "QQ is not running"));
+                ? "当前 QQ 版本没有通过 UI Automation 暴露可编辑控件，实时读取不可用（这是 QQ 自身的限制，不是程序出错）"
+                : "QQ 没有运行"));
         sb.Append("}");
         return sb.ToString();
     }
@@ -440,15 +440,15 @@ internal static class Program
         {
             return "{\"available\":false,\"reason\":" +
                    Str(roots == 0
-                       ? "no QQ window found"
-                       : "QQ exposes no editable element through UI Automation") + "}";
+                       ? "没有找到 QQ 窗口"
+                       : "当前 QQ 版本没有通过 UI Automation 暴露可编辑控件") + "}";
         }
         string value = draft.HasValue ? draft.Value : null;
         return "{\"available\":" + Bool(value != null) +
                ",\"text\":" + Str(value) +
                ",\"className\":" + Str(draft.ClassName) +
                ",\"hasFocus\":" + Bool(draft.HasFocus) +
-               ",\"reason\":" + Str(value != null ? "" : "the chat editor exposes no value pattern") + "}";
+               ",\"reason\":" + Str(value != null ? "" : "输入框没有暴露 ValuePattern，读不到文本") + "}";
     }
 
     private static string OpFocusEditBox()
@@ -480,13 +480,13 @@ internal static class Program
         bool editorFocused = draft != null && draft.HasFocus;
         bool ok = isQq && sameWindow && editorFocused;
         string reason = !isQq
-            ? "QQ is not the foreground application"
+            ? "前台程序不是 QQ"
             : !sameWindow
-                ? "a different window is in the foreground"
+                ? "前台的窗口已经换了（不是刚才那个聊天窗口）"
                 : draft == null
-                    ? "QQ shows no chat editor"
+                    ? "QQ 没有暴露聊天输入框"
                     : !editorFocused
-                        ? "the chat editor does not have keyboard focus"
+                        ? "聊天输入框没有键盘焦点"
                         : "";
         return "{\"ok\":" + Bool(ok) +
                ",\"isQq\":" + Bool(isQq) +
