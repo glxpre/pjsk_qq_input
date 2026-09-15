@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Live-mode preview surface.
+
+      This window is shown with `showInactive()` and created with
+      `focusable: false`, so it can never take keyboard focus away from QQ — the
+      whole point of a companion preview. It only ever receives a data URL from
+      the main process, so nothing here needs network, script or frame access.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'self'"
+    />
+    <title>贴纸预览</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: rgba(24, 22, 23, 0.95);
+        color: #e8e0e1;
+        font: 12px/1.4 system-ui, "Microsoft YaHei", sans-serif;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      img {
+        max-width: 96vw;
+        max-height: calc(100vh - 28px);
+        image-rendering: auto;
+      }
+      .footer {
+        opacity: 0.75;
+        white-space: nowrap;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="sticker" class="hidden" alt="贴纸预览" />
+    <div id="status" class="footer">等待输入…</div>
+    <!--
+      Minimal renderer: the main process pushes the newest sticker, and only the
+      newest one is ever shown, so a slow generate can never overwrite a newer
+      result with an older image.
+    -->
+    <script type="module" src="./preview.ts"></script>
+  </body>
+</html>

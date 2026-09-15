@@ -7,7 +7,20 @@ import tseslint from 'typescript-eslint'
 export default tseslint.config(
   {
     // .claude 里是工具状态与 worktrees（内含各分支自己的源码副本），不属于本项目源码
-    ignores: ['dist', 'dist-toy', 'dev-dist', '**/dist', '**/dist-toy', '*.d.ts'],
+    // desktop-dist / release 是构建与打包产物，node_modules 与缓存目录同理
+    ignores: [
+      'dist',
+      'dist-toy',
+      'dev-dist',
+      'desktop-dist',
+      'release',
+      'node_modules',
+      '.npm-cache',
+      '.claude',
+      '**/dist',
+      '**/dist-toy',
+      '*.d.ts',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -47,6 +60,44 @@ export default tseslint.config(
       'no-unused-vars': 'off',
       'no-undef': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    /*
+     * Node-side scripts and the Electron preload.
+     *
+     * The preload *has* to be CommonJS (Electron loads it before the ESM loader
+     * exists), and the build/packaging helpers run in Node, so `require` and the
+     * Node globals are correct there rather than a mistake.
+     */
+    files: ['**/*.cjs', 'scripts/**/*.{mjs,js}', 'tools/**/*.{mjs,cjs}', '*.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        require: 'readonly',
+        module: 'writable',
+        exports: 'writable',
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        Buffer: 'readonly',
+        URL: 'readonly',
+        performance: 'readonly',
+        fetch: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        structuredClone: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'no-undef': 'off',
     },
   }
 )

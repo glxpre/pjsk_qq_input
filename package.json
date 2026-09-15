@@ -20,10 +20,22 @@
     "build:toy": "vite build --mode toy",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives",
     "type-check": "tsc --noEmit",
-    "test": "node --test \"test/*.test.mjs\"",
+    "test": "node test/legacy-migration.test.mjs && node test/autoLayout.test.ts && node test/desktopRenderer.test.ts && node test/desktopMain.test.ts",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "desktop:helper": "powershell -NoProfile -ExecutionPolicy Bypass -File desktop/helper/build-helper.ps1",
+    "desktop:helper:test": "powershell -NoProfile -ExecutionPolicy Bypass -File desktop/helper/test-helper.ps1",
+    "desktop:assets": "node scripts/copy-desktop-assets.mjs",
+    "desktop:build": "npm run desktop:helper && node scripts/build-desktop.mjs && npm run desktop:assets",
+    "desktop:dev": "node scripts/build-desktop.mjs --dev",
+    "desktop:start": "npm run desktop:build && electron .",
+    "desktop:type-check": "tsc --noEmit -p tsconfig.desktop.json",
+    "desktop:pack": "npm run desktop:build && node scripts/package-portable.mjs",
+    "desktop:smoke": "node scripts/smoke-desktop.mjs",
+    "desktop:run": "node scripts/run-desktop.mjs",
+    "desktop:dist": "npm run desktop:build && electron-builder --win --x64"
   },
+  "main": "desktop-dist/main/main.cjs",
   "dependencies": {
     "@25-ji-code-de/sekai-auth": "github:25-ji-code-de/sekai-auth#v0.2.0",
     "@emotion/react": "^11.11.3",
@@ -46,6 +58,9 @@
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.28.1",
     "eslint": "^9.39.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -57,5 +72,55 @@
     "vite": "^7.3.0",
     "vite-plugin-pwa": "^1.2.0",
     "workbox-window": "^7.4.0"
+  },
+  "build": {
+    "appId": "de.25ji.sekai.stickers",
+    "productName": "PJSK-Sticker-Companion",
+    "directories": {
+      "output": "release",
+      "buildResources": "desktop/build"
+    },
+    "files": [
+      "desktop-dist/main/**",
+      "desktop-dist/renderer/**",
+      "desktop-dist/assets/characters.json",
+      "desktop-dist/assets/icon.png",
+      "desktop-dist/assets/tray.png",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "desktop-dist/assets/img",
+        "to": "assets/img"
+      },
+      {
+        "from": "desktop-dist/helper",
+        "to": "helper"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "desktop-dist/assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "PJSK-Sticker-Companion-portable-${version}.exe"
+    }
   }
 }

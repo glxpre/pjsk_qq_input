@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      The desktop build is fully offline: no CDN, no analytics, no remote fonts.
+      Everything the renderer needs (fonts, sticker art, characters.json) comes
+      from this bundle (`'self'`) or from the private `app://assets/` scheme the
+      main process serves, which is what lets an installed copy generate stickers
+      with the network unplugged.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'self' app:; img-src 'self' data: blob: app:; font-src 'self' data: app:; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    />
+    <title>PJSK 贴纸伴侣</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
