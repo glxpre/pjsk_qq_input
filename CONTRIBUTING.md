@@ -34,10 +34,10 @@
 
 ```bash
 # Fork 仓库后克隆到本地
-git clone https://github.com/your-username/stickers-maker.git
-cd stickers-maker
+git clone https://github.com/glxpre/pjsk_qq_input.git
+cd pjsk_qq_input
 
-# 添加上游仓库
+# 添加上游仓库（本项目是 25-ji-code-de/stickers-maker 的二次开发，方便同步网页版修复）
 git remote add upstream https://github.com/25-ji-code-de/stickers-maker.git
 ```
 
@@ -173,9 +173,10 @@ git rebase upstream/main
 ## ❓ 需要帮助？
 
 - 查看项目的 [README.md](./README.md)
-- 浏览现有的 [Issues](https://github.com/25-ji-code-de/stickers-maker/issues)
+- 浏览现有的 [Issues](https://github.com/glxpre/pjsk_qq_input/issues)
 - 在 Issue 中提问
-- 查看其他 SEKAI 生态项目的实现
+- 桌面版与 QQ 相关的改动，请先读 [desktop/README.md](./desktop/README.md) 里的
+  QQ 能力实测结论，避免重复讨论已经被 QQ 自身限制挡住的做法
 
 ## 📜 行为准则
 
@@ -191,6 +192,8 @@ git rebase upstream/main
 
 <div align="center">
 
-Made with 💜 by the [25-ji-code-de](https://github.com/25-ji-code-de) team
+基于 [25-ji-code-de/stickers-maker](https://github.com/25-ji-code-de/stickers-maker) 二次开发
+
+Made with 💜
 
 </div>
