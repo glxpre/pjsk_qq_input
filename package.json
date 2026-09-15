@@ -33,6 +33,7 @@
     "desktop:pack": "npm run desktop:build && node scripts/package-portable.mjs",
     "desktop:smoke": "node scripts/smoke-desktop.mjs",
     "desktop:run": "node scripts/run-desktop.mjs",
+    "desktop:screenshot": "node scripts/screenshot-desktop.mjs",
     "desktop:dist": "npm run desktop:build && electron-builder --win --x64"
   },
   "main": "desktop-dist/main/main.cjs",

@@ -201,6 +201,16 @@ npm run desktop:run -- --dev --seconds 20
 自检用的是隐藏窗口，这一条补上前台启动路径：窗口/托盘是否真的建起来、
 进程是否稳定存活、启动日志里有没有 CSP 或模块加载错误、结束后进程是否归零。
 
+### 重新生成文档截图
+
+```powershell
+npm run desktop:screenshot           # 写入 docs/desktop-app.png 与 docs/example-sticker.png
+npm run desktop:screenshot -- --dev
+```
+
+截图不是效果图：窗口截图来自真实运行的程序，贴纸样例就是程序为那句示例生成的 PNG
+（取自它推给预览浮窗的同一份数据，与「复制图片」放进剪贴板的内容完全一致）。
+
 ### 单独验证 QQ 接入能力
 
 ```powershell
@@ -254,7 +264,7 @@ desktop/
     smoke.ts                渲染进程自检：真实加载素材、字体、排版并绘制
     useFontsReady.ts        字体就绪门控
     preview.html / preview.ts   不抢焦点的实时预览浮窗
-    index.html / index.css / fonts/
+    index.html / index.css  界面外壳（字体复用 src/fonts，不重复入库）
 
 src/layout/
   segment.ts                字素/词/禁则字符分类（无 DOM 依赖）
@@ -356,7 +366,6 @@ npm test
   六个样例全部「原文完整 / 分页连续 / 字符未截断 / 未超出画布 / 缓存稳定」，
   退出后辅助进程归零、快捷键已释放；
 - ✅ 六种文本的真实排版实拍（同一台机器、同一份 296×256 模板）：
-
   | 样例 | 输入 | 结果 | 策略 |
   | --- | --- | --- | --- |
   | 短句 | `初音未来` | 1 张 / 1 行 / 38px（模板字号） | 沿用模板 |
